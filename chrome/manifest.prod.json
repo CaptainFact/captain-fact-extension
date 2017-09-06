@@ -1,0 +1,30 @@
+{
+  "version": "0.1",
+  "name": "CaptainFact (Beta)",
+  "manifest_version": 2,
+  "description": "Get information overlays with facts about what you're seeing on the Internet",
+  "browser_action": {
+    "default_title": "CaptainFact",
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "img/icon-16.png",
+    "48": "img/icon-48.png",
+    "128": "img/icon-128.png",
+    "1024": "img/icon.png"
+  },
+  "web_accessible_resources": [
+    "inject.html"
+  ],
+  "applications": {
+    "gecko": {
+      "id": "extension@captainfact.io"
+    }
+  },
+  "background": {
+    "page": "background.html",
+    "persistent": false
+  },
+  "permissions": [ "tabs", "storage", "https://www.youtube.com/*" ],
+  "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:;"
+}

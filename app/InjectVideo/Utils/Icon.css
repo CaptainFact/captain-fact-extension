@@ -1,0 +1,26 @@
+.icon {
+    padding: 0;
+    color: white;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background-color: rgba(10, 10, 10, 0.4);
+    border: none;
+    border-radius: 290486px;
+    cursor: pointer;
+    display: inline-block;
+    height: 20px;
+    outline: none;
+    vertical-align: top;
+    width: 20px;
+    text-align: center;
+}
+
+.icon:hover {
+    background-color: rgba(10, 10, 10, 0.6);
+    text-decoration: none;
+}

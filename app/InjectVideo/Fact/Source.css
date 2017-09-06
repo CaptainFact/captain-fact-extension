@@ -1,0 +1,26 @@
+.sourceLink {
+    text-decoration-color: lightgrey;
+    display: block;
+}
+
+.sourceLink:hover {
+    text-decoration: underline;
+}
+
+.siteName {
+    text-decoration: underline;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.articleTitle {
+    font-style: italic;
+    font-size: 0.9em;
+    color: #e0e0e0;
+    text-decoration-color: lightgrey;
+}

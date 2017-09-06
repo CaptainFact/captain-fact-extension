@@ -1,0 +1,10 @@
+.control > * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.control label {
+    padding-right: 15px;
+    color: #363636;
+    font-weight: 700;
+}
