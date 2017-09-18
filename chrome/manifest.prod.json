@@ -1,7 +1,8 @@
 {
-  "version": "0.1",
+  "version": "0.4",
   "name": "CaptainFact (Beta)",
   "manifest_version": 2,
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvj2HRDAsx3qXl66tfidXZRcQbw7RHG1YwNSgrbFDyvmKL0jP5dpxqD7Y6WpRgUeMYT93sg7hgIt6JHpY3ZOv/HRZII9SYxy6DT4iTkQknQ+5JaJZvnKosvAnU/gRZkwTBDSOnGvc9THirpKtLlEKLsvG8apJWtBzBuCEAuTDpwrapDVu+JM6VPCh+MCWHYfjDd8agbhK6SOPnC81NcqQXOWG3n0/AHTY4g/9PbNwm96f+ymUuFbBYsN4eIzq/wZktf417SnzxMqSIlfdeyTST1xZ74bSCLOi4+XgYI+UaDAQZUNFiZINXojnJrkPo2g3maHqJb+0ZQdggQyS3C9lswIDAQAB",
   "description": "Get information overlays with facts about what you're seeing on the Internet",
   "browser_action": {
     "default_title": "CaptainFact",
@@ -14,13 +15,10 @@
     "1024": "img/icon.png"
   },
   "web_accessible_resources": [
-    "inject.html"
+    "inject.html",
+    "img/*.png",
+    "img/*.svg"
   ],
-  "applications": {
-    "gecko": {
-      "id": "extension@captainfact.io"
-    }
-  },
   "background": {
     "page": "background.html",
     "persistent": false

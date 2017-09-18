@@ -1,2 +1,2 @@
-export const FRONT_URL = "https://staging.captainfact.io"
-export const API_URL = "https://staging.captainfact.io:4001/api"
+export const FRONT_URL = "https://captainfact.io"
+export const API_URL = "https://captainfact.io:8443"

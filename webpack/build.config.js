@@ -1,8 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
 const postCSSConfig = require('./postcss.config');
+const argv = require('yargs').argv;
 
 const customPath = path.join(__dirname, './customPublicPath');
+
 
 module.exports = {
   entry: {
@@ -37,7 +39,7 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx'],
     alias: {
-      config: path.join(__dirname, '../config/prod.js')
+      config: path.join(__dirname, '../config/' + argv.env + '.js')
     }
   },
   module: {
@@ -57,4 +59,4 @@ module.exports = {
       ]
     }]
   }
-};
+}
