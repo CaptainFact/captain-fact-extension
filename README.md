@@ -24,13 +24,13 @@ The application is available on the
 
 ## Development
 
-You must configure valid API and frontend endpoints to start developing. Edit `config/dev.js` with the
-appropriate values.
-
-```bash
-# Install dependencies
-$ npm install
-$ npm run dev
+You must configure valid API and frontend endpoints to start developing - edit `config/dev.js` with the
+appropriate values. For example, you can plug it on [captainfact.io](https://captainfact.io) with:
+```ecmascript 6
+export const FRONT_URL = "https://captainfact.io"
+export const API_URL = "https://captainfact.io:8443"
 ```
 
-[Load unpacked extension](https://developer.chrome.com/extensions/getstarted#unpacked) with `./dev` folder.
+Install dependencies with `npm install` then run `npm run dev` to start dev server.
+[Load unpacked extension](https://developer.chrome.com/extensions/getstarted#unpacked) in Chrome with `./dev` folder
+and you're ready to go!
