@@ -1,6 +1,6 @@
 {
   "name": "captain-fact-extension",
-  "version": "0.1.0",
+  "version": "0.4.1",
   "description": "http://captainfact.io chrome extension",
   "scripts": {
     "dev": "node scripts/dev",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    "url": "https://github.com/CaptainFact/captain-fact-extension"
   },
   "author": "Benjamin Piouffle <benjamin.piouffle@gmail.com>",
   "license": "MIT",
