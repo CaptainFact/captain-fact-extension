@@ -12,9 +12,10 @@ import { CF_FRONT_URL, STATEMENT_FOCUS_TIME } from '../../Common/lib/constants'
 
 import {
   sidebar, sidebarHeader, title, sidebarContent, jumpLink, actionsLinks, disabled , collapsed,
-  slideIn, slideOut
+  slideIn, slideOut, statementsList
 } from './Sidebar.css'
 import { PlaybackState } from '../App/playback_reducer'
+import LocalImage from '../Utils/LocalImage'
 
 
 @connect(state => ({
@@ -123,7 +124,7 @@ export default class Sidebar extends Component {
           <a href={`${CF_FRONT_URL}/videos/${this.props.videoId}`} target="_BLANK"
              title="Open discussion on CaptainFact">
             <h1 className={title}>CaptainFact</h1>&nbsp;
-            <img src={chrome.runtime.getURL('img/new_tab.png')} height="17"/>
+            <LocalImage src="new_tab.png" height="17"/>
           </a>
           <a title="Close sidebar" style={{float: 'right', cursor: 'pointer'}} onClick={InterfaceState.closeSidebar}>
             ❌
@@ -139,7 +140,7 @@ export default class Sidebar extends Component {
             </div>
           }
           {this.state.currentView === "statements" &&
-            <div>
+            <div className={statementsList}>
               {this.props.statements.map(s =>
                 <Statement  key={s.id} statement={s} onTimeClick={this.handleTimeClick}
                             textPrefix={s === currentStatement ? '➡️ ' : ''}/>

@@ -1,6 +1,6 @@
-.approvingFact, .refutingFact, .regularFact {
+.fact {
     display: block;
-    border-bottom: 1px solid #666565;
+    border-bottom: 1px solid #303030;
 }
 
 .sourceSection {
@@ -8,19 +8,30 @@
 }
 
 .scoreTag {
-    font-size: 1em;
-    height: 1.2em;
-    background: rgba(255, 255, 255, 0.70);
-    padding: 0 5px;
+    font-size: 1.1em;
     font-family: sans-serif;
+    font-weight: bold;
+    color: #cec8c8;
+    height: 1.2em;
+    background: rgba(53, 53, 53, 0.53);
+    padding: 0 5px;
     border-radius: 4px;
     float: right;
 }
 
 .userSection {
     font-size: 0.8em;
-    padding: 2px 10px;
+    padding: 5px 10px;
     background-color: #4a4343;
+    display: flex;
+}
+
+.userSection > .right {
+    padding-left: 7px;
+}
+
+.userCommentText {
+    font-style: italic;
 }
 
 /* Approving facts */
@@ -37,10 +48,6 @@
     background-color: #228c00;
 }
 
-.approvingFact .scoreTag {
-    color: green;
-}
-
 /* Refuting facts */
 
 .refutingFact > .sourceSection {
@@ -55,15 +62,7 @@
     background-color: #8a2b38;
 }
 
-.refutingFact .scoreTag {
-    color: red;
-}
-
 /* Regular fact */
 .regularFact > .sourceSection {
     background: #636363;
-}
-
-.regularFact .scoreTag {
-    color: black;
 }

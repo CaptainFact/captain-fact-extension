@@ -9,9 +9,9 @@ import { getFocusedStatement } from '../Statement/selectors'
 
 
 const icons = {
-  neutral: chrome.runtime.getURL('img/icon-48-transparent.png'),
-  confirm: chrome.runtime.getURL('img/icon-48-transparent-confirm.png'),
-  refute: chrome.runtime.getURL('img/icon-48-transparent-refute.png')
+  neutral: chrome.runtime.getURL('img/icon.png'),
+  confirm: chrome.runtime.getURL('img/icon_confirm.png'),
+  refute: chrome.runtime.getURL('img/icon_refute.png')
 }
 
 @connect(state => ({

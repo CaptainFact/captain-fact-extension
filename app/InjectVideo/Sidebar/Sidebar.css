@@ -44,6 +44,7 @@
     background: rgba(0, 0, 0, 0.75);
     padding: 2px 7px 4px;
     font-size: 1.5em;
+    border: 1px solid #2f2f2f;
 }
 
 .sidebarHeader h1 {
@@ -66,7 +67,12 @@
 .actionsLinks {
     text-align: center;
     padding: 3px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+    border: 1px solid #2f2f2f;
+    border-top: none;
+}
+
+.statementsList > *:not(:last-child) {
+    border-bottom: 1px solid #111111;
 }
 
 a.jumpLink {
