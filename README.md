@@ -9,7 +9,7 @@ true or false.
 ![Icon approve](misc/approve.gif)
 ![Icon refute](misc/refute.gif)
 
-### Facts overlay
+### Facts overlay 
 
 When clicked, the CaptainFact icon displays facts and comments about current statement and
 their respective scores.

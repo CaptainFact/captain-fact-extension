@@ -1,9 +1,8 @@
 .statementDisplay {
     text-align: left;
     padding: 7px;
-    background: #31455d;
-    color: #e0e7f1;
-    border-bottom: 1px solid black;
+    background: #2f2f2f;
+    color: #eaeaea;
     font-size: 0.9em;
 }
 

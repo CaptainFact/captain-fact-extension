@@ -17,7 +17,7 @@ function formatSeconds(total_seconds) {
 const TimeDisplay = ({ time, handleClick, textBefore="" }) => {
   const formattedTime = formatSeconds(time)
   const content = handleClick ?
-    (<a onClick={() => handleClick(time)} style={{textDecoration: 'underline'}}>
+    (<a onClick={() => handleClick(time)} style={{textDecoration: 'underline', cursor: 'pointer'}}>
       { formattedTime }
     </a>) :
     formattedTime

@@ -1,5 +1,5 @@
 {
-  "version": "0.4.1",
+  "version": "0.4.2",
   "name": "CaptainFact (Beta)",
   "manifest_version": 2,
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvj2HRDAsx3qXl66tfidXZRcQbw7RHG1YwNSgrbFDyvmKL0jP5dpxqD7Y6WpRgUeMYT93sg7hgIt6JHpY3ZOv/HRZII9SYxy6DT4iTkQknQ+5JaJZvnKosvAnU/gRZkwTBDSOnGvc9THirpKtLlEKLsvG8apJWtBzBuCEAuTDpwrapDVu+JM6VPCh+MCWHYfjDd8agbhK6SOPnC81NcqQXOWG3n0/AHTY4g/9PbNwm96f+ymUuFbBYsN4eIzq/wZktf417SnzxMqSIlfdeyTST1xZ74bSCLOi4+XgYI+UaDAQZUNFiZINXojnJrkPo2g3maHqJb+0ZQdggQyS3C9lswIDAQAB",
@@ -11,8 +11,7 @@
   "icons": {
     "16": "img/icon-16.png",
     "48": "img/icon-48.png",
-    "128": "img/icon-128.png",
-    "1024": "img/icon.png"
+    "128": "img/icon-128.png"
   },
   "web_accessible_resources": [
     "inject.html",
