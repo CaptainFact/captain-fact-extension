@@ -1,4 +1,8 @@
-## Features
+<p align="center"><img src="chrome/assets/img/icon.png" height="100"/></p>
+<h1 align="center"><a href="https://captainfact.io">CaptainFact.io</a></h1>
+<br/>
+
+## Extension Features
 
 ### Icon helper
 
