@@ -2,7 +2,7 @@
     position: fixed;
     right: 0;
     width: 45%;
-    max-width: 480px;
+    max-width: 30em;
     z-index: 70;
     background-color: rgba(0, 0, 0, 0.43);
     display: flex;
