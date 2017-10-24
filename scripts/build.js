@@ -4,7 +4,7 @@ const argv = require('yargs').argv;
 tasks.replaceWebpack();
 console.log('[Copy assets]');
 console.log('-'.repeat(80));
-tasks.copyAssets('build');
+tasks.copyAssets('build', argv.env);
 
 console.log('[Webpack Build]');
 console.log('-'.repeat(80));
