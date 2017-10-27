@@ -1,8 +1,8 @@
 const fs = require('fs');
 const ChromeExtension = require('crx');
 const resolve = require('path').resolve
-const name = require(resolve('./build/manifest.json')).name;
 const argv = require('minimist')(process.argv.slice(2));
+const name = "CaptainFact_Extension";
 
 const keyPath = argv.key || 'key.pem';
 const existsKey = fs.existsSync(keyPath);

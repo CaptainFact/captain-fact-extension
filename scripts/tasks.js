@@ -12,8 +12,7 @@ exports.replaceWebpack = () => {
   replaceTasks.forEach(task => cp(task.from, task.to));
 };
 
-exports.copyAssets = (type) => {
-  const env = type === 'build' ? 'prod' : type;
+exports.copyAssets = (type, env) => {
   rm('-rf', type);
   mkdir(type);
   cp(`chrome/manifest.${env}.json`, `${type}/manifest.json`);

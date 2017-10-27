@@ -1,4 +1,8 @@
-## Features
+<p align="center"><img src="chrome/assets/img/icon.png" height="100"/></p>
+<h1 align="center"><a href="https://captainfact.io">CaptainFact.io</a></h1>
+<br/>
+
+## Extension Features
 
 ### Icon helper
 
@@ -30,6 +34,10 @@ appropriate values. For example, you can plug it on [captainfact.io](https://cap
 export const FRONT_URL = "https://captainfact.io"
 export const API_URL = "https://captainfact.io:8443"
 ```
+
+Be sure to use a compatible API version - major and minor must match
+(using 0.6.0 with 0.6.7 is ok, but 0.6.0 with 0.7.0 may not work).
+To check for the API version, make a GET request to the API root.
 
 Install dependencies with `npm install` then run `npm run dev` to start dev server.
 [Load unpacked extension](https://developer.chrome.com/extensions/getstarted#unpacked) in Chrome with `./dev` folder

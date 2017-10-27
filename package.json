@@ -1,6 +1,6 @@
 {
   "name": "captain-fact-extension",
-  "version": "0.4.2",
+  "version": "0.6.1",
   "description": "http://captainfact.io chrome extension",
   "scripts": {
     "dev": "node scripts/dev",
@@ -9,7 +9,7 @@
     "build_dev": "node scripts/build --env=dev",
     "compress": "node scripts/compress",
     "compress-keygen": "crx keygen",
-    "clean": "rimraf build/ dev/ *.zip *.crx"
+    "clean": "rimraf build/ dev/ CaptainFact_Extension*.zip CaptainFact_Extension*.crx"
   },
   "repository": {
     "type": "git",
