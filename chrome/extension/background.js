@@ -18,14 +18,8 @@ function promisifyAll(obj, list) {
 }
 
 // let chrome extension api support Promise
-promisifyAll(chrome, [
-  'tabs',
-  'windows',
-  'browserAction'
-]);
-promisifyAll(chrome.storage, [
-  'local',
-]);
+promisifyAll(chrome, ['tabs', 'windows', 'browserAction']);
+promisifyAll(chrome.storage, ['local']);
 
 require('./background/inject');
 require('./background/badge');

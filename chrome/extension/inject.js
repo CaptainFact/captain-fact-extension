@@ -1,16 +1,29 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+
+import LocalSettings from '../../app/Common/lib/local_settings'
+import DataCache from '../../app/Common/lib/data_cache'
 import InjectedApp from '../../app/InjectVideo/App/InjectedApp'
-import LocalSettings from '../../app/Common/lib/localSettings'
+import {getVideoProvider} from '../../app/Common/lib/url_utils'
 
 
 const DOM_NODE_CLASS = 'captainfact-overlay'
 
 function inject() {
-  const injectDOM = document.createElement('div')
-  injectDOM.className = DOM_NODE_CLASS
-  document.getElementById('movie_player').appendChild(injectDOM)
-  ReactDOM.render(<InjectedApp/>, injectDOM)
+  const video = getVideoProvider(location.href)
+  if (video === null)
+    return
+
+  DataCache.hasVideo(video.provider, video.provider_id).then(hasVideo => {
+    if (hasVideo) {
+      const injectDOM = document.createElement('div')
+      injectDOM.className = DOM_NODE_CLASS
+      document.getElementById('movie_player').appendChild(injectDOM)
+      ReactDOM.render(<InjectedApp/>, injectDOM)
+    }
+    else
+      console.log('VIDEO DO NOT EXIST IN CACHE')
+  })
 }
 
 function removeAll() {

@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Sidebar from '../Sidebar/Sidebar'
-import { checkIfVideoExists } from '../Video/effects'
+import { fetchVideo } from '../Video/effects'
 
 import styles from './App.css'
 
@@ -11,7 +11,7 @@ import styles from './App.css'
 @connect(state => ({video: state.Video.data}))
 export default class App extends React.Component {
   componentDidMount() {
-    checkIfVideoExists(window.location.href)
+    fetchVideo(window.location.href)
   }
 
   render() {

@@ -1,7 +1,7 @@
 function isInjected(tabId) {
   return chrome.tabs.executeScriptAsync(tabId, {
-    code: `var injected = window.reactExampleInjected;
-      window.reactExampleInjected = true;
+    code: `var injected = window.captainFactInjected;
+      window.captainFactInjected = true;
       injected;`,
     runAt: 'document_start'
   });
@@ -24,7 +24,6 @@ const arrowURLs = ['^https://www.youtube\\.com'];
 
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   if (changeInfo.status !== 'loading' || !tab.url.match(arrowURLs.join('|'))) return;
-
   const result = await isInjected(tabId);
   if (chrome.runtime.lastError || result[0]) return;
   loadScript('inject', tabId, () => console.log('load inject bundle success!'));

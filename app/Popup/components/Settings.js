@@ -2,7 +2,7 @@ import React from 'react';
 
 import Select from './Select.js'
 import styles from './Settings.css'
-import LocalSettings from '../../Common/lib/localSettings.js'
+import LocalSettings from '../../Common/lib/local_settings.js'
 
 
 export default class Settings extends React.Component {
