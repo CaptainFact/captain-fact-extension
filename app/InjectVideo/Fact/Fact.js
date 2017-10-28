@@ -17,7 +17,6 @@ export default class Fact extends React.PureComponent {
   render() {
     const { approve, text, source, user, score } = this.props.comment
     const factType = approve === true ? approvingFact : approve === false ? refutingFact : regularFact
-    console.log(user)
     return (
       <div className={`${fact} ${factType}`}>
         <div className={sourceSection}>

@@ -25,6 +25,12 @@ their respective scores.
 The application is available on the
 [Chrome Web Store](https://chrome.google.com/webstore/detail/captainfact-beta/fnnhlmbnlbgomamcolcpgncflofhjckm)
 
+## How does it work ?
+
+We store a local cache of videos ids that exist on CaptainFact. This cache gets updated if you watch a video on Youtube
+and it haven't been synced for more than 5 minutes. 
+This is a privacy improvement that guarantees we don't track the videos you're watching and don't send unnecessary 
+requests.
 
 ## Development
 
@@ -42,3 +48,11 @@ To check for the API version, make a GET request to the API root.
 Install dependencies with `npm install` then run `npm run dev` to start dev server.
 [Load unpacked extension](https://developer.chrome.com/extensions/getstarted#unpacked) in Chrome with `./dev` folder
 and you're ready to go!
+
+## License
+
+GNU General Public License v3.0
+
+Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights.
+
+See [LICENSE](LICENSE) for more info.

@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux"
-import logger from 'redux-logger'
+// import logger from 'redux-logger'
+// import { ENV } from 'config'
 import { CreateJumpstateMiddleware } from 'jumpstate'
 
 import { StatementsState } from '../Statement/reducer'
@@ -18,10 +19,9 @@ const reducers = combineReducers({
 
 
 // Declare middlewares
-const middlewares = [
-  CreateJumpstateMiddleware(),
-  // logger  // Uncomment to log redux actions
-]
+const middlewares = [CreateJumpstateMiddleware()]
+// if (ENV === 'dev')
+//   middlewares.push(logger)
 
 
 // Build store
