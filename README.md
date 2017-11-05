@@ -34,20 +34,11 @@ requests.
 
 ## Development
 
-You must configure valid API and frontend endpoints to start developing - edit `config/dev.js` with the
-appropriate values. For example, you can plug it on [captainfact.io](https://captainfact.io) with:
-```ecmascript 6
-export const FRONT_URL = "https://captainfact.io"
-export const API_URL = "https://captainfact.io:8443"
-```
+See [CONTRIBUTING.md](CONTRIBUTING.md)
 
-Be sure to use a compatible API version - major and minor must match
-(using 0.6.0 with 0.6.7 is ok, but 0.6.0 with 0.7.0 may not work).
-To check for the API version, make a GET request to the API root.
+## Linked projects
 
-Install dependencies with `npm install` then run `npm run dev` to start dev server.
-[Load unpacked extension](https://developer.chrome.com/extensions/getstarted#unpacked) in Chrome with `./dev` folder
-and you're ready to go!
+* [Frontend](https://github.com/CaptainFact/captain-fact-frontend)
 
 ## License
 
