@@ -1,7 +1,7 @@
 {
   "name": "captain-fact-extension",
-  "version": "0.7.0",
-  "description": "http://captainfact.io chrome extension",
+  "version": "0.7.2",
+  "description": "http://captainfact.io Web Extension",
   "scripts": {
     "dev": "node scripts/dev",
     "build": "node scripts/build --env=prod",
@@ -16,7 +16,7 @@
     "url": "https://github.com/CaptainFact/captain-fact-extension"
   },
   "author": "Benjamin Piouffle <benjamin.piouffle@gmail.com>",
-  "license": "MIT",
+  "license": "GPL3",
   "devDependencies": {
     "babel-core": "^6.3.15",
     "babel-eslint": "^7.1.0",
@@ -52,7 +52,7 @@
     "webpack-httpolyglot-server": "^0.2.0"
   },
   "dependencies": {
-    "bluebird": "^3.3.4",
+    "babel-polyfill": "^6.26.0",
     "classnames": "^2.1.3",
     "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.2.1",

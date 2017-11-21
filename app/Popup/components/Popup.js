@@ -34,9 +34,7 @@ export default class Popup extends React.Component {
     const cfUrl = `${CF_FRONT_URL}/videos/add/${encodeURIComponent(url)}`
     return (
       <div>
-        <a href={cfUrl} onClick={() => chrome.tabs.create({url: cfUrl})}>
-          Open this video on CaptainFact
-        </a>
+        <a target="_BLANK" href={cfUrl}>Open this video on CaptainFact</a>
         <hr/>
       </div>
     )

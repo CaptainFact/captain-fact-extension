@@ -41,7 +41,7 @@ export default class CFButton extends React.Component {
       return null
     return (
       <img src={this.getIcon()}
-        className={classnames(cfbutton, {[pulse]: !!this.props.statement})}
+        className={classnames("CFButton", cfbutton, {[pulse]: !!this.props.statement})}
         title="CaptainFact"
         onClick={InterfaceState.openSidebar}
         style={{
