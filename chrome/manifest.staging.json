@@ -27,9 +27,9 @@
     "img/*.svg"
   ],
   "background": {
-    "scripts": ["/js/background.bundle.js"],
+    "page": "background.html",
     "persistent": false
   },
-  "permissions": [ "tabs", "storage", "https://www.youtube.com/*", "https://localhost/*", "https://staging.captainfact.io/*" ],
-  "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:;"
+  "permissions": [ "tabs", "storage", "https://www.youtube.com/*", "https://localhost/*", "https://staging.captainfact.io*" ],
+  "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://staging.captainfact.io:*;"
 }

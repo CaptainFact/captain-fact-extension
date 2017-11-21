@@ -25,9 +25,9 @@
     "img/*.svg"
   ],
   "background": {
-    "scripts": ["/js/background.bundle.js"],
+    "page": "background.html",
     "persistent": false
   },
   "permissions": [ "tabs", "storage", "*://www.youtube.com/*", "*://captainfact.io/*" ],
-  "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:;"
+  "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://captainfact.io:*;"
 }
