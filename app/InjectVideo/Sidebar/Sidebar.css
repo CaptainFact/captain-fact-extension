@@ -1,5 +1,5 @@
 .sidebar {
-    position: fixed;
+    position: absolute;
     right: 0;
     width: 45%;
     max-width: 30em;
@@ -61,7 +61,7 @@
 }
 
 .sidebarContent {
-
+    overflow-y: auto;
 }
 
 .actionsLinks {

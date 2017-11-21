@@ -1,3 +1,4 @@
+import "babel-polyfill"
 import React from 'react'
 import ReactDOM from 'react-dom'
 
@@ -8,6 +9,7 @@ import {getVideoProvider} from '../../app/Common/lib/url_utils'
 
 
 const DOM_NODE_CLASS = 'captainfact-overlay'
+
 
 function inject() {
   const video = getVideoProvider(location.href)
@@ -22,7 +24,7 @@ function inject() {
       ReactDOM.render(<InjectedApp/>, injectDOM)
     }
     else
-      console.log('VIDEO DO NOT EXIST IN CACHE')
+      console.log('[CaptainFact] This video do not exist on CaptainFact')
   })
 }
 
@@ -35,6 +37,7 @@ function removeAll() {
 }
 
 window.addEventListener('load', () => {
+  console.log("[CaptainFact] Loaded")
   LocalSettings.load().then(({videosOverlay}) => {
     if (videosOverlay)
       inject()

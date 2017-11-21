@@ -1,4 +1,4 @@
-import "isomorphic-fetch"
+import fetch from "isomorphic-fetch"
 
 import { CF_API_URL } from "../../Common/lib/constants"
 
@@ -6,22 +6,21 @@ import { CF_API_URL } from "../../Common/lib/constants"
 class CaptainFactHttpApi {
   constructor(baseUrl) {
     this.baseUrl = baseUrl
+    this.headers = {}
   }
 
   prepareResponse(promise) {
-    return new Promise((fulfill, reject) => {
-      return promise.then(response => {
-        return response.text().then((body) => {
-          body = body ? JSON.parse(body) : null
-          if (!response.ok) {
-            if (body.error)
-              reject(body.error)
-            else
-              reject(body.errors)
-          }
+    return promise.then(response => {
+      return response.text().then((body) => {
+        body = body ? JSON.parse(body) : null
+        if (!response.ok) {
+          if (body.error)
+            throw body.error
           else
-            fulfill(body)
-        })
+            throw body.errors
+        }
+        else
+          return body
       })
     })
   }
@@ -38,7 +37,7 @@ class CaptainFactHttpApi {
   }
 
   get(resourceUrl) {
-    const response = fetch(this.baseUrl + resourceUrl, {headers: this.headers})
+    const response = fetch(this.baseUrl + resourceUrl, this.headers)
     return this.prepareResponse(response)
   }
 

@@ -2,7 +2,6 @@ import HttpApi from './http_api'
 
 const CACHE_KEY = "cache"
 const CACHE_VALIDITY = 5 * 60 * 1000 // 5 minutes
-const storage = chrome.storage.local
 const DEFAULT = {last_id: 0, last_update: null, data: {youtube: []}}
 
 
@@ -13,8 +12,8 @@ export default class DataCache {
    */
   static load() {
     return new Promise((fulfill, reject) =>
-      storage.get(CACHE_KEY, obj => fulfill(
-        obj.hasOwnProperty(CACHE_KEY) ? obj[CACHE_KEY] : DEFAULT
+      chrome.storage.local.get(CACHE_KEY, obj => fulfill(
+        obj && obj.hasOwnProperty(CACHE_KEY) ? obj[CACHE_KEY] : DEFAULT
       ))
     )
   }
@@ -50,11 +49,16 @@ export default class DataCache {
           if (video.id > maxId)
             maxId = video.id
         }
+        cache.last_id = maxId
+        cache.last_update = Date.now()
 
         // Save cache
-        storage.set({[CACHE_KEY]: cache}, () => console.log('[CaptainFact] Cache updated'))
+        chrome.storage.local.set({[CACHE_KEY]: cache}, () => console.log("[CaptainFact] Cache updated"))
         return cache
-      }).catch(error => cache)
+      }).catch(e => {
+        console.error("[CaptainFact] Cache update failed", e)
+        return cache
+      })
     })
   }
 }

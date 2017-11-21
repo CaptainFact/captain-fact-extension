@@ -1,7 +1,7 @@
 const SETTINGS_KEY = "settings"
 const DEFAULT_SETTINGS = {videosOverlay: true}
 
-const storage = chrome.storage.sync
+const storage = chrome.storage.local
 
 
 // Params use to be stored as JSON strings. As we now store directly objects, we must
@@ -16,7 +16,7 @@ export default class LocalSettings {
   static load() {
     return new Promise((fulfill, reject) =>
       storage.get(SETTINGS_KEY, obj => fulfill(
-        obj.hasOwnProperty(SETTINGS_KEY) ? legacySettingsLoader(obj[SETTINGS_KEY]) : DEFAULT_SETTINGS
+        obj && obj.hasOwnProperty(SETTINGS_KEY) ? legacySettingsLoader(obj[SETTINGS_KEY]) : DEFAULT_SETTINGS
       ))
     )
   }

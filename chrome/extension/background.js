@@ -1,25 +1,45 @@
-const bluebird = require('bluebird');
+import "babel-polyfill"
 
-global.Promise = bluebird;
-
-function promisifier(method) {
-  // return a function
-  return function promisified(...args) {
-    // which returns a promise
-    return new Promise((resolve) => {
-      args.push(resolve);
-      method.apply(this, args);
-    });
-  };
+/**
+ * Check if script is already injected
+ */
+function isActivated(tabId, callback) {
+  return chrome.tabs.executeScript(tabId, {
+    code: `var isActivated = window.CaptainFactActivated || false;
+    window.CaptainFactActivated = true;
+    isActivated;`,
+    runAt: 'document_start'
+  }, result => {
+    // On firefox, executeScript returns a list
+    if (typeof(result) !== 'boolean')
+      return callback(result[0])
+    return callback(result)
+  });
 }
 
-function promisifyAll(obj, list) {
-  list.forEach(api => bluebird.promisifyAll(obj[api], { promisifier }));
+/**
+ * Load `name` script, fetching it from localhost:3000 if running in dev
+ */
+function loadScript(name, tabId, callback) {
+  if (process.env.NODE_ENV !== 'dev') {
+    console.log(`[CaptainFact] Load /js/${name}.bundle.js`)
+    return chrome.tabs.executeScript(tabId, { file: `/js/${name}.bundle.js`, runAt: 'document_start' }, callback);
+  } else {
+    // dev: async fetch bundle
+    fetch(`http://localhost:3000/js/${name}.bundle.js`)
+      .then(res => res.text())
+      .then(fetchRes => chrome.tabs.executeScript(tabId, { code: fetchRes, runAt: 'document_start' }, callback))
+  }
 }
 
-// let chrome extension api support Promise
-promisifyAll(chrome, ['tabs', 'windows', 'browserAction']);
-promisifyAll(chrome.storage, ['local']);
+const arrowURLs = ['^https://www.youtube\\.com'];
 
-require('./background/inject');
-require('./background/badge');
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (!tab.url.match(arrowURLs.join('|')))
+    return;
+  return isActivated(tabId, activated => {
+    if (activated === true) // || chrome.runtime.lastError
+      return;
+    return loadScript('inject', tabId, () => console.log('[CaptainFact] Load inject bundle success!'));
+  })
+});
