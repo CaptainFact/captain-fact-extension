@@ -78,6 +78,12 @@ confirm the security exception/
 
 A default account should have been created for you with email=`admin@captainfact.io` and password=`password`.
 
+#### Building the extension
+
+* `npm run build` => Build the extension for prod
+  You can also run `npm run build_staging` and `npm run build_dev` to build for different envs
+* `npm run compress` => Generate .zip and .crx based on build folder
+
 ### Code style
 
 *TODO: code style and conventions*
