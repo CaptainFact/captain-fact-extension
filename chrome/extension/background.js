@@ -48,6 +48,7 @@ function injectIfVideoExist(tabId, url) {
       })
     } else {
       console.log('[CaptainFact] Unknown video')
+      ContentApi.disable(tabId)
     }
   })
 }
@@ -62,7 +63,6 @@ let isEnabled = false
 // Enable or disable overlay based on settings changes
 LocalSettings.load().then(({videosOverlay}) => {
   isEnabled = videosOverlay
-
   LocalSettings.addChangeListener((oldParams, newParams) => {
     isEnabled = newParams.videosOverlay
     if (oldParams.videosOverlay && !newParams.videosOverlay)
@@ -74,9 +74,10 @@ LocalSettings.load().then(({videosOverlay}) => {
 
 // Watch for new tabs to inject into
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  if (!isEnabled || !changeInfo.url || !tab.url.match(allowedUrls.join('|')))
+  if (!isEnabled || !changeInfo.url)
     return;
-  injectIfVideoExist(tabId, changeInfo.url)
+  else if (!tab.url.match(allowedUrls.join('|')))
+    ContentApi.disable(tabId)
+  else
+    injectIfVideoExist(tabId, changeInfo.url)
 })
-
-

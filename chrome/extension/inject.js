@@ -19,11 +19,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 })
 
 function inject() {
-  console.log("[CaptainFact] Inject video overlay")
+  console.log(`[CaptainFact] Inject video overlay for url ${location.href}`)
   const injectDOM = document.createElement('div')
   injectDOM.className = DOM_NODE_CLASS
   document.getElementById('movie_player').appendChild(injectDOM)
-  ReactDOM.render(<InjectedApp/>, injectDOM)
+  ReactDOM.render(<InjectedApp videoUrl={location.href}/>, injectDOM)
   return true
 }
 
