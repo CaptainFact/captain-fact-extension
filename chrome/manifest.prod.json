@@ -1,5 +1,5 @@
 {
-  "version": "0.7.3",
+  "version": "0.7.4",
   "name": "CaptainFact (Beta)",
   "manifest_version": 2,
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvj2HRDAsx3qXl66tfidXZRcQbw7RHG1YwNSgrbFDyvmKL0jP5dpxqD7Y6WpRgUeMYT93sg7hgIt6JHpY3ZOv/HRZII9SYxy6DT4iTkQknQ+5JaJZvnKosvAnU/gRZkwTBDSOnGvc9THirpKtLlEKLsvG8apJWtBzBuCEAuTDpwrapDVu+JM6VPCh+MCWHYfjDd8agbhK6SOPnC81NcqQXOWG3n0/AHTY4g/9PbNwm96f+ymUuFbBYsN4eIzq/wZktf417SnzxMqSIlfdeyTST1xZ74bSCLOi4+XgYI+UaDAQZUNFiZINXojnJrkPo2g3maHqJb+0ZQdggQyS3C9lswIDAQAB",
@@ -28,6 +28,6 @@
     "page": "background.html",
     "persistent": false
   },
-  "permissions": [ "tabs", "storage", "*://www.youtube.com/*", "*://captainfact.io/*" ],
-  "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://captainfact.io:*;"
+  "permissions": [ "tabs", "storage", "*://www.youtube.com/*", "*://*.captainfact.io/*" ],
+  "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://*.captainfact.io:*;"
 }
