@@ -16,7 +16,7 @@
     "url": "https://github.com/CaptainFact/captain-fact-extension"
   },
   "author": "Benjamin Piouffle <benjamin.piouffle@gmail.com>",
-  "license": "GPL3",
+  "license": "GPL-3.0-only",
   "devDependencies": {
     "babel-core": "^6.3.15",
     "babel-eslint": "^7.1.0",
