@@ -4,6 +4,7 @@
   "description": "http://captainfact.io Web Extension",
   "scripts": {
     "dev": "node scripts/dev",
+    "start": "node scripts/dev",
     "build": "node scripts/build --env=prod",
     "build_staging": "node scripts/build --env=staging",
     "build_dev": "node scripts/build --env=dev",
@@ -53,6 +54,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "captain-fact-overlay-injector": "../captain-fact-overlay-injector",
     "classnames": "^2.1.3",
     "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.2.1",

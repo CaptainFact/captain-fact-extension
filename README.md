@@ -25,6 +25,7 @@ their respective scores.
 
 The application is available on the
 [Chrome Web Store](https://chrome.google.com/webstore/detail/captainfact-beta/fnnhlmbnlbgomamcolcpgncflofhjckm)
+and for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/captainfact/)
 
 ## How does it work ?
 
@@ -40,6 +41,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 ## Linked projects
 
 * [Frontend](https://github.com/CaptainFact/captain-fact-frontend)
+* [Overlay Injector](https://github.com/CaptainFact/captain-fact-overlay-injector)
 
 ## License
 
