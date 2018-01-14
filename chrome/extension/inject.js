@@ -1,16 +1,11 @@
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-import CaptainFactOverlayInjector from '../../../captain-fact-overlay-injector/dist/captainfact-overlay-injector'
+import CaptainFactOverlayInjector from 'captain-fact-overlay-injector'
 
 
-let injector = new CaptainFactOverlayInjector({
+const injector = new CaptainFactOverlayInjector({
   injector: {
-    videosSelectorFunc: () => console.log(document.getElementById('movie_player')) || [document.getElementById('movie_player')],
-    urlExtractor: () => console.log(location.href) || location.href,
-    getPlayer: (video, adapters) => console.log(video.querySelector('video')) || new adapters.HTML5(video.querySelector('video')),
-
-    // Optional
-    activateToggleBtnClass: undefined,
+    videosSelector: () => [document.getElementById('movie_player')],
+    urlExtractor: () => location.href,
+    getPlayer: (video, adapters) => new adapters.HTML5(video.querySelector('video'))
   },
 
   app: {
@@ -27,49 +22,14 @@ let injector = new CaptainFactOverlayInjector({
   }
 })
 
-console.log(injector)
 
-// console.log(CaptainFactOverlayInjector)
-//
-// import InjectedApp from '../../app/InjectVideo/App/InjectedApp'
-//
-// const DOM_NODE_CLASS = 'captainfact-overlay'
-// const CF_BUTTON_NODE_CLASS = 'CFButton'
-//
-//
-// chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-//   if (request.type === 'isReady')
-//     sendResponse(true)
-//   else if (request.type === 'disable')
-//     haraKiri()
-//   else if (request.type === 'enable')
-//     inject()
-//   else if (request.type === 'reload')
-//     haraKiri() && inject()
-// })
-//
-// function inject() {
-//   console.log(`[CaptainFact] Inject video overlay for url ${location.href}`)
-//   const injectDOM = document.createElement('div')
-//   injectDOM.className = DOM_NODE_CLASS
-//   document.getElementById('movie_player').appendChild(injectDOM)
-//   ReactDOM.render(<InjectedApp videoUrl={location.href}/>, injectDOM)
-//   return true
-// }
-//
-// function haraKiri() {
-//   console.log('[CaptainFact] Disabling...')
-//
-//   // Delete all DOM elements
-//   const injectedElements = [
-//     ...document.getElementsByClassName(DOM_NODE_CLASS), ...document.getElementsByClassName(CF_BUTTON_NODE_CLASS)
-//   ]
-//   injectedElements.map(domNode => {
-//     ReactDOM.unmountComponentAtNode(domNode)
-//     domNode.parentNode.removeChild(domNode)
-//   })
-//   return true
-// }
-//
-// // Enabled by default
-// inject()
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.type === 'isReady')
+    console.log('IS_READY') || sendResponse(true)
+  else if (request.type === 'disable')
+    console.log('DISABLE') || injector.disable()
+  else if (request.type === 'enable')
+    console.log('ENABLE') || injector.enable()
+  else if (request.type === 'reload')
+    console.log('RELOAD') || injector.reload()
+})

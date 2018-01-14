@@ -2,7 +2,7 @@ import React from 'react';
 
 import Settings from './Settings'
 import styles from './Popup.css'
-import { CF_FRONT_URL } from '../../Common/lib/constants'
+import { CF_FRONT_URL } from '../lib/constants'
 
 
 export default class Popup extends React.Component {

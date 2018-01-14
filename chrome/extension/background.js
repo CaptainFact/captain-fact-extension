@@ -1,7 +1,7 @@
 import "babel-polyfill"
-import LocalSettings from '../../app/Common/lib/local_settings'
-import DataCache from '../../app/Common/lib/data_cache'
-import { getVideoProvider } from '../../app/Common/lib/url_utils'
+import LocalSettings from '../../app/lib/local_settings'
+import DataCache from '../../app/lib/data_cache'
+import { getVideoProvider } from '../../app/lib/url_utils'
 
 
 /*
