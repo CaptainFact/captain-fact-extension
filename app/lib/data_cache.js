@@ -2,7 +2,12 @@ import HttpApi from './http_api'
 
 const CACHE_KEY = "cache"
 const CACHE_VALIDITY = 5 * 60 * 1000 // 5 minutes
-const DEFAULT = {last_id: 0, last_update: null, data: {youtube: []}}
+const DEFAULT = {
+  version: '0.8.0',   // Changing this version will force the cache to do a full update
+  lastId: 0,          // Last fetched id
+  lastUpdate: null,   // Timestamp of the last update
+  data: {youtube: []} // The goods
+}
 
 
 export default class DataCache {
@@ -13,9 +18,16 @@ export default class DataCache {
   static load() {
     return new Promise((fulfill, reject) =>
       chrome.storage.local.get(CACHE_KEY, obj => fulfill(
-        obj && obj.hasOwnProperty(CACHE_KEY) ? obj[CACHE_KEY] : DEFAULT
+        obj && obj.hasOwnProperty(CACHE_KEY) && DataCache.checkVersion(obj[CACHE_KEY]) ? obj[CACHE_KEY] : DEFAULT
       ))
     )
+  }
+
+  /**
+   * Ensure cache is not outdated
+   */
+  static checkVersion(cache) {
+    return cache && cache.version === DEFAULT.version
   }
 
   /**
@@ -33,32 +45,35 @@ export default class DataCache {
    */
   static updatedCache() {
     return DataCache.load().then(cache => {
-      if (cache.last_update && Date.now() - cache.last_update <= CACHE_VALIDITY)
+      // Check if cache is expired
+      if (cache.lastUpdate && Date.now() - cache.lastUpdate <= CACHE_VALIDITY)
         return cache
 
-      return HttpApi.get(`/videos/index?min_id=${cache.last_id}`).then(videos => {
-        if (videos.length === 0)
+      // Fetch new videos
+      return HttpApi.post({query: `{allVideos(filters: {minId: ${cache.lastId}) {id provider providerId}}`})
+        .then(videos => {
+          if (videos.length === 0)
+            return cache
+
+          // Add videos to cache
+          let maxId = 0
+          for (const video of videos) {
+            if (video.provider === 'youtube')
+              cache.data.youtube.push(video.providerId)
+            // Store last id
+            if (video.id > maxId)
+              maxId = video.id
+          }
+          cache.lastId = maxId
+          cache.lastUpdate = Date.now()
+
+          // Save cache
+          chrome.storage.local.set({[CACHE_KEY]: cache}, () => console.log("[CaptainFact] Cache updated"))
           return cache
-
-        // Add videos to cache
-        let maxId = 0
-        for (const video of videos) {
-          if (video.provider === 'youtube')
-            cache.data.youtube.push(video.provider_id)
-          // Store last id
-          if (video.id > maxId)
-            maxId = video.id
-        }
-        cache.last_id = maxId
-        cache.last_update = Date.now()
-
-        // Save cache
-        chrome.storage.local.set({[CACHE_KEY]: cache}, () => console.log("[CaptainFact] Cache updated"))
-        return cache
-      }).catch(e => {
-        console.error("[CaptainFact] Cache update failed", e)
-        return cache
-      })
+        }).catch(e => {
+          console.error("[CaptainFact] Cache update failed", e)
+          return cache
+        })
     })
   }
 }

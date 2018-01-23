@@ -60,6 +60,8 @@ function injectIfVideoExist(tabId, url) {
 const allowedUrls = ['https://www.youtube.com/watch*'];
 let isEnabled = false
 
+
+
 // Enable or disable overlay based on settings changes
 LocalSettings.load().then(({videosOverlay}) => {
   isEnabled = videosOverlay
@@ -70,14 +72,45 @@ LocalSettings.load().then(({videosOverlay}) => {
     else if (!oldParams.videosOverlay && newParams.videosOverlay)
       chrome.tabs.query({url: allowedUrls, active: true}, tabs => tabs.map(t => injectIfVideoExist(t.id, t.url)))
   })
+}, {
+  urlMatches: 'https://www.youtube\\.com/watch\\?.+'
 })
 
 // Watch for new tabs to inject into
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  if (!isEnabled || !changeInfo.url)
+// chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+//   console.log("NEW URL", changeInfo)
+//   if (!isEnabled || !changeInfo.url)
+//     return;
+//   else if (!tab.url.match(allowedUrls.join('|')))
+//     ContentApi.disable(tabId)
+//   else
+//     injectIfVideoExist(tabId, changeInfo.url)
+// })
+//
+// Doesn't detect page change on SPA (youtube)
+chrome.webNavigation.onCommitted.addListener(({tabId, url, frameId}) => {
+  if (!isEnabled)
     return;
-  else if (!tab.url.match(allowedUrls.join('|')))
-    ContentApi.disable(tabId)
-  else
-    injectIfVideoExist(tabId, changeInfo.url)
+  injectIfVideoExist(tabId, url)
+}, {
+  url: [
+    {hostSuffix: 'youtube.com', pathPrefix: '/watch'}
+  ]
+})
+
+// Same
+// chrome.webNavigation.onBeforeNavigate.addListener(({tabId, url, frameId}) => {
+//   console.log(tabId, url, frameId)
+// })
+//
+
+// Detect change even on SPA but not initial page load
+chrome.webNavigation.onHistoryStateUpdated.addListener(({tabId, url, frameId, transitionType, transitionQualifiers}) => {
+  if (!isEnabled)
+    return;
+  injectIfVideoExist(tabId, url)
+}, {
+  url: [
+    {hostSuffix: 'youtube.com', pathPrefix: '/watch'}
+  ]
 })

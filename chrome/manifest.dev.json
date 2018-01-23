@@ -30,6 +30,6 @@
     "page": "background.html",
     "persistent": false
   },
-  "permissions": [ "tabs", "storage", "*://www.youtube.com/*" ],
+  "permissions": [ "tabs", "storage", "webNavigation", "*://www.youtube.com/*" ],
   "content_security_policy": "default-src 'self'; script-src 'self' http://localhost:3000 https://localhost:3000 'unsafe-eval'; connect-src http://localhost:3000 https://localhost:3000 https://localhost:4001; style-src * 'unsafe-inline' 'self' blob:; img-src 'self' data:;"
 }

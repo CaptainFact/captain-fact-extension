@@ -29,8 +29,8 @@ and for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/captainfact/)
 
 ## How does it work ?
 
-We store a local cache of videos ids that exist on CaptainFact. This cache gets updated if you watch a video on Youtube
-and it haven't been synced for more than 5 minutes. 
+We store a local cache of videos ids that exist on CaptainFact. This cache gets updated when you visit Youtube
+if it haven't been synced for more than 5 minutes. 
 This is a privacy improvement that guarantees we don't track the videos you're watching and don't send unnecessary 
 requests.
 
