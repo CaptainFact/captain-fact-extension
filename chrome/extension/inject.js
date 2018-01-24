@@ -2,6 +2,8 @@ import CaptainFactOverlayInjector from 'captain-fact-overlay-injector'
 import { CF_API_URL } from "../../app/lib/constants"
 
 
+console.log('[CaptainFact] Inject into video')
+
 const injector = new CaptainFactOverlayInjector({
   injector: {
     videosSelector: () => [document.getElementById('movie_player') || document.getElementById('player')],
@@ -27,16 +29,13 @@ const injector = new CaptainFactOverlayInjector({
   }
 })
 
-console.log('Overlay enabled')
-
-
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.type === 'isReady')
-    console.log('IS_READY') || sendResponse(true)
+    sendResponse(true)
   else if (request.type === 'disable')
-    console.log('DISABLE') || injector.disable()
+    console.log('[CaptainFact] Disable') || injector.disable()
   else if (request.type === 'enable')
-    console.log('ENABLE') || injector.enable()
+    console.log('[CaptainFact] Enable') || injector.enable()
   else if (request.type === 'reload')
-    console.log('RELOAD') || injector.reload()
+    console.log('[CaptainFact] Reload') || injector.reload()
 })

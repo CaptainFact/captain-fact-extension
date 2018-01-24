@@ -1,7 +1,7 @@
 import HttpApi from './http_api'
 
 const CACHE_KEY = "cache"
-const CACHE_VALIDITY = 5 * 60 * 1000 // 5 minutes
+const CACHE_VALIDITY = 15 * 60 * 1000 // 15 minutes
 const DEFAULT = {
   version: '0.8.0',   // Changing this version will force the cache to do a full update
   lastId: 0,          // Last fetched id
@@ -50,19 +50,20 @@ export default class DataCache {
         return cache
 
       // Fetch new videos
-      return HttpApi.post({query: `{allVideos(filters: {minId: ${cache.lastId}) {id provider providerId}}`})
-        .then(videos => {
-          if (videos.length === 0)
+      return HttpApi.post({query: `{allVideos(filters: {minId: ${cache.lastId}}) {id provider providerId}}`})
+        .then(({allVideos}) => {
+          if (allVideos.length === 0)
             return cache
 
           // Add videos to cache
           let maxId = 0
-          for (const video of videos) {
+          for (const video of allVideos) {
             if (video.provider === 'youtube')
               cache.data.youtube.push(video.providerId)
             // Store last id
-            if (video.id > maxId)
-              maxId = video.id
+            const videoId = parseInt(video.id)
+            if (videoId > maxId)
+              maxId = videoId
           }
           cache.lastId = maxId
           cache.lastUpdate = Date.now()
