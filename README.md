@@ -17,12 +17,12 @@
         <a href="https://twitter.com/CaptainFact_io"><img src="https://img.shields.io/twitter/follow/CaptainFact_io.svg?style=social&label=Follow"></a>
       </td>
       <td>
-        <a href="https://travis-ci.org/CaptainFact/captain-fact-extension"><img src="https://travis-ci.org/CaptainFact/captain-fact-extension.svg?branch=staging" alt="Build Status"/></a>
-        <a href='https://coveralls.io/github/CaptainFact/captain-fact-extension?branch=staging'><img src='https://coveralls.io/repos/github/CaptainFact/captain-fact-extension/badge.svg?branch=staging' alt='Coverage Status' /></a>
-      </td>
-      <td>
         <a href="https://travis-ci.org/CaptainFact/captain-fact-extension"><img src="https://travis-ci.org/CaptainFact/captain-fact-extension.svg?branch=master" alt="Build Status"/></a>
         <a href='https://coveralls.io/github/CaptainFact/captain-fact-extension?branch=master'><img src='https://coveralls.io/repos/github/CaptainFact/captain-fact-extension/badge.svg?branch=master' alt='Coverage Status' /></a>
+      </td>
+      <td>
+        <a href="https://travis-ci.org/CaptainFact/captain-fact-extension"><img src="https://travis-ci.org/CaptainFact/captain-fact-extension.svg?branch=staging" alt="Build Status"/></a>
+        <a href='https://coveralls.io/github/CaptainFact/captain-fact-extension?branch=staging'><img src='https://coveralls.io/repos/github/CaptainFact/captain-fact-extension/badge.svg?branch=staging' alt='Coverage Status' /></a>
       </td>
     </tr>
   </tbody>
