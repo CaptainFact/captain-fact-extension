@@ -37,7 +37,7 @@ function injectIfVideoExist(tabId, url) {
   if (video === null)
     return
 
-  DataCache.hasVideo(video.provider, video.provider_id).then(hasVideo => {
+  DataCache.hasVideo(video.provider, video.providerId).then(hasVideo => {
     if (hasVideo) {
       console.log('[CaptainFact] Video found, injecting facts 🌷')
       ContentApi.isReady(tabId, isReady => {

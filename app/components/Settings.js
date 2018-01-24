@@ -29,7 +29,7 @@ export default class Settings extends React.Component {
           <label>📺 Videos Overlay</label>
           <Select name="videosOverlay" selected={settings.videosOverlay}
                   onChange={value => this.handleChange("videosOverlay", value)}
-                  options={{"On": true, "Off": false}}/>
+                  options={{"ON": true, "OFF": false}}/>
         </div>
       </div>
     );

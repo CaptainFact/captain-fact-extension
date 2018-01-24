@@ -23,18 +23,6 @@ GitHub issues are the primary way for communicating about specific proposed chan
 We also use [Trello](https://trello.com/b/5s6F5iTv/captainfact) to keep track of the tasks we're working on. Feel free to
 comment on these tasks directly.
 
-## Contributions: General workflow
-
-1. [Pick or create an issue](https://github.com/CaptainFact/captain-fact-extension/issues) and 
-   tell us you're working on it
-2. Fork the repo
-3. Checkout `staging` branch (pull requests against `master` will not be accepted)
-4. Create a new branch describing what you'll do. We encourage using `feature/your-awesome-feature`, `fix/your-fix-name`
-   or `improvement/your-improvement` naming
-5. Do your stuff and commit your changes
-6. (Optional but nice) [squash your commits](https://forum.freecodecamp.org/t/how-to-squash-multiple-commits-into-one-with-git/13231)
-7. Make a pull request of your branch against `staging`
-
 ## Code contributions
 
 ### Developing
