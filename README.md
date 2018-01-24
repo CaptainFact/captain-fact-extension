@@ -53,13 +53,6 @@ The application is available on the
 [Chrome Web Store](https://chrome.google.com/webstore/detail/captainfact-beta/fnnhlmbnlbgomamcolcpgncflofhjckm)
 and for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/captainfact/)
 
-## How does it work ?
-
-We store a local cache of videos ids that exist on CaptainFact. This cache gets updated when you visit Youtube
-if it haven't been synced for more than 5 minutes. 
-This is a privacy improvement that guarantees we don't track the videos you're watching and don't send unnecessary 
-requests.
-
 ## Development
 
 See [CONTRIBUTING.md](CONTRIBUTING.md)
