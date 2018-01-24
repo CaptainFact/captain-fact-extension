@@ -1,5 +1,5 @@
 .cfbutton {
-    position: fixed;
+    position: absolute;
     right: 1.7em;
     top: 4.2em;
     z-index: 29;

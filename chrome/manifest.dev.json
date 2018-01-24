@@ -1,10 +1,18 @@
 {
-  "version": "0.7.0",
+  "version": "0.7.4",
   "name": "CaptainFact (Dev)",
   "manifest_version": 2,
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvj2HRDAsx3qXl66tfidXZRcQbw7RHG1YwNSgrbFDyvmKL0jP5dpxqD7Y6WpRgUeMYT93sg7hgIt6JHpY3ZOv/HRZII9SYxy6DT4iTkQknQ+5JaJZvnKosvAnU/gRZkwTBDSOnGvc9THirpKtLlEKLsvG8apJWtBzBuCEAuTDpwrapDVu+JM6VPCh+MCWHYfjDd8agbhK6SOPnC81NcqQXOWG3n0/AHTY4g/9PbNwm96f+ymUuFbBYsN4eIzq/wZktf417SnzxMqSIlfdeyTST1xZ74bSCLOi4+XgYI+UaDAQZUNFiZINXojnJrkPo2g3maHqJb+0ZQdggQyS3C9lswIDAQAB",
-  "description": "Get information overlays with facts about what you're seeing on the Internet",
+  "description": "Collaborative, real-time fact checking. Free and open source.",
+  "applications": {
+    "gecko": {"id": "extension-dev@captainfact.io"}
+  },
   "browser_action": {
+    "default_icon": {
+      "16": "img/icon-16.png",
+      "48": "img/icon-48.png",
+      "128": "img/icon-128.png"
+    },
     "default_title": "CaptainFact",
     "default_popup": "popup.html"
   },
@@ -22,6 +30,6 @@
     "page": "background.html",
     "persistent": false
   },
-  "permissions": [ "tabs", "storage", "https://www.youtube.com/*" ],
-  "content_security_policy": "default-src 'self'; script-src 'self' http://localhost:3000 https://localhost:3000 'unsafe-eval'; connect-src http://localhost:3000 https://localhost:3000; style-src * 'unsafe-inline' 'self' blob:; img-src 'self' data:;"
+  "permissions": [ "tabs", "storage", "*://www.youtube.com/*" ],
+  "content_security_policy": "default-src 'self'; script-src 'self' http://localhost:3000 https://localhost:3000 'unsafe-eval'; connect-src http://localhost:3000 https://localhost:3000 https://localhost:4001; style-src * 'unsafe-inline' 'self' blob:; img-src 'self' data:;"
 }

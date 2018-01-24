@@ -8,12 +8,12 @@ Familiarity with [forks](https://help.github.com/articles/fork-a-repo/),
 
 ## Communication
 
+[![Join the chat at https://gitter.im/CaptainFact](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/CaptainFact)
+
 GitHub issues are the primary way for communicating about specific proposed changes to this project.
 
 We also use [Trello](https://trello.com/b/5s6F5iTv/captainfact) to keep track of the tasks we're working on. Feel free to
 comment on these tasks directly.
-
-Finally you can join us on [Slack](http://captainfact.slack.com).
 
 ## Contributions types
 
@@ -77,6 +77,12 @@ To ensure the extension works properly, you should access https://localhost:4001
 confirm the security exception/
 
 A default account should have been created for you with email=`admin@captainfact.io` and password=`password`.
+
+#### Building the extension
+
+* `npm run build` => Build the extension for prod
+  You can also run `npm run build_staging` and `npm run build_dev` to build for different envs
+* `npm run compress` => Generate .zip and .crx based on build folder
 
 ### Code style
 

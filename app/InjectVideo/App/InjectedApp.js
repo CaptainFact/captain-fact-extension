@@ -3,13 +3,20 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 
-import { store } from './store'
+import getStore from './store'
 import { InterfaceState } from './interface_reducer'
 import App from './App.js'
 import CFButton from '../CFButton/CFButton'
 
 
-export default class InjectedApp extends React.Component {
+let store = null
+
+export default class InjectedApp extends React.PureComponent {
+  constructor(props) {
+    super(props)
+    store = getStore()
+  }
+
   componentDidMount() {
     const injectDOM = document.createElement('div')
     injectDOM.className = ''
@@ -25,7 +32,7 @@ export default class InjectedApp extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <App/>
+        <App videoUrl={this.props.videoUrl}/>
       </Provider>
     )
   }

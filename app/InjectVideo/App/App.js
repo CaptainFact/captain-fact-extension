@@ -11,7 +11,7 @@ import styles from './App.css'
 @connect(state => ({video: state.Video.data}))
 export default class App extends React.Component {
   componentDidMount() {
-    fetchVideo(window.location.href)
+    fetchVideo(this.props.videoUrl)
   }
 
   render() {
