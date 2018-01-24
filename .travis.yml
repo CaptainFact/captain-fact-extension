@@ -1,5 +1,14 @@
 language: node_js
 node_js: [node]
-cache: {directories: [node_modules]}
+cache:
+  directories:
+    - node_modules
+    - captain-fact-overlay-injector/node_modules
+install:
+  - cd captain-fact-overlay-injector
+  - npm install
+  - npm run build
+  - cd ..
+  - npm install
 script:
   - npm run coverage && cat ./coverage/lcov.info | coveralls
