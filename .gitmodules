@@ -1,0 +1,3 @@
+[submodule "captain-fact-overlay-injector"]
+	path = captain-fact-overlay-injector
+	url = https://github.com/CaptainFact/captain-fact-overlay-injector.git

@@ -11,7 +11,7 @@ export const getVideoProvider = url => {
   for (const provider in providers) {
     const execResult = providers[provider].exec(url)
     if (execResult !== null)
-      return {provider, provider_id: execResult[1]}
+      return {provider, providerId: execResult[1]}
   }
   return null
 }

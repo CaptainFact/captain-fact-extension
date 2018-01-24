@@ -2,7 +2,7 @@ import React from 'react';
 
 import Select from './Select.js'
 import styles from './Settings.css'
-import LocalSettings from '../../Common/lib/local_settings.js'
+import LocalSettings from '../lib/local_settings.js'
 
 
 export default class Settings extends React.Component {
@@ -29,7 +29,7 @@ export default class Settings extends React.Component {
           <label>📺 Videos Overlay</label>
           <Select name="videosOverlay" selected={settings.videosOverlay}
                   onChange={value => this.handleChange("videosOverlay", value)}
-                  options={{"On": true, "Off": false}}/>
+                  options={{"ON": true, "OFF": false}}/>
         </div>
       </div>
     );
