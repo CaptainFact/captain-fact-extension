@@ -81,6 +81,10 @@ To be able to inject the facts overlay on Youtube videos.
 We may want to implement this in a separate release in the future. We don't want to implement
 this feature in main extension cause it means asking for permissions to access all your sites. 
 
+* Can I add sources on videos directly from the extension ?
+ 
+Not at the moment.
+
 ## Linked projects
 
 * [Frontend](https://github.com/CaptainFact/captain-fact-frontend)

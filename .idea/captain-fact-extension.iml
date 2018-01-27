@@ -22,5 +22,6 @@
     <orderEntry type="library" name="react-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="css-modules-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="chrome-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="prop-types-DefinitelyTyped" level="application" />
   </component>
 </module>

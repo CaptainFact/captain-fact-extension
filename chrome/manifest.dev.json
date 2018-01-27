@@ -30,6 +30,10 @@
     "page": "background.html",
     "persistent": false
   },
+  "content_scripts": [{
+    "matches": ["http://localhost:3333/*"],
+    "js": ["/js/installation_notifier.bundle.js"]
+  }],
   "permissions": [ "tabs", "storage", "*://www.youtube.com/*" ],
   "content_security_policy": "default-src 'self'; script-src 'self' http://localhost:3000 https://localhost:3000 'unsafe-eval'; connect-src http://localhost:3000 https://localhost:3000 https://localhost:5001; style-src * 'unsafe-inline' 'self' blob:; img-src 'self' data:;"
 }
