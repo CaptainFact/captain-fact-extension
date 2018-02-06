@@ -1,24 +1,23 @@
-const path = require('path');
-const webpack = require('webpack');
-const postCSSConfig = require('./postcss.config');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const postCSSConfig = require('./postcss.config')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const WriteFilePlugin = require('write-file-webpack-plugin')
 
 const host = 'localhost';
 const port = 3000;
-const customPath = path.join(__dirname, './customPublicPath');
-const hotScript = 'webpack-hot-middleware/client?path=__webpack_hmr&dynamicPublicPath=true';
+const hotScript = 'webpack-hot-middleware/client?path=__webpack_hmr&dynamicPublicPath=true'
 
 const baseDevConfig = () => ({
   devtool: 'eval-cheap-module-source-map',
   entry: {
-    popup: [customPath, hotScript, path.join(__dirname, '../chrome/extension/popup')],
-    background: [customPath, hotScript, path.join(__dirname, '../chrome/extension/background')],
+    popup: [hotScript, path.join(__dirname, '../chrome/extension/popup')],
+    background: [hotScript, path.join(__dirname, '../chrome/extension/background')],
+    installation_notifier: [path.join(__dirname, '../chrome/extension/installation_notifier')]
   },
   devMiddleware: {
     publicPath: `http://${host}:${port}/js`,
-    stats: {
-      colors: true
-    },
+    stats: {colors: true},
     noInfo: true,
     headers: { 'Access-Control-Allow-Origin': '*' }
   },
@@ -34,7 +33,7 @@ const baseDevConfig = () => ({
     return postCSSConfig;
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin(), // Always keep that line in first position
     new webpack.NoErrorsPlugin(),
     new webpack.IgnorePlugin(/[^/]+\/[\S]+.prod$/),
     new webpack.DefinePlugin({
@@ -43,6 +42,9 @@ const baseDevConfig = () => ({
       'process.env': {
         NODE_ENV: JSON.stringify('development')
       }
+    }),
+    new WriteFilePlugin({
+      test: /installation_notifier\.bundle\.js/
     })
   ],
   resolve: {
@@ -73,10 +75,7 @@ const baseDevConfig = () => ({
 // Inject script
 
 const injectPageConfig = baseDevConfig();
-injectPageConfig.entry = [
-  customPath,
-  path.join(__dirname, '../chrome/extension/inject')
-];
+injectPageConfig.entry = [path.join(__dirname, '../chrome/extension/inject')];
 delete injectPageConfig.hotMiddleware;
 delete injectPageConfig.module.loaders[0].query;
 injectPageConfig.plugins.shift(); // remove HotModuleReplacementPlugin

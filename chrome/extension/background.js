@@ -1,7 +1,7 @@
 import "babel-polyfill"
-import LocalSettings from '../../app/Common/lib/local_settings'
-import DataCache from '../../app/Common/lib/data_cache'
-import { getVideoProvider } from '../../app/Common/lib/url_utils'
+import LocalSettings from '../../app/lib/local_settings'
+import DataCache from '../../app/lib/data_cache'
+import { getVideoProvider } from '../../app/lib/url_utils'
 
 
 /*
@@ -37,7 +37,7 @@ function injectIfVideoExist(tabId, url) {
   if (video === null)
     return
 
-  DataCache.hasVideo(video.provider, video.provider_id).then(hasVideo => {
+  DataCache.hasVideo(video.provider, video.providerId).then(hasVideo => {
     if (hasVideo) {
       console.log('[CaptainFact] Video found, injecting facts 🌷')
       ContentApi.isReady(tabId, isReady => {

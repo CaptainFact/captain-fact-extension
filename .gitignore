@@ -4,6 +4,7 @@ npm-debug.log
 
 build/
 dev/
+coverage/
 
 *.zip
 *.crx

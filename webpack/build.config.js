@@ -3,14 +3,13 @@ const webpack = require('webpack');
 const postCSSConfig = require('./postcss.config');
 const argv = require('yargs').argv;
 
-const customPath = path.join(__dirname, './customPublicPath');
-
 
 module.exports = {
   entry: {
-    popup: [customPath, path.join(__dirname, '../chrome/extension/popup')],
-    background: [customPath, path.join(__dirname, '../chrome/extension/background')],
-    inject: [customPath, path.join(__dirname, '../chrome/extension/inject')]
+    popup: path.join(__dirname, '../chrome/extension/popup'),
+    background: path.join(__dirname, '../chrome/extension/background'),
+    inject: path.join(__dirname, '../chrome/extension/inject'),
+    installation_notifier: path.join(__dirname, '../chrome/extension/installation_notifier'),
   },
   output: {
     path: path.join(__dirname, '../build/js'),
@@ -44,7 +43,7 @@ module.exports = {
   },
   module: {
     loaders: [{
-      test: /\.js$/,
+      test: /\.jsx?$/,
       loader: 'babel',
       exclude: /node_modules/,
       query: {

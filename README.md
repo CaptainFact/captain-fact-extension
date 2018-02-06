@@ -1,7 +1,33 @@
 <p align="center"><img src="chrome/assets/img/icon.png" height="100"/></p>
 <h1 align="center"><a href="https://captainfact.io">CaptainFact.io</a></h1>
-<p align="center"><a href="https://gitter.im/CaptainFact"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/CaptainFact"/></a></p>
-<br/>
+
+<table>
+  <thead>
+    <tr>
+      <th>Community</th>
+      <th>Master</th>
+      <th>Staging</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <a href="./LICENSE"><img src="https://img.shields.io/github/license/CaptainFact/captain-fact-extension.svg"></a>
+        <a href="https://gitter.im/CaptainFact"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/CaptainFact"/></a>
+        <a href="https://twitter.com/CaptainFact_io"><img src="https://img.shields.io/twitter/follow/CaptainFact_io.svg?style=social&label=Follow"></a>
+      </td>
+      <td>
+        <a href="https://travis-ci.org/CaptainFact/captain-fact-extension"><img src="https://travis-ci.org/CaptainFact/captain-fact-extension.svg?branch=master" alt="Build Status"/></a>
+        <a href='https://coveralls.io/github/CaptainFact/captain-fact-extension?branch=master'><img src='https://coveralls.io/repos/github/CaptainFact/captain-fact-extension/badge.svg?branch=master' alt='Coverage Status' /></a>
+      </td>
+      <td>
+        <a href="https://travis-ci.org/CaptainFact/captain-fact-extension"><img src="https://travis-ci.org/CaptainFact/captain-fact-extension.svg?branch=staging" alt="Build Status"/></a>
+        <a href='https://coveralls.io/github/CaptainFact/captain-fact-extension?branch=staging'><img src='https://coveralls.io/repos/github/CaptainFact/captain-fact-extension/badge.svg?branch=staging' alt='Coverage Status' /></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<hr/>
 
 ## Extension Features
 
@@ -25,26 +51,51 @@ their respective scores.
 
 The application is available on the
 [Chrome Web Store](https://chrome.google.com/webstore/detail/captainfact-beta/fnnhlmbnlbgomamcolcpgncflofhjckm)
-
-## How does it work ?
-
-We store a local cache of videos ids that exist on CaptainFact. This cache gets updated if you watch a video on Youtube
-and it haven't been synced for more than 5 minutes. 
-This is a privacy improvement that guarantees we don't track the videos you're watching and don't send unnecessary 
-requests.
+and for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/captainfact/)
 
 ## Development
 
 See [CONTRIBUTING.md](CONTRIBUTING.md)
 
+## FAQ
+
+* Why do you need storage permissions ?
+
+We store a local cache of videos ids that exist on CaptainFact. This cache gets updated when you visit Youtube
+if it's older than 15 minutes. This is a privacy improvement that guarantees we don't track the videos you're 
+watching and don't send unnecessary requests.
+
+* Why do you need tabs permissions ?
+
+Because we inject script programmatically from background (only if video is known from cache) and
+to be able to disable CaptainFact on all tabs when you unselect it from extension popup.
+
+You can check by yourself in `chrome/extension/background.js` (look for `chrome.tabs.`)
+
+* Why do you need Youtube permissions ?
+
+To be able to inject the facts overlay on Youtube videos.
+
+* Why do you only inject on youtube.com and not in embedded players everywhere else ?
+
+We may want to implement this in a separate release in the future. We don't want to implement
+this feature in main extension cause it means asking for permissions to access all your sites. 
+
+* Can I add sources on videos directly from the extension ?
+ 
+Not at the moment.
+
 ## Linked projects
 
 * [Frontend](https://github.com/CaptainFact/captain-fact-frontend)
+* [Overlay Injector](https://github.com/CaptainFact/captain-fact-overlay-injector)
 
 ## License
 
 GNU General Public License v3.0
 
-Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights.
+Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works 
+and modifications, which include larger works using a licensed work, under the same license. Copyright and license 
+notices must be preserved. Contributors provide an express grant of patent rights.
 
 See [LICENSE](LICENSE) for more info.

@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render selected option 1`] = `
+<div
+  className="select"
+>
+  <a
+    className="button active"
+    key="ON"
+    onClick={[Function]}
+  >
+    On
+  </a>
+  <a
+    className="button"
+    key="OFF"
+    onClick={[Function]}
+  >
+    Off
+  </a>
+</div>
+`;
+
+exports[`render selected option 2`] = `
+<div
+  className="select"
+>
+  <a
+    className="button"
+    key="ON"
+    onClick={[Function]}
+  >
+    On
+  </a>
+  <a
+    className="button active"
+    key="OFF"
+    onClick={[Function]}
+  >
+    Off
+  </a>
+</div>
+`;
