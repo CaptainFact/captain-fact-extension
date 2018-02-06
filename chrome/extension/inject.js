@@ -12,7 +12,7 @@ const injector = new CaptainFactOverlayInjector({
   },
 
   app: {
-    baseSize: '1.4em',
+    baseSize: '15px',
     graphics: {
       logo: {
         neutral: chrome.runtime.getURL('img/icon.png'),
@@ -29,6 +29,8 @@ const injector = new CaptainFactOverlayInjector({
   }
 })
 
+initTheaterModeButtonWatcher()
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.type === 'isReady')
     sendResponse(true)
@@ -36,6 +38,25 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log('[CaptainFact] Disable') || injector.disable()
   else if (request.type === 'enable')
     console.log('[CaptainFact] Enable') || injector.enable()
-  else if (request.type === 'reload')
-    console.log('[CaptainFact] Reload') || injector.reload()
+  else if (request.type === 'reload') {
+    console.log('[CaptainFact] Reload')
+    reloadWhenReady()
+  }
 })
+
+function reloadWhenReady(tries=15) {
+  if (tries === 0)
+    return false
+  if (!document.getElementById('movie_player'))
+    setTimeout(() => reloadWhenReady(tries - 1), 200)
+  else {
+    injector.reload()
+    initTheaterModeButtonWatcher()
+  }
+}
+
+function initTheaterModeButtonWatcher() {
+  const theatherBtn = document.querySelector(".ytp-size-button")
+  if (theatherBtn)
+    theatherBtn.addEventListener("click", () => setTimeout(injector.forceResize, 50))
+}
