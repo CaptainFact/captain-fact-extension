@@ -12,9 +12,9 @@
   <tbody>
     <tr>
       <td>
-        <a href="./LICENSE"><img src="https://img.shields.io/github/license/CaptainFact/captain-fact-extension.svg"></a>
-        <a href="https://gitter.im/CaptainFact"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/CaptainFact"/></a>
-        <a href="https://twitter.com/CaptainFact_io"><img src="https://img.shields.io/twitter/follow/CaptainFact_io.svg?style=social&label=Follow"></a>
+        <a href="https://discord.gg/2Qd7hMz" title="Discord"><img src="https://discordapp.com/api/guilds/416782744748687361/widget.png" alt="Discord"></a>
+        <a href="https://twitter.com/CaptainFact_io" title="Twitter"><img src="https://img.shields.io/twitter/follow/CaptainFact_io.svg?style=social&label=Follow"></a>
+        <a href="./LICENSE"><img src="https://img.shields.io/github/license/CaptainFact/captain-fact-extension.svg" alt="GPL3"></a>
       </td>
       <td>
         <a href="https://travis-ci.org/CaptainFact/captain-fact-extension"><img src="https://travis-ci.org/CaptainFact/captain-fact-extension.svg?branch=master" alt="Build Status"/></a>
