@@ -1,6 +1,6 @@
 {
   "name": "captain-fact-extension",
-  "version": "0.8.10",
+  "version": "0.8.3",
   "description": "http://captainfact.io Web Extension",
   "scripts": {
     "dev": "node scripts/dev",
@@ -14,7 +14,8 @@
     "clean": "rimraf build/ dev/ CaptainFact_Extension*.zip CaptainFact_Extension*.crx",
     "test": "jest",
     "wtest": "jest --watch",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "release": "npm run build && npm run compress"
   },
   "jest": {
     "setupFiles": [

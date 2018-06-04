@@ -20,7 +20,10 @@ const injector = new CaptainFactOverlayInjector({
         refute: chrome.runtime.getURL('img/icon_refute.png'),
       },
       newTab: chrome.runtime.getURL('img/new_tab.png'),
-      star: chrome.runtime.getURL('img/star.png')
+      star: chrome.runtime.getURL('img/star.png'),
+      next: chrome.runtime.getURL('img/next.svg'),
+      prev: chrome.runtime.getURL('img/prev.svg'),
+      close: chrome.runtime.getURL('img/close.svg')
     }
   },
 
