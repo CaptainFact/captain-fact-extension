@@ -27,6 +27,15 @@
     </tr>
   </tbody>
 </table>
+
+<hr/>
+
+<p align="center">
+<a href="https://opencollective.com/webpack/donate" target="_blank">
+  <img src="https://opencollective.com/webpack/donate/button@2x.png?color=blue" width=300 />
+</a>
+</p>
+
 <hr/>
 
 ## Extension Features
@@ -55,7 +64,15 @@ and for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/captainfact/)
 
 ## Development
 
-See [CONTRIBUTING.md](CONTRIBUTING.md)
+* Install (if you don't have them):
+  * [Docker](https://docs.docker.com/install/) (to start the API easily)
+  * [Node.js](http://nodejs.org)
+  * App dependencies: `npm install`
+  
+* Run:
+  * `./captain-fact-overlay-injector/dev/start_graphql_api.sh` - Start the GraphQL API. You can access GraphiQL at http://localhost:4002/graphiql
+  * `npm start` - Start the overlay injector test pages on http://localhost:3342
+  * `npm run test` - run all unit tests
 
 ## FAQ
 
