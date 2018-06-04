@@ -12,7 +12,7 @@ const injector = new CaptainFactOverlayInjector({
   },
 
   app: {
-    baseSize: '13px',
+    baseSize: '16px',
     graphics: {
       logo: {
         neutral: chrome.runtime.getURL('img/icon.png'),
