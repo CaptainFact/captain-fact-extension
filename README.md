@@ -31,8 +31,8 @@
 <hr/>
 
 <p align="center">
-<a href="https://opencollective.com/webpack/donate" target="_blank">
-  <img src="https://opencollective.com/webpack/donate/button@2x.png?color=blue" width=300 />
+<a href="https://opencollective.com/captainfact_io/donate" target="_blank">
+  <img src="https://opencollective.com/captainfact_io/donate/button@2x.png?color=blue" width=300 />
 </a>
 </p>
 
