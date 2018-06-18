@@ -36,7 +36,16 @@
 </a>
 </p>
 
-<hr/>
+-------------------------
+
+## Install
+
+|     **Chrome**    |    **Firefox**     |     **Opera**     |     **Safari**    |     **IE**    |
+| ----------------- | ------------------ | ----------------- | ----------------- | ------------- |
+| [Available][0]    | [Available][1]       | Not yet        | Not yet       | Not yet       |
+
+[0]: https://chrome.google.com/webstore/detail/captainfact-beta/fnnhlmbnlbgomamcolcpgncflofhjckm "Install for Chrome"
+[1]: https://addons.mozilla.org/en-US/firefox/addon/captainfact/ "Add to Firefox"
 
 ## Extension Features
 
@@ -55,12 +64,6 @@ When clicked, the CaptainFact icon displays facts and comments about current sta
 their respective scores.
 
 ![Demo screenshot](misc/demo-youtube.jpg)
-
-## Installation
-
-The application is available on the
-[Chrome Web Store](https://chrome.google.com/webstore/detail/captainfact-beta/fnnhlmbnlbgomamcolcpgncflofhjckm)
-and for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/captainfact/)
 
 ## Development
 
