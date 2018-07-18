@@ -34,7 +34,10 @@ export default class Popup extends React.Component {
     const cfUrl = `${CF_FRONT_URL}/videos/add/${encodeURIComponent(url)}`
     return (
       <div>
-        <a target="_BLANK" href={cfUrl}>Open this video on CaptainFact</a>
+        <a className={styles.actionsBlock} target="_BLANK" href={cfUrl}>
+          <img src={chrome.runtime.getURL('img/new_tab.png')} alt=""/>
+          {chrome.i18n.getMessage("openOnCF")}
+        </a>
         <hr/>
       </div>
     )

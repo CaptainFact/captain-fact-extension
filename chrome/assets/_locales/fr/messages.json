@@ -2,5 +2,17 @@
   "appDesc": {
     "message": "Vérification d'information collaborative en temps réel.", 
     "description":"The description of the application, displayed in the web store."
+  },
+  "settingYoutubeOverlay": {
+    "message": "Intégration dans Youtube", 
+    "description":"Setting to activate the video overlay on Youtube."
+  },
+  "openOnCF": {
+    "message": "Ouvrir cette vidéo sur CaptainFact.io", 
+    "description":"Status label when button is disactivated."
+  },
+  "settings": {
+    "message": "Paramètres", 
+    "description":"Title of the settings header."
   }
 }
