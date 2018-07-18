@@ -4,6 +4,11 @@ import { CF_API_URL } from "../../app/lib/constants"
 
 console.log('[CaptainFact] Inject into video')
 
+
+const SUPPORTED_LANGUAGES = ['en', 'fr']
+const DEFAULT_LANGUAGE = SUPPORTED_LANGUAGES[0]
+const LANGUAGE = chrome.i18n.getUILanguage().replace(/-.*/, '')
+
 const injector = new CaptainFactOverlayInjector({
   injector: {
     videosSelector: () => [document.getElementById('movie_player') || document.getElementById('player')],
@@ -13,6 +18,7 @@ const injector = new CaptainFactOverlayInjector({
 
   app: {
     baseSize: '16px',
+    language: SUPPORTED_LANGUAGES.includes(LANGUAGE) ? LANGUAGE : DEFAULT_LANGUAGE,
     graphics: {
       logo: {
         neutral: chrome.runtime.getURL('img/icon.png'),
