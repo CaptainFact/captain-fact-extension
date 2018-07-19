@@ -37,8 +37,12 @@
 }
 
 .button.active {
-    background-color: #3b84c4;
+    background-color: #2ebe00;
     border-color: transparent;
     box-shadow: inset 0 1px 10px rgba(10, 10, 10, 0.43);
     color: #fff;
+}
+
+.button.active[data-value=OFF] {
+    background-color: #f73d57;
 }

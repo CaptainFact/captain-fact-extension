@@ -1,0 +1,18 @@
+{
+  "appDesc": {
+    "message": "Collaborative, real-time fact-checking.", 
+    "description":"The description of the application, displayed in the web store."
+  },
+  "settingYoutubeOverlay": {
+    "message": "Youtube Overlay", 
+    "description":"Setting to activate the video overlay on YouTube."
+  },
+  "openOnCF": {
+    "message": "Open this video on CaptainFact.io", 
+    "description":"Status label when button is disactivated."
+  },
+  "settings": {
+    "message": "Settings", 
+    "description":"Title of the settings header."
+  }
+}
