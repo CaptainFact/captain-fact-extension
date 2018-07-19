@@ -5,7 +5,7 @@
   },
   "settingYoutubeOverlay": {
     "message": "Youtube Overlay", 
-    "description":"Setting to activate the video overlay on Youtube."
+    "description":"Setting to activate the video overlay on YouTube."
   },
   "openOnCF": {
     "message": "Open this video on CaptainFact.io", 
