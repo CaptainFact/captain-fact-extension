@@ -31,10 +31,13 @@ export default class Popup extends React.Component {
     if (!url || !url.match(/^(http:\/\/|https:\/\/)?(www\.)?youtube\.com\/watch\?*/))
       return null
 
-    const cfUrl = `${CF_FRONT_URL}/videos/add/${encodeURIComponent(url)}`
+    const cfUrl = `${CF_FRONT_URL}/videos/add?url=${encodeURIComponent(url)}`
     return (
       <div>
-        <a target="_BLANK" href={cfUrl}>Open this video on CaptainFact</a>
+        <a className={styles.actionsBlock} target="_BLANK" href={cfUrl}>
+          <img src={chrome.runtime.getURL('img/new_tab.png')} alt=""/>
+          {chrome.i18n.getMessage("openOnCF")}
+        </a>
         <hr/>
       </div>
     )

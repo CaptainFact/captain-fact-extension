@@ -5,6 +5,11 @@ import styles from './Settings.css'
 import LocalSettings from '../lib/local_settings.js'
 
 
+const SELECT_OPTIONS = {
+  "ON": true, 
+  "OFF": false
+}
+
 export default class Settings extends React.Component {
   constructor(props) {
     super(props)
@@ -25,11 +30,13 @@ export default class Settings extends React.Component {
       return <div/>
     return (
       <div>
+        <h3>{chrome.i18n.getMessage('settings')}</h3>
+        <hr/>
         <div className={styles.control}>
-          <label>📺 Videos Overlay</label>
+          <label>{chrome.i18n.getMessage("settingYoutubeOverlay")}</label>
           <Select name="videosOverlay" selected={settings.videosOverlay}
                   onChange={value => this.handleChange("videosOverlay", value)}
-                  options={{"ON": true, "OFF": false}}/>
+                  options={SELECT_OPTIONS}/>
         </div>
       </div>
     );

@@ -6,6 +6,7 @@ exports[`render selected option 1`] = `
 >
   <a
     className="button active"
+    data-value="ON"
     key="ON"
     onClick={[Function]}
   >
@@ -13,6 +14,7 @@ exports[`render selected option 1`] = `
   </a>
   <a
     className="button"
+    data-value="OFF"
     key="OFF"
     onClick={[Function]}
   >
@@ -27,6 +29,7 @@ exports[`render selected option 2`] = `
 >
   <a
     className="button"
+    data-value="ON"
     key="ON"
     onClick={[Function]}
   >
@@ -34,6 +37,7 @@ exports[`render selected option 2`] = `
   </a>
   <a
     className="button active"
+    data-value="OFF"
     key="OFF"
     onClick={[Function]}
   >

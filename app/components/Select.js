@@ -11,9 +11,12 @@ export default class Select extends React.Component {
     return (
       <div className={select}>
         {Object.keys(options).map(key =>
-          <a  key={key}
-              className={classnames(button, {[active]: selected === options[key]})}
-              onClick={() => selected !== options[key] && onChange(options[key])}>
+          <a 
+            key={key}
+            className={classnames(button, {[active]: selected === options[key]})}
+            data-value={key}
+            onClick={() => selected !== options[key] && onChange(options[key])}
+          >
             {titleCase(key)}
           </a>
         )}

@@ -1,3 +1,28 @@
 .popup {
     font-size: 15px;
 }
+
+.actionsBlock {
+    background-image: linear-gradient(141deg,#1577c6,#3273dc 71%,#4366e5);
+    background-color: #3273dc;
+    font-size: 18px;
+    padding: 1em;
+    margin-bottom: 1em;
+    text-align: center;
+    color: white;
+    display: block;
+    box-shadow: 3px 3px 10px #6e757b;
+    border-radius: 6px;
+    transition: box-shadow 0.3s;
+}
+
+.actionsBlock:hover {
+    opacity: 0.9;
+    box-shadow: 3px 3px 15px #6e757b;
+}
+
+.actionsBlock img {
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+}
