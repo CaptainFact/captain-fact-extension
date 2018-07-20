@@ -8,5 +8,6 @@ coverage/
 
 *.zip
 *.crx
+*.xpi
 *.pem
 update.xml

@@ -57,7 +57,7 @@ function injectIfVideoExist(tabId, url) {
   Actual script
 */
 
-const allowedUrls = ['https://www.youtube.com/watch*'];
+const ALLOWED_URLS = ['https://*.youtube.com/watch*'];
 let isEnabled = false
 
 // Enable or disable overlay based on settings changes
@@ -65,10 +65,17 @@ LocalSettings.load().then(({videosOverlay}) => {
   isEnabled = videosOverlay
   LocalSettings.addChangeListener((oldParams, newParams) => {
     isEnabled = newParams.videosOverlay
-    if (oldParams.videosOverlay && !newParams.videosOverlay)
-      chrome.tabs.query({url: allowedUrls}, tabs => tabs.map(t => ContentApi.disable(t.id)))
-    else if (!oldParams.videosOverlay && newParams.videosOverlay)
-      chrome.tabs.query({url: allowedUrls, active: true}, tabs => tabs.map(t => injectIfVideoExist(t.id, t.url)))
+    if (oldParams.videosOverlay && !newParams.videosOverlay) {
+      // Disable on all tabs
+      chrome.tabs.query({url: ALLOWED_URLS}, tabs => 
+        tabs.map(t => ContentApi.disable(t.id))
+      )
+    } else if (!oldParams.videosOverlay && newParams.videosOverlay) {
+      // Inject in all supported tabs
+      chrome.tabs.query({url: ALLOWED_URLS}, tabs => 
+        tabs.map(t => injectIfVideoExist(t.id, t.url))
+      )
+    }
   })
 })
 
@@ -76,7 +83,7 @@ LocalSettings.load().then(({videosOverlay}) => {
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (!isEnabled || !changeInfo.url)
     return;
-  else if (!tab.url.match(allowedUrls.join('|')))
+  else if (!tab.url.match('https://(.*)\.?youtube.com/watch.+'))
     ContentApi.disable(tabId)
   else
     injectIfVideoExist(tabId, changeInfo.url)
