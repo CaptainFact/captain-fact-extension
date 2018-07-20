@@ -20,8 +20,11 @@ export default class Popup extends React.Component {
   render() {
     return (
       <div className={styles.popup}>
+        <img src={chrome.runtime.getURL('img/banner.jpg')} className={styles.banner} alt=""/> 
         {this.renderActions()}
-        <Settings/>
+        <div className={styles.content}>
+          <Settings/>
+        </div>
       </div>
     );
   }
@@ -33,12 +36,11 @@ export default class Popup extends React.Component {
 
     const cfUrl = `${CF_FRONT_URL}/videos/add?url=${encodeURIComponent(url)}`
     return (
-      <div>
+      <div className={styles.actionsBlockContainer}>
         <a className={styles.actionsBlock} target="_BLANK" href={cfUrl}>
           <img src={chrome.runtime.getURL('img/new_tab.png')} alt=""/>
           {chrome.i18n.getMessage("openOnCF")}
         </a>
-        <hr/>
       </div>
     )
   }

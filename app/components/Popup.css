@@ -2,9 +2,12 @@
     font-size: 15px;
 }
 
+.actionsBlockContainer {
+    padding: 1em;
+}
+
 .actionsBlock {
-    background-image: linear-gradient(141deg,#1577c6,#3273dc 71%,#4366e5);
-    background-color: #3273dc;
+    background-color: #78b4b4;
     font-size: 18px;
     padding: 1em;
     margin-bottom: 1em;
@@ -13,16 +16,28 @@
     display: block;
     box-shadow: 3px 3px 10px #6e757b;
     border-radius: 6px;
-    transition: box-shadow 0.3s;
+    transition: box-shadow 0.3s, transform 0.3s, opacity 0.3s;
+    margin: 0;
 }
 
 .actionsBlock:hover {
-    opacity: 0.9;
+    opacity: 0.95;
     box-shadow: 3px 3px 15px #6e757b;
+    transform: scale(1.025);
 }
 
 .actionsBlock img {
     width: 18px;
     height: 18px;
     margin-right: 5px;
+}
+
+.banner {
+    max-width: 100%;
+}
+
+.content {
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    margin: 0.5em;
 }

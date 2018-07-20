@@ -30,8 +30,7 @@ export default class Settings extends React.Component {
       return <div/>
     return (
       <div>
-        <h3>{chrome.i18n.getMessage('settings')}</h3>
-        <hr/>
+        <h3 className={styles.title}>{chrome.i18n.getMessage('settings')}</h3>
         <div className={styles.control}>
           <label>{chrome.i18n.getMessage("settingYoutubeOverlay")}</label>
           <Select name="videosOverlay" selected={settings.videosOverlay}
