@@ -3,6 +3,7 @@ import React from 'react';
 import Select from './Select.js'
 import styles from './Settings.css'
 import LocalSettings from '../lib/local_settings.js'
+import translate from '../lib/translate.js'
 
 
 const SELECT_OPTIONS = {
@@ -30,9 +31,9 @@ export default class Settings extends React.Component {
       return <div/>
     return (
       <div>
-        <h3 className={styles.title}>{chrome.i18n.getMessage('settings')}</h3>
+        <h3 className={styles.title}>{translate('settings')}</h3>
         <div className={styles.control}>
-          <label>{chrome.i18n.getMessage("settingYoutubeOverlay")}</label>
+          <label>{translate("settingYoutubeOverlay")}</label>
           <Select name="videosOverlay" selected={settings.videosOverlay}
                   onChange={value => this.handleChange("videosOverlay", value)}
                   options={SELECT_OPTIONS}/>

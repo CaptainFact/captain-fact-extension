@@ -1,0 +1,43 @@
+ul.tabsList {
+  align-items: center;
+  border-bottom-color: #dbdbdb;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+ul.tabsList li {
+  display: block;
+}
+
+ul.tabsList li.isActive a {
+  border-bottom-color: #3273dc;
+  color: #3273dc;
+}
+
+ul.tabsList a {
+  align-items: center;
+  border-bottom-color: #dbdbdb;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  color: #4a4a4a;
+  display: flex;
+  justify-content: center;
+  margin-bottom: -1px;
+  padding: .5em 1em;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+ul.tabsList a:hover {
+  border-bottom-color: #363636;
+  color: #363636;
+}
+
+ul.tabsList a svg {
+  margin-right: 0.5em;
+}
+

@@ -1,8 +1,15 @@
-import React from 'react';
+import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCog, faTv } from '@fortawesome/free-solid-svg-icons'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 
-import Settings from './Settings'
-import styles from './Popup.css'
 import { CF_FRONT_URL } from '../lib/constants'
+import Settings from './Settings'
+
+import styles from './Popup.css'
+import tabsStyles from './Tabs.css'
+import translate from '../lib/translate'
+
 
 
 export default class Popup extends React.Component {
@@ -22,11 +29,34 @@ export default class Popup extends React.Component {
       <div className={styles.popup}>
         <img src={chrome.runtime.getURL('img/banner.jpg')} className={styles.banner} alt=""/> 
         {this.renderActions()}
-        <div className={styles.content}>
-          <Settings/>
-        </div>
+        <Tabs 
+          defaultIndex={0}
+          selectedTabClassName={tabsStyles.isActive}
+          selectedTabPanelClassName={tabsStyles.panelActive}
+        >
+          <TabList className={tabsStyles.tabsList}>
+            <Tab>
+              <a>
+                <FontAwesomeIcon icon={faTv}/>
+                <span>{translate('videos')}</span>
+              </a>
+            </Tab>
+            <Tab>
+              <a>
+                <FontAwesomeIcon icon={faCog}/>
+                <span>{translate('settings')}</span>
+              </a>
+            </Tab>
+          </TabList>
+          <TabPanel/>
+          <TabPanel>
+            <div className={styles.content}>
+              <Settings/>
+            </div>
+          </TabPanel>
+        </Tabs>
       </div>
-    );
+    )
   }
 
   renderActions() {
@@ -39,7 +69,7 @@ export default class Popup extends React.Component {
       <div className={styles.actionsBlockContainer}>
         <a className={styles.actionsBlock} target="_BLANK" href={cfUrl}>
           <img src={chrome.runtime.getURL('img/new_tab.png')} alt=""/>
-          {chrome.i18n.getMessage("openOnCF")}
+          {translate("openOnCF")}
         </a>
       </div>
     )

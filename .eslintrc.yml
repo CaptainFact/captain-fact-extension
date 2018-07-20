@@ -57,6 +57,7 @@ rules:
   react/self-closing-comp: ['warn']
   react/jsx-indent: ['warn']
   react/no-array-index-key: ['warn']
+  react/jsx-one-expression-per-line: off
   react/jsx-uses-react: ['error']
   react/jsx-uses-vars: ['error']
   react/require-default-props: ['warn']
