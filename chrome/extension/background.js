@@ -57,7 +57,10 @@ function injectIfVideoExist(tabId, url) {
   Actual script
 */
 
-const ALLOWED_URLS = ['https://*.youtube.com/watch*'];
+const ALLOWED_URLS = [
+  'https://www.youtube.com/watch*',
+  'https://m.youtube.com/watch*'
+]
 let isEnabled = false
 
 // Enable or disable overlay based on settings changes
@@ -83,7 +86,7 @@ LocalSettings.load().then(({videosOverlay}) => {
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (!isEnabled || !changeInfo.url)
     return;
-  else if (!tab.url.match('https://(.*)\.?youtube.com/watch.+'))
+  else if (!tab.url.match('https:\/\/(m|www)\.youtube.com\/watch.+'))
     ContentApi.disable(tabId)
   else
     injectIfVideoExist(tabId, changeInfo.url)
