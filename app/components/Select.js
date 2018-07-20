@@ -17,7 +17,7 @@ export default class Select extends React.Component {
             data-value={key}
             onClick={() => selected !== options[key] && onChange(options[key])}
           >
-            {titleCase(key)}
+            {key}
           </a>
         )}
       </div>

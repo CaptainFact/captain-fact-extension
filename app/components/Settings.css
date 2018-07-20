@@ -1,10 +1,19 @@
-.control > * {
-    display: inline-block;
-    vertical-align: middle;
+.control {
+    display: flex;
+    flex-direction: row;
 }
 
 .control label {
-    padding-right: 15px;
+    padding: 0.75em;
+    padding-right: 1.5em;
     color: #363636;
     font-weight: 700;
+    flex-grow: 1;
+}
+
+.title {
+    padding: 0.75em 1em;
+    margin: 0;
+    border-bottom: 1px solid lightgray;
+    background-color: #f9f9f9;
 }

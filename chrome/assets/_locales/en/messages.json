@@ -4,7 +4,7 @@
     "description":"The description of the application, displayed in the web store."
   },
   "settingYoutubeOverlay": {
-    "message": "Youtube Overlay", 
+    "message": "YouTube Overlay", 
     "description":"Setting to activate the video overlay on YouTube."
   },
   "openOnCF": {
