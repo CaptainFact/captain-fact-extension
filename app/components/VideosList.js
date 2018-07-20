@@ -45,7 +45,7 @@ export default class VideosList extends React.Component {
           <div className={styles.videoCard}>
             <ExternalLink href={linkToVerificationsPage(hashId)}>
               <img src={this.videoThumb(provider, providerId)} alt=""/>
-              <span>{title}</span>
+              <div className={styles.title}>{title}</div>
             </ExternalLink>
           </div>
         ))}
