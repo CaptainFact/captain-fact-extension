@@ -1,0 +1,16 @@
+.videosList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+}
+
+.videoCard {
+  flex-basis: 47%;
+  border: 1px solid lightgrey;
+}
+
+.videoCard img {
+  max-width: 100%;
+}

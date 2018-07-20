@@ -3,12 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCog, faTv } from '@fortawesome/free-solid-svg-icons'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 
-import { CF_FRONT_URL } from '../lib/constants'
 import Settings from './Settings'
 
 import styles from './Popup.css'
 import tabsStyles from './Tabs.css'
 import translate from '../lib/translate'
+import { linkToAddVideo } from '../lib/cf_urls'
+import VideosList from './VideosList';
+import ExternalLink from './ExternalLink'
 
 
 
@@ -48,7 +50,9 @@ export default class Popup extends React.Component {
               </a>
             </Tab>
           </TabList>
-          <TabPanel/>
+          <TabPanel>
+            <VideosList/>
+          </TabPanel>
           <TabPanel>
             <div className={styles.content}>
               <Settings/>
@@ -64,13 +68,15 @@ export default class Popup extends React.Component {
     if (!url || !url.match(/^(http:\/\/|https:\/\/)?(www\.)?youtube\.com\/watch\?*/))
       return null
 
-    const cfUrl = `${CF_FRONT_URL}/videos/add?url=${encodeURIComponent(url)}`
     return (
       <div className={styles.actionsBlockContainer}>
-        <a className={styles.actionsBlock} target="_BLANK" href={cfUrl}>
+        <ExternalLink
+          className={styles.actionsBlock}
+          href={linkToAddVideo(url)}
+        >
           <img src={chrome.runtime.getURL('img/new_tab.png')} alt=""/>
-          {translate("openOnCF")}
-        </a>
+          {translate('openOnCF')}
+        </ExternalLink>
       </div>
     )
   }
