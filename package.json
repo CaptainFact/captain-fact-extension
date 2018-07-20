@@ -16,8 +16,8 @@
     "wtest": "jest --watch",
     "coverage": "jest --coverage",
     "release": "npm run build && npm run compress",
-    "lint": "./node_modules/.bin/eslint src",
-    "lint_fix": "./node_modules/.bin/eslint src --fix"
+    "lint": "./node_modules/.bin/eslint app",
+    "lint_fix": "./node_modules/.bin/eslint app --fix"
   },
   "jest": {
     "setupFiles": [
@@ -68,6 +68,11 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
+    "eslint": "^5.1.0",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^22.1.4",
