@@ -35,6 +35,13 @@
     "matches": ["https://staging.captainfact.io/*"],
     "js": ["/js/installation_notifier.bundle.js"]
   }],
-  "permissions": [ "tabs", "storage", "*://www.youtube.com/*", "*://localhost/*", "*://*.staging.captainfact.io/*" ],
+  "permissions": [ 
+    "tabs", 
+    "storage", 
+    "*://m.youtube.com/*", 
+    "*://www.youtube.com/*", 
+    "*://localhost/*", 
+    "*://*.staging.captainfact.io/*" 
+  ],
   "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://*.staging.captainfact.io:*;"
 }

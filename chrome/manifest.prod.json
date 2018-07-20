@@ -35,6 +35,12 @@
     "matches": ["https://captainfact.io/*"],
     "js": ["/js/installation_notifier.bundle.js"]
   }],
-  "permissions": [ "tabs", "storage", "*://www.youtube.com/*", "*://*.captainfact.io/*" ],
+  "permissions": [ 
+    "tabs", 
+    "storage", 
+    "*://m.youtube.com/*", 
+    "*://www.youtube.com/*",
+    "*://*.captainfact.io/*"
+  ],
   "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://*.captainfact.io:*;"
 }
