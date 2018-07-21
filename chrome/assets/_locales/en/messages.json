@@ -16,7 +16,7 @@
     "description": "Title of the settings header."
   },
   "videos": {
-    "message": "Videos",
+    "message": "Featured videos",
     "description": "The Videos tab title"
   }
 }

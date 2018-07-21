@@ -9,9 +9,8 @@ import styles from './Popup.css'
 import tabsStyles from './Tabs.css'
 import translate from '../lib/translate'
 import { linkToAddVideo } from '../lib/cf_urls'
-import VideosList from './VideosList';
+import VideosList from './VideosList'
 import ExternalLink from './ExternalLink'
-
 
 
 export default class Popup extends React.Component {

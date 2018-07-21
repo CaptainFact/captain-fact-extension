@@ -2,7 +2,6 @@ import React from 'react'
 import classnames from 'classnames'
 import { button, active } from './Button.css'
 import { select } from './Select.css'
-import titleCase from 'voca/title_case'
 
 
 export default class Select extends React.Component {

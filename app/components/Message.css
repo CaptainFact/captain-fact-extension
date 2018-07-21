@@ -1,0 +1,28 @@
+.message {
+  display: block;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.body {
+  border-color: #dbdbdb;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 0 0 0 4px;
+  color: #4a4a4a;
+  padding: 1.25em 1.5em;
+}
+
+/* Info message */
+
+.message[data-type=info] {
+  background-color: #f6fbfe;
+  border-color: #209cee;
+  color: #12537e;
+}
+
+.message[data-type=info] .body {
+  border-color: #209cee;
+  color: #12537e;
+}

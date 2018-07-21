@@ -54,6 +54,7 @@ rules:
   react/jsx-max-props-per-line: ['warn', {when: 'multiline'}]
   react/jsx-closing-tag-location: ['warn']
   react/no-unescaped-entities: ['warn']
+  react/prefer-stateless-function: ['warn']
   react/no-unused-prop-types: ['warn']
   react/self-closing-comp: ['warn']
   react/jsx-indent: ['warn']
