@@ -6,9 +6,9 @@ import LocalSettings from '../lib/local_settings.js'
 import translate from '../lib/translate.js'
 
 
-const SELECT_OPTIONS = {
-  "ON": true, 
-  "OFF": false
+const SELECT_OPTIONS_ON_OFF = {
+  ON: true, 
+  OFF: false
 }
 
 export default class Settings extends React.Component {
@@ -22,23 +22,39 @@ export default class Settings extends React.Component {
   }
 
   handleChange(key, value) {
-    LocalSettings.save({[key]: value}).then(settings => this.setState({settings}))
+    LocalSettings
+      .setValue(key, value)
+      .then(newSettings => this.setState({
+        settings: {...this.state.settings, ...newSettings}
+      }))
   }
 
   render() {
     const { settings } = this.state
     if (!settings)
-      return <div/>
+      return null
+
     return (
       <div>
-        <h3 className={styles.title}>{translate('settings')}</h3>
         <div className={styles.control}>
           <label>{translate("settingYoutubeOverlay")}</label>
-          <Select name="videosOverlay" selected={settings.videosOverlay}
-                  onChange={value => this.handleChange("videosOverlay", value)}
-                  options={SELECT_OPTIONS}/>
+          <Select
+            name="videosOverlay" 
+            selected={settings.videosOverlay}
+            onChange={value => this.handleChange("videosOverlay", value)}
+            options={SELECT_OPTIONS_ON_OFF}
+          />
+        </div>
+        <div className={styles.control}>
+          <label>Compteur de nouvelles vidéos</label>
+          <Select
+            name="newVideosBadge" 
+            selected={settings.newVideosBadge}
+            onChange={value => this.handleChange("newVideosBadge", value)}
+            options={SELECT_OPTIONS_ON_OFF}
+          />
         </div>
       </div>
-    );
+    )
   }
 }

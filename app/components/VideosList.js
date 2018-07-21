@@ -42,7 +42,7 @@ export default class VideosList extends React.Component {
     return (
       <div className={styles.videosList}>
         {videos.map(({title, hashId, provider, providerId}) => (
-          <div className={styles.videoCard}>
+          <div key={hashId} className={styles.videoCard}>
             <ExternalLink href={linkToVerificationsPage(hashId)}>
               <img src={this.videoThumb(provider, providerId)} alt=""/>
               <div className={styles.title}>{title}</div>
