@@ -27,11 +27,12 @@ rules:
   semi: ['error', 'never']
   import/first: ['warn']
   no-trailing-spaces: ['warn']
-  no-console: ['error', { "allow": ["warn", "error"] }]
+  no-console: ['error', { "allow": ["warn", "error", "info"] }]
   no-continue: off
   no-plusplus: off
   radix: off
   nonblock-statement-body-position: off
+  no-else-return: ['warn', {allowElseIf: true}]
   guard-for-in: ['warn']
   eol-last: ['warn']
   no-nested-ternary: ['warn']
