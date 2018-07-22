@@ -4,6 +4,7 @@ import gql from 'graphql-tag'
 
 import { linkToVerificationsPage } from '../lib/cf_urls'
 import BrowserIconBadgeCounter from '../lib/browser_icon_badge_counter'
+import translate from '../lib/translate'
 import ExternalLink from './ExternalLink'
 import Message from './Message'
 
@@ -60,12 +61,13 @@ export default class VideosList extends React.Component {
   }
 
   renderNoVideo() {
-    // TODO Translate this
     return (
       <div className={styles.videosList}>
         <Message type="info">
-          Il n'y a aucune vidéo par ici. Essayez de jeter un coup d'oeuil sur
-          le site : <ExternalLink href="https://captainfact.io/videos/">CaptainFact.io</ExternalLink>
+          {translate('noVideoAvailable')}&nbsp;
+          <ExternalLink href="https://captainfact.io/videos/">
+            CaptainFact.io
+          </ExternalLink>
         </Message>
       </div>
     )

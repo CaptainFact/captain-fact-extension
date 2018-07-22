@@ -18,5 +18,9 @@
   "videos": {
     "message": "Featured videos",
     "description": "The Videos tab title"
+  },
+  "noVideoAvailable": {
+    "message": "No video available, but you can still check on the website:",
+    "description": "Message displayed when there is no video available"
   }
 }

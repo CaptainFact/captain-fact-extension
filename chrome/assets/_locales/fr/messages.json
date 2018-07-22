@@ -18,5 +18,9 @@
   "videos": {
     "message": "Les dernières vidéos",
     "description": "The Videos tab title"
+  },
+  "noVideoAvailable": {
+    "message": "Il n'y a aucune vidéo par ici. Essayez de jeter un coup d'oeuil sur le site :",
+    "description": "Message displayed when there is no video available"
   }
 }
