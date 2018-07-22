@@ -1,9 +1,9 @@
 import HttpApi from './http_api'
 import BrowserIconBadgeCounter from './browser_icon_badge_counter'
 
-const CACHE_KEY = 'cache'
-const CACHE_VALIDITY = 15 * 60 * 1000 // 15 minutes
-const DEFAULT = {
+export const CACHE_KEY = 'cache'
+export const CACHE_VALIDITY = 15 * 60 * 1000 // 15 minutes
+export const DEFAULT = {
   version: '0.8.0',   // Changing this version will force the cache to do a full update
   lastId: 0,          // Last fetched id
   lastUpdate: null,   // Timestamp of the last update
@@ -40,7 +40,7 @@ export default class DataCache {
    */
   static hasVideo(provider, id) {
     return DataCache.updatedCache().then(({data}) => {
-      return data[provider].includes(id)
+      return data[provider] && data[provider].includes(id)
     })
   }
 
