@@ -73,7 +73,6 @@ export default class VideosList extends React.Component {
     )
   }
 
-  // TODO Replace this function by a GraphQL API field
   videoThumb(provider, provider_id) {
     if (provider === 'youtube') {
       return `https://img.youtube.com/vi/${provider_id}/mqdefault.jpg`
