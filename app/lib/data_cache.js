@@ -53,7 +53,7 @@ export default class DataCache {
   static updatedCache(force = false) {
     return DataCache.load().then(cache => {
       // Check if cache is expired
-      if (!force && isCacheExpired(cache))
+      if (!force && !isCacheExpired(cache))
         return cache
 
       // Fetch new videos
