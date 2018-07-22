@@ -1,4 +1,6 @@
 import React from 'react'
+import { Query } from "react-apollo"
+import gql from "graphql-tag"
 
 import { linkToVerificationsPage } from '../lib/cf_urls'
 import ExternalLink from './ExternalLink'
@@ -9,52 +11,48 @@ import styles from './VideosList.css'
 
 export default class VideosList extends React.Component {
   render() {
-    const videos = [
-      {
-        "title": "Est-ce une bonne chose de rendre les transports gratuits ?",
-        "providerId": "BamnWylJnVg",
-        "provider": "youtube",
-        "hashId": "gmXa"
-      },
-      {
-        "title": "Macron, un an après : le grand entretien en intégralité",
-        "providerId": "mt0as7x-kfs",
-        "provider": "youtube",
-        "hashId": "grn7"
-      },
-      {
-        "title": "Le replay du grand débat de la présidentielle",
-        "providerId": "OhWRT3PhMJs",
-        "provider": "youtube",
-        "hashId": "GBjk"
-      },
-      {
-        "title": "Survivre au système éducatif, Hackers et Crapauds fous [EN DIRECT]",
-        "providerId": "Gun2ez6kzIk",
-        "provider": "youtube",
-        "hashId": "gLxg"
-      },
-    ]
-
-    if (videos.length === 0) {
-      return this.renderNoVideo()
-    }
-
     return (
-      <div className={styles.videosList}>
-        {videos.map(({title, hashId, provider, providerId}) => (
-          <div key={hashId} className={styles.videoCard}>
-            <ExternalLink href={linkToVerificationsPage(hashId)}>
-              <img src={this.videoThumb(provider, providerId)} alt=""/>
-              <div className={styles.title}>{title}</div>
-            </ExternalLink>
-          </div>
-        ))}
-      </div>
+      <Query
+        query={gql`{
+          allVideos(limit: 4) {
+            hashId
+            title
+            provider
+            providerId
+          }
+        }`}
+      >
+        {({ loading, error, data}) => {
+          if (loading) {
+            return <div className={styles.videosList}>...</div>
+          } else if (error) {
+            console.error(error)
+            return this.renderNoVideo()
+          }
+
+          if (data.allVideos.length === 0) {
+            return this.renderNoVideo()
+          }
+
+          return (
+            <div className={styles.videosList}>
+              {data.allVideos.map(({title, hashId, provider, providerId}) => (
+                <div key={hashId} className={styles.videoCard}>
+                  <ExternalLink href={linkToVerificationsPage(hashId)}>
+                    <img src={this.videoThumb(provider, providerId)} alt=""/>
+                    <div className={styles.title}>{title}</div>
+                  </ExternalLink>
+                </div>
+              ))}
+            </div>
+          )
+        }}
+      </Query>
     )
   }
 
   renderNoVideo() {
+    // TODO Translate this
     return (
       <div className={styles.videosList}>
         <Message type="info">
