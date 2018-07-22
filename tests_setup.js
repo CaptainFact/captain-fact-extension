@@ -14,4 +14,7 @@ global.render = render
 global.mount = mount
 
 // Add a helper to register snapshot
-global.snapshot = component => expect(shallow(component)).toMatchSnapshot()
+global.snapshot = element => expect(element).toMatchSnapshot()
+
+// Shallow then snapshot component
+global.snapshotComponent = component => snapshot(shallow(component))

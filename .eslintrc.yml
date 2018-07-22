@@ -114,5 +114,6 @@ globals:
   chrome: false
   # For tests
   snapshot: false
+  snapshotComponent: false
   shallow: false
   tMock: false

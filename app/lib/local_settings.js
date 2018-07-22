@@ -35,7 +35,7 @@ export default class LocalSettings {
   static load() {
     return new Promise((fulfill) => {
       return STORAGE.get(SETTINGS_KEY, obj => {
-        if (obj && obj.hasOwnProperty(SETTINGS_KEY))
+        if (obj && obj[SETTINGS_KEY])
           return fulfill(settingsLoader(obj[SETTINGS_KEY]))
         return fulfill(DEFAULT_SETTINGS)
       })

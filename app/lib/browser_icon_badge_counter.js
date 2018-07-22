@@ -1,6 +1,6 @@
 import LocalSettings from './local_settings'
 
-const MAX_VALUE = 99
+export const MAX_VALUE = 99
 
 export default class BrowserIconBadgeCounter {
   /**
@@ -8,7 +8,9 @@ export default class BrowserIconBadgeCounter {
    * @param {function() {...}} callback
    */
   static reset() {
-    return setBadgeText('')
+    return new Promise(fulfill => {
+      fulfill(setBadgeText(''))
+    })
   }
 
   /**
