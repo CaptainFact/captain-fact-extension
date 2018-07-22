@@ -54,6 +54,19 @@ export default class LocalSettings {
   }
 
   /**
+   * Get the current value for `key` in params. If the value doesn't exist,
+   * it returns the default value.
+   *
+   * @param {string} key
+   * @returns {promise} (value) => {...}
+   */
+  static getValue(key) {
+    return LocalSettings.load().then(state => {
+      return state[key] || DEFAULT_SETTINGS[key]
+    })
+  }
+
+  /**
    * Set a value for `key` in settings. Then return the new state.
    * @param {string} key 
    * @param {string} value 

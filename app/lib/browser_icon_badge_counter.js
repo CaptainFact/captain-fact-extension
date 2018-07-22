@@ -1,3 +1,5 @@
+import LocalSettings from './local_settings'
+
 const MAX_VALUE = 99
 
 export default class BrowserIconBadgeCounter {
@@ -10,14 +12,21 @@ export default class BrowserIconBadgeCounter {
   }
 
   /**
-   * Increment current counter by `value`
+   * Increment current counter by `value`. If badge is disabled in settings,
+   * do nothing.
+   *
    * @param {integer} increment value as a positive integer
    */
   static increment(value) {
-    return chrome.browserAction.getBadgeText({}, currentValueStr => {
-      const intValue = decodeValue(currentValueStr)
-      const newValueStr = encodeValue(intValue + value)
-      return setBadgeText(newValueStr)
+    return LocalSettings.getValue('newVideosBadge').then(isActivated => {
+      if (!isActivated)
+        return null
+
+      return chrome.browserAction.getBadgeText({}, currentValueStr => {
+        const intValue = decodeValue(currentValueStr)
+        const newValueStr = encodeValue(intValue + value)
+        return setBadgeText(newValueStr)
+      })
     })
   }
 }
@@ -46,14 +55,14 @@ function decodeValue(valueStr) {
     return 0
 
   // Return the number captured by (\d+)
-  return parsedValue[1]
+  return parseInt(parsedValue[1])
 }
 
 /**
  * Encode the given value to be displayed on the badge.
  * If value is 0, an empty string will be returned to hide the badge.
  * If value is above `MAX_VALUE`, the string `${MAX_VALUE}+` is returned.
- * 
+ *
  * @param {integer} valueInt
  * @returns {string} the resulting string ready to be used in badge
  */
@@ -63,5 +72,5 @@ function encodeValue(valueInt) {
   } else if (valueInt >= MAX_VALUE) {
     return `${MAX_VALUE}+`
   }
-  return `${MAX_VALUE}`
+  return `${valueInt}`
 }

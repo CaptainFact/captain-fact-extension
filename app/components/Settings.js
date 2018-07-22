@@ -8,7 +8,7 @@ import BrowserIconBadgeCounter from '../lib/browser_icon_badge_counter.js'
 
 
 const SELECT_OPTIONS_ON_OFF = {
-  ON: true, 
+  ON: true,
   OFF: false
 }
 
@@ -38,11 +38,11 @@ export default class Settings extends React.Component {
     return (
       <div>
         <div className={styles.control}>
-          <label>{translate("settingYoutubeOverlay")}</label>
+          <label>{translate('settingYoutubeOverlay')}</label>
           <Select
             name="videosOverlay"
             selected={settings.videosOverlay}
-            onChange={value => this.handleChange("videosOverlay", value)}
+            onChange={value => this.handleChange('videosOverlay', value)}
             options={SELECT_OPTIONS_ON_OFF}
           />
         </div>
@@ -51,7 +51,7 @@ export default class Settings extends React.Component {
           <Select
             name="newVideosBadge"
             selected={settings.newVideosBadge}
-            onChange={value => this.handleChange("newVideosBadge", value).then(() => {
+            onChange={value => this.handleChange('newVideosBadge', value).then(() => {
               if (value === false) {
                 BrowserIconBadgeCounter.reset()
               }

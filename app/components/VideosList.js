@@ -1,27 +1,35 @@
 import React from 'react'
-import { Query } from "react-apollo"
-import gql from "graphql-tag"
+import { Query } from 'react-apollo'
+import gql from 'graphql-tag'
 
 import { linkToVerificationsPage } from '../lib/cf_urls'
+import BrowserIconBadgeCounter from '../lib/browser_icon_badge_counter'
 import ExternalLink from './ExternalLink'
 import Message from './Message'
 
 import styles from './VideosList.css'
 
 
+const GET_FOUR_VIDEOS = gql`{
+  allVideos(limit: 4) {
+    hashId
+    title
+    provider
+    providerId
+  }
+}`
+
+const AUTO_REFRESH_INTERVAL = 1000 * 60 * 30 // 30 minutes
+
 export default class VideosList extends React.Component {
+  componentDidMount() {
+    // Reset unseen videos counter when videos list is displayed
+    BrowserIconBadgeCounter.reset()
+  }
+
   render() {
     return (
-      <Query
-        query={gql`{
-          allVideos(limit: 4) {
-            hashId
-            title
-            provider
-            providerId
-          }
-        }`}
-      >
+      <Query query={GET_FOUR_VIDEOS} pollInterval={AUTO_REFRESH_INTERVAL}>
         {({ loading, error, data}) => {
           if (loading) {
             return <div className={styles.videosList}>...</div>

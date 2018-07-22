@@ -50,10 +50,10 @@ export default class DataCache {
    *
    * If update fails, returns current version of the cache
    */
-  static updatedCache() {
+  static updatedCache(force = false) {
     return DataCache.load().then(cache => {
       // Check if cache is expired
-      if (cache.lastUpdate && Date.now() - cache.lastUpdate <= CACHE_VALIDITY)
+      if (!force && isCacheExpired(cache))
         return cache
 
       // Fetch new videos
@@ -94,7 +94,6 @@ export default class DataCache {
  * @param {Array<Object>} videos
  */
 function addVideosToCache(cache, videos) {
-  const newCache = {...cache}
   let maxId = 0
   let nbAdded = 0
   for (const video of videos) {
@@ -112,4 +111,13 @@ function addVideosToCache(cache, videos) {
   cache.lastUpdate = Date.now()
   cache.lastUpdateNbAdded = nbAdded
   return cache
+}
+
+/**
+ * Check if cache need to be updated
+ * 
+ * @param {Object} cache 
+ */
+function isCacheExpired(cache) {
+  return !cache.lastUpdate || (Date.now() - cache.lastUpdate) > CACHE_VALIDITY
 }
