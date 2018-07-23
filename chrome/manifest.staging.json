@@ -43,5 +43,5 @@
     "*://localhost/*", 
     "*://*.staging.captainfact.io/*" 
   ],
-  "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://*.staging.captainfact.io:*;"
+  "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' https://img.youtube.com data:; connect-src 'self' https://*.staging.captainfact.io:*;"
 }
