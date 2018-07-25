@@ -27,10 +27,12 @@ rules:
   semi: ['error', 'never']
   import/first: ['warn']
   no-trailing-spaces: ['warn']
-  no-console: ['error', { "allow": ["warn", "error"] }]
+  no-console: ['error', { "allow": ["warn", "error", "info"] }]
   no-continue: off
   no-plusplus: off
   radix: off
+  nonblock-statement-body-position: off
+  no-else-return: ['warn', {allowElseIf: true}]
   guard-for-in: ['warn']
   eol-last: ['warn']
   no-nested-ternary: ['warn']
@@ -53,10 +55,12 @@ rules:
   react/jsx-max-props-per-line: ['warn', {when: 'multiline'}]
   react/jsx-closing-tag-location: ['warn']
   react/no-unescaped-entities: ['warn']
+  react/prefer-stateless-function: ['warn']
   react/no-unused-prop-types: ['warn']
   react/self-closing-comp: ['warn']
   react/jsx-indent: ['warn']
   react/no-array-index-key: ['warn']
+  react/jsx-one-expression-per-line: off
   react/jsx-uses-react: ['error']
   react/jsx-uses-vars: ['error']
   react/require-default-props: ['warn']
@@ -107,7 +111,9 @@ rules:
 
 globals:
   CF_VERSION: false
+  chrome: false
   # For tests
   snapshot: false
+  snapshotComponent: false
   shallow: false
   tMock: false

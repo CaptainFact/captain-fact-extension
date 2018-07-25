@@ -1,8 +1,16 @@
-import React from 'react';
+import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCog, faTv } from '@fortawesome/free-solid-svg-icons'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 
 import Settings from './Settings'
+
 import styles from './Popup.css'
-import { CF_FRONT_URL } from '../lib/constants'
+import tabsStyles from './Tabs.css'
+import translate from '../lib/translate'
+import { linkToAddVideo } from '../lib/cf_urls'
+import VideosList from './VideosList'
+import ExternalLink from './ExternalLink'
 
 
 export default class Popup extends React.Component {
@@ -22,11 +30,36 @@ export default class Popup extends React.Component {
       <div className={styles.popup}>
         <img src={chrome.runtime.getURL('img/banner.jpg')} className={styles.banner} alt=""/> 
         {this.renderActions()}
-        <div className={styles.content}>
-          <Settings/>
-        </div>
+        <Tabs 
+          defaultIndex={0}
+          selectedTabClassName={tabsStyles.isActive}
+          selectedTabPanelClassName={tabsStyles.panelActive}
+        >
+          <TabList className={tabsStyles.tabsList}>
+            <Tab>
+              <a>
+                <FontAwesomeIcon icon={faTv}/>
+                <span>{translate('videos')}</span>
+              </a>
+            </Tab>
+            <Tab>
+              <a>
+                <FontAwesomeIcon icon={faCog}/>
+                <span>{translate('settings')}</span>
+              </a>
+            </Tab>
+          </TabList>
+          <TabPanel>
+            <VideosList/>
+          </TabPanel>
+          <TabPanel>
+            <div className={styles.content}>
+              <Settings/>
+            </div>
+          </TabPanel>
+        </Tabs>
       </div>
-    );
+    )
   }
 
   renderActions() {
@@ -34,13 +67,15 @@ export default class Popup extends React.Component {
     if (!url || !url.match(/^(http:\/\/|https:\/\/)?(www\.)?youtube\.com\/watch\?*/))
       return null
 
-    const cfUrl = `${CF_FRONT_URL}/videos/add?url=${encodeURIComponent(url)}`
     return (
       <div className={styles.actionsBlockContainer}>
-        <a className={styles.actionsBlock} target="_BLANK" href={cfUrl}>
+        <ExternalLink
+          className={styles.actionsBlock}
+          href={linkToAddVideo(url)}
+        >
           <img src={chrome.runtime.getURL('img/new_tab.png')} alt=""/>
-          {chrome.i18n.getMessage("openOnCF")}
-        </a>
+          {translate('openOnCF')}
+        </ExternalLink>
       </div>
     )
   }
