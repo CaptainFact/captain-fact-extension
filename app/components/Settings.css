@@ -1,10 +1,16 @@
-.control > * {
-    display: inline-block;
-    vertical-align: middle;
+.control {
+    display: flex;
+    flex-direction: row;
+}
+
+.control:not(:first-child) {
+    border-top: 1px solid lightgrey;
 }
 
 .control label {
-    padding-right: 15px;
+    padding: 0.75em;
+    padding-right: 1.5em;
     color: #363636;
     font-weight: 700;
+    flex-grow: 1;
 }

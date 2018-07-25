@@ -1,13 +1,15 @@
-import React from 'react';
+import React from 'react'
 
 import Select from './Select.js'
 import styles from './Settings.css'
 import LocalSettings from '../lib/local_settings.js'
+import translate from '../lib/translate.js'
+import BrowserIconBadgeCounter from '../lib/browser_icon_badge_counter.js'
 
 
-const SELECT_OPTIONS = {
-  "ON": true, 
-  "OFF": false
+const SELECT_OPTIONS_ON_OFF = {
+  ON: true,
+  OFF: false
 }
 
 export default class Settings extends React.Component {
@@ -21,24 +23,43 @@ export default class Settings extends React.Component {
   }
 
   handleChange(key, value) {
-    LocalSettings.save({[key]: value}).then(settings => this.setState({settings}))
+    return LocalSettings
+      .setValue(key, value)
+      .then(newSettings => this.setState({
+        settings: {...this.state.settings, ...newSettings}
+      }))
   }
 
   render() {
     const { settings } = this.state
     if (!settings)
-      return <div/>
+      return null
+
     return (
       <div>
-        <h3>{chrome.i18n.getMessage('settings')}</h3>
-        <hr/>
         <div className={styles.control}>
-          <label>{chrome.i18n.getMessage("settingYoutubeOverlay")}</label>
-          <Select name="videosOverlay" selected={settings.videosOverlay}
-                  onChange={value => this.handleChange("videosOverlay", value)}
-                  options={SELECT_OPTIONS}/>
+          <label>{translate('settingYoutubeOverlay')}</label>
+          <Select
+            name="videosOverlay"
+            selected={settings.videosOverlay}
+            onChange={value => this.handleChange('videosOverlay', value)}
+            options={SELECT_OPTIONS_ON_OFF}
+          />
+        </div>
+        <div className={styles.control}>
+          <label>Compteur de nouvelles vidéos</label>
+          <Select
+            name="newVideosBadge"
+            selected={settings.newVideosBadge}
+            onChange={value => this.handleChange('newVideosBadge', value).then(() => {
+              if (value === false) {
+                BrowserIconBadgeCounter.reset()
+              }
+            })}
+            options={SELECT_OPTIONS_ON_OFF}
+          />
         </div>
       </div>
-    );
+    )
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "captain-fact-extension",
-  "version": "0.8.4",
+  "version": "0.8.5",
   "description": "http://captainfact.io Web Extension",
   "scripts": {
     "dev": "node scripts/dev",
@@ -15,10 +15,13 @@
     "test": "jest",
     "wtest": "jest --watch",
     "coverage": "jest --coverage",
-    "release": "npm run build && npm run compress"
+    "release": "npm run build && npm run compress",
+    "lint": "./node_modules/.bin/eslint app",
+    "lint_fix": "./node_modules/.bin/eslint app --fix"
   },
   "jest": {
     "setupFiles": [
+      "jest-webextension-mock",
       "./tests_setup.js"
     ],
     "snapshotSerializers": [
@@ -35,7 +38,7 @@
     "moduleNameMapper": {
       "^.+\\.(css|scss)$": "identity-obj-proxy",
       "\\.(jpg|jpeg|png)$": "<rootDir>/src/__mocks__/fileMock.js",
-      "env-constants": "<rootDir>/constants/test.js"
+      "^config$": "<rootDir>/config/test.js"
     }
   },
   "repository": {
@@ -66,9 +69,15 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
+    "eslint": "^5.1.0",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^22.1.4",
+    "jest-webextension-mock": "betree/jest-webextension-mock",
     "jsdom": "^11.6.0",
     "minimist": "^1.2.0",
     "node-sass": "^4.7.2",
@@ -86,12 +95,20 @@
     "write-file-webpack-plugin": "^4.2.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.0-14",
+    "@fortawesome/free-solid-svg-icons": "^5.1.0-11",
+    "@fortawesome/react-fontawesome": "0.1.0-11",
+    "apollo-boost": "^0.1.10",
     "babel-polyfill": "^6.26.0",
     "captain-fact-overlay-injector": "file:captain-fact-overlay-injector",
     "classnames": "^2.1.3",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
     "isomorphic-fetch": "^2.2.1",
     "react": "^16.2.0",
+    "react-apollo": "^2.1.9",
     "react-dom": "^16.2.0",
+    "react-tabs": "^2.2.2",
     "voca": "^1.4.0"
   }
 }

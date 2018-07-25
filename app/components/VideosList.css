@@ -1,0 +1,39 @@
+.videosList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  max-height: 280px;
+  overflow-y: auto;
+  padding: 8px 3px;
+}
+
+.videoCard {
+  flex-basis: 47%;
+  border: 1px solid lightgrey;
+  margin: 4px;
+  box-shadow: 1px 2px 2px rgb(240, 240, 240);
+  transition: box-shadow 0.3s;
+}
+
+.videoCard:hover {
+  box-shadow: 1px 2px 8px rgb(223, 223, 223);
+}
+
+.title {
+  padding: 0.5em;
+  color: #0a0d10;
+  text-align: center;
+}
+
+.title:hover {
+  color: rgba(10,13,16,.7);
+}
+
+.videoCard img {
+  max-width: 100%;
+}
+
+.videoCard:hover img {
+  opacity: 0.9;
+}

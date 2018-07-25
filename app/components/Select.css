@@ -1,15 +1,8 @@
-.select > *:not(:first-child):not(:last-child) {
-    border-radius: 0;
-}
-
 .select > *:not(:first-child) {
     margin-left: -1px;
 }
 
-.select > *:first-child {
-    border-radius: 3px 0 0 3px;
-}
-
-.select > *:last-child {
-    border-radius: 0 3px 3px 0;
+.select > * {
+    border-top: none;
+    border-bottom: none;
 }

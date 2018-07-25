@@ -4,12 +4,12 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    border-radius: 3px;
+    border-radius: 0;
     box-shadow: none;
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
     display: inline-flex;
-    font-size: 1em;
+    font-size: 1.25em;
     height: 1.5em;
     line-height: 1.5;
     position: relative;

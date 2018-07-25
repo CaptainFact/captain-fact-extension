@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`linkToAddVideo 1`] = `"http://TEST_FRONTEND/videos/add?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DdQw4w9WgXcQ"`;
+
+exports[`linkToVerificationsPage 1`] = `"http://TEST_FRONTEND/videos/xxxx"`;
