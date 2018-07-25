@@ -1,6 +1,6 @@
 {
   "name": "captain-fact-extension",
-  "version": "0.8.4",
+  "version": "0.8.5",
   "description": "http://captainfact.io Web Extension",
   "scripts": {
     "dev": "node scripts/dev",
