@@ -25,9 +25,9 @@ window.onload = () => {
       language: SUPPORTED_LANGUAGES.includes(LANGUAGE) ? LANGUAGE : DEFAULT_LANGUAGE,
       graphics: {
         logo: {
-          neutral: chrome.runtime.getURL('img/logo-border-less.svg'),
-          confirm: chrome.runtime.getURL('img/confirm-border-less.svg'),
-          refute: chrome.runtime.getURL('img/refute-border-less.svg'),
+          neutral: chrome.runtime.getURL('img/logo-borderless.svg'),
+          confirm: chrome.runtime.getURL('img/confirm-borderless.svg'),
+          refute: chrome.runtime.getURL('img/refute-borderless.svg'),
         },
         newTab: chrome.runtime.getURL('img/new_tab.png'),
         star: chrome.runtime.getURL('img/star.png'),
