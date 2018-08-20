@@ -14,10 +14,7 @@ import ExternalLink from './ExternalLink'
 
 
 export default class Popup extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {url: null}
-  }
+  state = {url: null}
 
   componentDidMount() {
     chrome.tabs.query({active: true, currentWindow: true}, arrayOfTabs => {
@@ -28,9 +25,15 @@ export default class Popup extends React.Component {
   render() {
     return (
       <div className={styles.popup}>
-        <img src={chrome.runtime.getURL('img/banner.jpg')} className={styles.banner} alt=""/> 
+        <ExternalLink href="https://captainfact.io/videos" className={styles.bannerLink}>
+          <img
+            src={chrome.runtime.getURL('img/banner.jpg')}
+            className={styles.banner}
+            alt="CaptainFact"
+          />
+        </ExternalLink>
         {this.renderActions()}
-        <Tabs 
+        <Tabs
           defaultIndex={0}
           selectedTabClassName={tabsStyles.isActive}
           selectedTabPanelClassName={tabsStyles.panelActive}

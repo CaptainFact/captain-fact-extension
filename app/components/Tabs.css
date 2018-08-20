@@ -8,6 +8,8 @@ ul.tabsList {
   flex-shrink: 0;
   justify-content: center;
   margin-bottom: 0;
+  margin-top: 0.5em;
+  padding: 0;
 }
 
 ul.tabsList li {
@@ -31,6 +33,12 @@ ul.tabsList a {
   padding: .5em 1em;
   vertical-align: top;
   cursor: pointer;
+}
+
+@media screen and (max-width: 350px) {
+  ul.tabsList a {
+    font-size: 0.75em;
+  }
 }
 
 ul.tabsList a:hover {

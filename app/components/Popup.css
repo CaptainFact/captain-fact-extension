@@ -32,8 +32,12 @@
     margin-right: 5px;
 }
 
+.bannerLink:hover {
+    opacity: 0.9;
+}
+
 .banner {
-    max-width: 100%;
+    width: 100%;
 }
 
 .content {
