@@ -8,6 +8,7 @@ ul.tabsList {
   flex-shrink: 0;
   justify-content: center;
   margin-bottom: 0;
+  margin-top: 0.5em;
   padding: 0;
 }
 

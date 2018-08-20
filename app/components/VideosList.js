@@ -12,7 +12,7 @@ import styles from './VideosList.css'
 
 
 const GET_FOUR_VIDEOS = gql`{
-  allVideos(limit: 4) {
+  allVideos(limit: 8) {
     hashId
     title
     provider
