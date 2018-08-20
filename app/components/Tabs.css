@@ -35,6 +35,12 @@ ul.tabsList a {
   cursor: pointer;
 }
 
+@media screen and (max-width: 350px) {
+  ul.tabsList a {
+    font-size: 0.75em;
+  }
+}
+
 ul.tabsList a:hover {
   border-bottom-color: #363636;
   color: #363636;

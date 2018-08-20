@@ -15,6 +15,12 @@
   transition: box-shadow 0.3s;
 }
 
+@media screen and (max-width: 350px) {
+  .videoCard {
+    flex-basis: 100%;
+  }
+}
+
 .videoCard:hover {
   box-shadow: 1px 2px 8px rgb(223, 223, 223);
 }
