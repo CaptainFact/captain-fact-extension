@@ -25,7 +25,7 @@ export default class Popup extends React.Component {
   render() {
     return (
       <div className={styles.popup}>
-        <ExternalLink href="https://captainfact.io" className={styles.bannerLink}>
+        <ExternalLink href="https://captainfact.io/videos" className={styles.bannerLink}>
           <img
             src={chrome.runtime.getURL('img/banner.jpg')}
             className={styles.banner}
