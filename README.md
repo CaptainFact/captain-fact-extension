@@ -14,6 +14,7 @@
       <td>
         <a href="https://discord.gg/2Qd7hMz" title="Discord"><img src="https://discordapp.com/api/guilds/416782744748687361/widget.png" alt="Discord"></a>
         <a href="https://twitter.com/CaptainFact_io" title="Twitter"><img src="https://img.shields.io/twitter/follow/CaptainFact_io.svg?style=social&label=Follow"></a>
+        <a href="https://opencollective.com/captainfact_io" title="Backers on Open Collective"><img src="https://opencollective.com/captainfact_io/backers/badge.svg"></a>
         <a href="./LICENSE"><img src="https://img.shields.io/github/license/CaptainFact/captain-fact-extension.svg" alt="GPL3"></a>
       </td>
       <td>
@@ -40,9 +41,9 @@
 
 ## Install
 
-|     **Chrome**    |    **Firefox**     |     **Opera**     |     **Safari**    |     **IE**    |
-| ----------------- | ------------------ | ----------------- | ----------------- | ------------- |
-| [Available][0]    | [Available][1]       | Not yet        | Not yet       | Not yet       |
+|     **Chrome**    |    **Firefox**     |     **Opera**                    |     **Safari**    |     **IE**    |
+| ----------------- | ------------------ | -------------------------------- | ----------------- | ------------- |
+| [Available][0]    | [Available][1]     | Works with [Chrome extension][0] | Not yet       | Not yet       |
 
 [0]: https://chrome.google.com/webstore/detail/captainfact-beta/fnnhlmbnlbgomamcolcpgncflofhjckm "Install for Chrome"
 [1]: https://addons.mozilla.org/en-US/firefox/addon/captainfact/ "Add to Firefox"
@@ -107,8 +108,15 @@ Not at the moment.
 
 ## Linked projects
 
+
+* [Community discussions and documentation](https://github.com/CaptainFact/captain-fact/)
+* [API](https://github.com/CaptainFact/captain-fact-api)
 * [Frontend](https://github.com/CaptainFact/captain-fact-frontend)
 * [Overlay Injector](https://github.com/CaptainFact/captain-fact-overlay-injector)
+
+# Feature requests
+
+[![Feature Requests](http://feathub.com/CaptainFact/captain-fact?format=svg)](http://feathub.com/CaptainFact/captain-fact)
 
 ## License
 
