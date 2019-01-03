@@ -114,10 +114,6 @@ Not at the moment.
 * [Frontend](https://github.com/CaptainFact/captain-fact-frontend)
 * [Overlay Injector](https://github.com/CaptainFact/captain-fact-overlay-injector)
 
-# Feature requests
-
-[![Feature Requests](http://feathub.com/CaptainFact/captain-fact?format=svg)](http://feathub.com/CaptainFact/captain-fact)
-
 ## License
 
 GNU General Public License v3.0
