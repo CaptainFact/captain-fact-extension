@@ -98,7 +98,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.0-14",
     "@fortawesome/free-solid-svg-icons": "^5.1.0-11",
     "@fortawesome/react-fontawesome": "0.1.0-11",
-    "apollo-boost": "^0.1.10",
+    "apollo-boost": "^0.4.1",
     "babel-polyfill": "^6.26.0",
     "captain-fact-overlay-injector": "file:captain-fact-overlay-injector",
     "classnames": "^2.1.3",
