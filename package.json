@@ -90,7 +90,7 @@
     "sinon": "^1.17.1",
     "style-loader": "^0.13.1",
     "webpack": "^1.15.0",
-    "webpack-hot-middleware": "^2.21.0",
+    "webpack-hot-middleware": "^2.25.0",
     "webpack-httpolyglot-server": "^0.2.0",
     "write-file-webpack-plugin": "^4.2.0"
   },
