@@ -79,7 +79,7 @@
     "jest": "^22.1.4",
     "jest-webextension-mock": "3.4.0",
     "jsdom": "^11.6.0",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.2",
     "node-sass": "^4.7.2",
     "postcss-loader": "^1.2.1",
     "pug-cli": "^1.0.0-alpha6",
