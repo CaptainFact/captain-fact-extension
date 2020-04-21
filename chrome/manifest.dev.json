@@ -6,7 +6,7 @@
   "description": "__MSG_appDesc__",
   "default_locale": "en",
   "applications": {
-    "gecko": {"id": "extension-dev@captainfact.io"}
+    "gecko": { "id": "extension-dev@captainfact.io" }
   },
   "browser_action": {
     "default_icon": {
@@ -22,24 +22,22 @@
     "48": "img/icon-48.png",
     "128": "img/icon-128.png"
   },
-  "web_accessible_resources": [
-    "inject.html",
-    "img/*.png",
-    "img/*.svg"
-  ],
+  "web_accessible_resources": ["inject.html", "img/*.png", "img/*.svg"],
   "background": {
     "page": "background.html",
     "persistent": false
   },
-  "content_scripts": [{
-    "matches": ["http://localhost:3333/*"],
-    "js": ["/js/installation_notifier.bundle.js"]
-  }],
-  "permissions": [ 
-    "tabs", 
-    "storage", 
-    "*://m.youtube.com/*", 
+  "content_scripts": [
+    {
+      "matches": ["http://localhost:3333/*"],
+      "js": ["/js/installation_notifier.bundle.js"]
+    }
+  ],
+  "permissions": [
+    "tabs",
+    "storage",
+    "*://m.youtube.com/*",
     "*://www.youtube.com/*"
   ],
-  "content_security_policy": "default-src 'self'; script-src 'self' http://localhost:3000 https://localhost:3000 'unsafe-eval'; connect-src http://localhost:3000 https://localhost:3000 https://localhost:4003; style-src * 'unsafe-inline' 'self' blob:; img-src 'self' https://img.youtube.com data:;"
+  "content_security_policy": "default-src 'self'; script-src 'self' http://localhost:3000 https://localhost:3000 'unsafe-eval'; connect-src http://localhost:3000 https://localhost:3000 http://localhost:4002 https://localhost:4002 https://localhost:4003; style-src * 'unsafe-inline' 'self' blob:; img-src 'self' https://img.youtube.com data:;"
 }
