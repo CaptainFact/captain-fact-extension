@@ -94,7 +94,7 @@
     "jsdom": "^11.6.0",
     "minimist": "^1.2.0",
     "node-sass": "4.13.1",
-    "postcss-loader": "^1.2.1",
+    "postcss-loader": "^3.0.0",
     "pug-cli": "^1.0.0-alpha6",
     "react-addons-test-utils": "^15.6.2",
     "rimraf": "^3.0.0",
