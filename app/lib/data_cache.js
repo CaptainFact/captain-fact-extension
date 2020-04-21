@@ -1,16 +1,15 @@
-import HttpApi from './http_api'
-import BrowserIconBadgeCounter from './browser_icon_badge_counter'
+import HttpApi from "./http_api";
+import BrowserIconBadgeCounter from "./browser_icon_badge_counter";
 
-export const CACHE_KEY = 'cache'
-export const CACHE_VALIDITY = 15 * 60 * 1000 // 15 minutes
+export const CACHE_KEY = "cache";
+export const CACHE_VALIDITY = 15 * 60 * 1000; // 15 minutes
 export const DEFAULT = {
-  version: '0.8.0',   // Changing this version will force the cache to do a full update
-  lastId: 0,          // Last fetched id
-  lastUpdate: null,   // Timestamp of the last update
+  version: "0.9.0", // Changing this version will force the cache to do a full update
+  lastId: 0, // Last fetched id
+  lastUpdate: null, // Timestamp of the last update
   lastUpdateNbAdded: 0, // Number of videos added during the last update
-  data: {youtube: []} // The goods
-}
-
+  data: { youtube: [], facebook: [] } // The goods
+};
 
 export default class DataCache {
   /**
@@ -20,28 +19,32 @@ export default class DataCache {
   static load() {
     return new Promise((fulfill, reject) => {
       return chrome.storage.local.get(CACHE_KEY, obj => {
-        if (obj && obj.hasOwnProperty(CACHE_KEY) && DataCache.checkVersion(obj[CACHE_KEY])) {
-          return fulfill(obj[CACHE_KEY])
+        if (
+          obj &&
+          obj.hasOwnProperty(CACHE_KEY) &&
+          DataCache.checkVersion(obj[CACHE_KEY])
+        ) {
+          return fulfill(obj[CACHE_KEY]);
         }
-        return fulfill(DEFAULT)
-      })
-    })
+        return fulfill(DEFAULT);
+      });
+    });
   }
 
   /**
    * Ensure cache is not outdated
    */
   static checkVersion(cache) {
-    return cache && cache.version === DEFAULT.version
+    return cache && cache.version === DEFAULT.version;
   }
 
   /**
    * Check if video exists in cache. Returns a promise with a boolean as first param
    */
   static hasVideo(provider, id) {
-    return DataCache.updatedCache().then(({data}) => {
-      return data[provider] && data[provider].includes(id)
-    })
+    return DataCache.updatedCache().then(({ data }) => {
+      return data[provider] && data[provider].includes(id);
+    });
   }
 
   /**
@@ -53,36 +56,37 @@ export default class DataCache {
   static updatedCache(force = false) {
     return DataCache.load().then(cache => {
       // Check if cache is expired
-      if (!force && !isCacheExpired(cache))
-        return cache
+      if (!force && !isCacheExpired(cache)) return cache;
 
       // Fetch new videos
-      return HttpApi.post({query: `{allVideos(filters: {minId: ${cache.lastId}}) {id provider providerId}}`})
-        .then(({allVideos}) => {
+      return HttpApi.post({
+        query: `{allVideos(filters: {minId: ${cache.lastId}}) {id provider providerId}}`
+      })
+        .then(({ allVideos }) => {
           // Do not update if there is no new video
-          if (allVideos.length === 0)
-            return cache
+          if (allVideos.length === 0) return cache;
 
           // Add videos to cache
-          const isFirstUpdate = cache.lastId === 0
-          addVideosToCache(cache, allVideos)
+          const isFirstUpdate = cache.lastId === 0;
+          addVideosToCache(cache, allVideos);
 
           // Save new cache
-          chrome.storage.local.set({[CACHE_KEY]: cache}, () => {
-            console.info('[CaptainFact] Cache updated')
+          chrome.storage.local.set({ [CACHE_KEY]: cache }, () => {
+            console.info("[CaptainFact] Cache updated");
             // Notify BrowserIconBadgeCounter that there are new videos.
             // This is bypassed on first run to avoid having the counter
             // displayed on installation.
             if (!isFirstUpdate) {
-              BrowserIconBadgeCounter.increment(cache.lastUpdateNbAdded)
+              BrowserIconBadgeCounter.increment(cache.lastUpdateNbAdded);
             }
-          })
-          return cache
-        }).catch(e => {
-          console.error('[CaptainFact] Cache update failed', e)
-          return cache
+          });
+          return cache;
         })
-    })
+        .catch(e => {
+          console.error("[CaptainFact] Cache update failed", e);
+          return cache;
+        });
+    });
   }
 }
 
@@ -94,30 +98,32 @@ export default class DataCache {
  * @param {Array<Object>} videos
  */
 function addVideosToCache(cache, videos) {
-  let maxId = 0
-  let nbAdded = 0
+  let maxId = 0;
+  let nbAdded = 0;
   for (const video of videos) {
     // Only support YouTube at the moment. Ignore other providers.
-    if (video.provider === 'youtube') {
-      cache.data.youtube.push(video.providerId)
-      nbAdded += 1
+    if (video.provider === "youtube") {
+      cache.data.youtube.push(video.providerId);
+      nbAdded += 1;
+    } else if (video.provider === "facebook") {
+      cache.data.facebook.push(video.providerId);
+      nbAdded += 1;
     }
     // Store last id
-    const videoId = parseInt(video.id)
-    if (videoId > maxId)
-      maxId = videoId
+    const videoId = parseInt(video.id);
+    if (videoId > maxId) maxId = videoId;
   }
-  cache.lastId = maxId
-  cache.lastUpdate = Date.now()
-  cache.lastUpdateNbAdded = nbAdded
-  return cache
+  cache.lastId = maxId;
+  cache.lastUpdate = Date.now();
+  cache.lastUpdateNbAdded = nbAdded;
+  return cache;
 }
 
 /**
  * Check if cache need to be updated
- * 
- * @param {Object} cache 
+ *
+ * @param {Object} cache
  */
 function isCacheExpired(cache) {
-  return !cache.lastUpdate || (Date.now() - cache.lastUpdate) > CACHE_VALIDITY
+  return !cache.lastUpdate || Date.now() - cache.lastUpdate > CACHE_VALIDITY;
 }
