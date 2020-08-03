@@ -71,7 +71,7 @@
     "@babel/runtime-corejs2": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.3",
-    "babel-jest": "^23.4.2",
+    "babel-jest": "^26.2.2",
     "babel-loader": "7.1.1",
     "chromedriver": "^2.35.0",
     "coveralls": "^3.0.11",
