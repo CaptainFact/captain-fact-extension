@@ -16,13 +16,14 @@
         <a href="https://twitter.com/CaptainFact_io" title="Twitter"><img src="https://img.shields.io/twitter/follow/CaptainFact_io.svg?style=social&label=Follow"></a>
         <a href="https://opencollective.com/captainfact_io" title="Backers on Open Collective"><img src="https://opencollective.com/captainfact_io/backers/badge.svg"></a>
         <a href="./LICENSE"><img src="https://img.shields.io/github/license/CaptainFact/captain-fact-extension.svg" alt="GPL3"></a>
+        <a href="https://github.com/CaptainFact/captain-fact-extension/releases"><img src="https://img.shields.io/github/v/release/CaptainFact/captain-fact-extension" alt="GitHub release" /></a>
       </td>
       <td>
-        <a href="https://travis-ci.org/CaptainFact/captain-fact-extension"><img src="https://travis-ci.org/CaptainFact/captain-fact-extension.svg?branch=master" alt="Build Status"/></a>
+        <a href="https://github.com/CaptainFact/captain-fact-extension/actions/workflows/ci.yml"><img src="https://github.com/CaptainFact/captain-fact-extension/actions/workflows/ci.yml/badge.svg" alt="Build Status"/></a>
         <a href='https://coveralls.io/github/CaptainFact/captain-fact-extension?branch=master'><img src='https://coveralls.io/repos/github/CaptainFact/captain-fact-extension/badge.svg?branch=master' alt='Coverage Status' /></a>
       </td>
       <td>
-        <a href="https://travis-ci.org/CaptainFact/captain-fact-extension"><img src="https://travis-ci.org/CaptainFact/captain-fact-extension.svg?branch=staging" alt="Build Status"/></a>
+        <a href="https://github.com/CaptainFact/captain-fact-extension/actions/workflows/ci.yml"><img src="https://github.com/CaptainFact/captain-fact-extension/actions/workflows/ci.yml/badge.svg?branch=staging" alt="Build Status"/></a>
         <a href='https://coveralls.io/github/CaptainFact/captain-fact-extension?branch=staging'><img src='https://coveralls.io/repos/github/CaptainFact/captain-fact-extension/badge.svg?branch=staging' alt='Coverage Status' /></a>
       </td>
     </tr>
