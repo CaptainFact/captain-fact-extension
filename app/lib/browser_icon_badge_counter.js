@@ -8,7 +8,7 @@ export default class BrowserIconBadgeCounter {
    * @param {function() {...}} callback
    */
   static reset() {
-    return new Promise(fulfill => {
+    return new Promise((fulfill) => {
       fulfill(setBadgeText(''))
     })
   }
@@ -20,11 +20,10 @@ export default class BrowserIconBadgeCounter {
    * @param {integer} increment value as a positive integer
    */
   static increment(value) {
-    return LocalSettings.getValue('newVideosBadge').then(isActivated => {
-      if (!isActivated)
-        return null
+    return LocalSettings.getValue('newVideosBadge').then((isActivated) => {
+      if (!isActivated) return null
 
-      return chrome.browserAction.getBadgeText({}, currentValueStr => {
+      return chrome.browserAction.getBadgeText({}, (currentValueStr) => {
         const intValue = decodeValue(currentValueStr)
         const newValueStr = encodeValue(intValue + value)
         return setBadgeText(newValueStr)
@@ -42,7 +41,7 @@ export default class BrowserIconBadgeCounter {
  * @param {string} text : a 0-4 characters string of the text to display
  */
 function setBadgeText(text) {
-  return chrome.browserAction.setBadgeText({text})
+  return chrome.browserAction.setBadgeText({ text })
 }
 
 /**
@@ -53,8 +52,7 @@ function decodeValue(valueStr) {
   const parsedValue = /(\d+)(\+)?/.exec(valueStr)
 
   // Value doesn't match the expected format. It may be empty or deprecated.
-  if (!parsedValue)
-    return 0
+  if (!parsedValue) return 0
 
   // Return the number captured by (\d+)
   return parseInt(parsedValue[1])

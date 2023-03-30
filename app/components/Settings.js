@@ -6,34 +6,32 @@ import LocalSettings from '../lib/local_settings.js'
 import translate from '../lib/translate.js'
 import BrowserIconBadgeCounter from '../lib/browser_icon_badge_counter.js'
 
-
 const SELECT_OPTIONS_ON_OFF = {
   ON: true,
-  OFF: false
+  OFF: false,
 }
 
 export default class Settings extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {settings: null}
+    this.state = { settings: null }
   }
 
   componentDidMount() {
-    LocalSettings.load().then(settings => this.setState({settings}))
+    LocalSettings.load().then((settings) => this.setState({ settings }))
   }
 
   handleChange(key, value) {
-    return LocalSettings
-      .setValue(key, value)
-      .then(newSettings => this.setState({
-        settings: {...this.state.settings, ...newSettings}
-      }))
+    return LocalSettings.setValue(key, value).then((newSettings) =>
+      this.setState({
+        settings: { ...this.state.settings, ...newSettings },
+      })
+    )
   }
 
   render() {
     const { settings } = this.state
-    if (!settings)
-      return null
+    if (!settings) return null
 
     return (
       <div>
@@ -42,7 +40,7 @@ export default class Settings extends React.Component {
           <Select
             name="videosOverlay"
             selected={settings.videosOverlay}
-            onChange={value => this.handleChange('videosOverlay', value)}
+            onChange={(value) => this.handleChange('videosOverlay', value)}
             options={SELECT_OPTIONS_ON_OFF}
           />
         </div>
@@ -51,11 +49,13 @@ export default class Settings extends React.Component {
           <Select
             name="newVideosBadge"
             selected={settings.newVideosBadge}
-            onChange={value => this.handleChange('newVideosBadge', value).then(() => {
-              if (value === false) {
-                BrowserIconBadgeCounter.reset()
-              }
-            })}
+            onChange={(value) =>
+              this.handleChange('newVideosBadge', value).then(() => {
+                if (value === false) {
+                  BrowserIconBadgeCounter.reset()
+                }
+              })
+            }
             options={SELECT_OPTIONS_ON_OFF}
           />
         </div>

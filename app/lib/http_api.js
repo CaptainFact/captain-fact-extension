@@ -1,7 +1,6 @@
-import fetch from "isomorphic-fetch"
+import fetch from 'isomorphic-fetch'
 
-import { CF_API_URL } from "./constants"
-
+import { CF_API_URL } from './constants'
 
 class CaptainFactHttpApi {
   constructor(baseUrl) {
@@ -9,13 +8,11 @@ class CaptainFactHttpApi {
   }
 
   prepareResponse(promise) {
-    return promise.then(response => {
+    return promise.then((response) => {
       return response.text().then((body) => {
         body = body ? JSON.parse(body) : null
-        if (body.errors)
-          throw body.errors
-        else
-          return body.data
+        if (body.errors) throw body.errors
+        else return body.data
       })
     })
   }
@@ -24,16 +21,15 @@ class CaptainFactHttpApi {
     const response = fetch(this.baseUrl, {
       method: requestType,
       body: data ? JSON.stringify(data) : '',
-      headers: {"Content-Type": "application/json"}
+      headers: { 'Content-Type': 'application/json' },
     })
     return this.prepareResponse(response)
   }
 
   post(data) {
-    return this.makeRequest("POST", data)
+    return this.makeRequest('POST', data)
   }
 }
-
 
 // Configure HttpApi
 const HttpApi = new CaptainFactHttpApi(CF_API_URL)

@@ -12,20 +12,22 @@ import { linkToAddVideo } from '../lib/cf_urls'
 import VideosList from './VideosList'
 import ExternalLink from './ExternalLink'
 
-
 export default class Popup extends React.Component {
-  state = {url: null}
+  state = { url: null }
 
   componentDidMount() {
-    chrome.tabs.query({active: true, currentWindow: true}, arrayOfTabs => {
-      this.setState({url: arrayOfTabs[0].url})
+    chrome.tabs.query({ active: true, currentWindow: true }, (arrayOfTabs) => {
+      this.setState({ url: arrayOfTabs[0].url })
     })
   }
 
   render() {
     return (
       <div className={styles.popup}>
-        <ExternalLink href="https://captainfact.io/videos" className={styles.bannerLink}>
+        <ExternalLink
+          href="https://captainfact.io/videos"
+          className={styles.bannerLink}
+        >
           <img
             src={chrome.runtime.getURL('img/banner.jpg')}
             className={styles.banner}
@@ -41,23 +43,23 @@ export default class Popup extends React.Component {
           <TabList className={tabsStyles.tabsList}>
             <Tab>
               <a>
-                <FontAwesomeIcon icon={faTv}/>
+                <FontAwesomeIcon icon={faTv} />
                 <span>{translate('videos')}</span>
               </a>
             </Tab>
             <Tab>
               <a>
-                <FontAwesomeIcon icon={faCog}/>
+                <FontAwesomeIcon icon={faCog} />
                 <span>{translate('settings')}</span>
               </a>
             </Tab>
           </TabList>
           <TabPanel>
-            <VideosList/>
+            <VideosList />
           </TabPanel>
           <TabPanel>
             <div className={styles.content}>
-              <Settings/>
+              <Settings />
             </div>
           </TabPanel>
         </Tabs>
@@ -67,7 +69,10 @@ export default class Popup extends React.Component {
 
   renderActions() {
     const { url } = this.state
-    if (!url || !url.match(/^(http:\/\/|https:\/\/)?(www\.)?youtube\.com\/watch\?*/))
+    if (
+      !url ||
+      !url.match(/^(http:\/\/|https:\/\/)?(www\.)?youtube\.com\/watch\?*/)
+    )
       return null
 
     return (
@@ -76,7 +81,7 @@ export default class Popup extends React.Component {
           className={styles.actionsBlock}
           href={linkToAddVideo(url)}
         >
-          <img src={chrome.runtime.getURL('img/new_tab.png')} alt=""/>
+          <img src={chrome.runtime.getURL('img/new_tab.png')} alt="" />
           {translate('openOnCF')}
         </ExternalLink>
       </div>
