@@ -1,5 +1,6 @@
 const providers = {
-  youtube: /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i
+  youtube:
+    /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/ ]{11})/i,
 }
 
 /**
@@ -7,11 +8,10 @@ const providers = {
  * @returns Object `{provider, provider_id}`. If url is not recognized, returns `null`
  * @param url
  */
-export const getVideoProvider = url => {
+export const getVideoProvider = (url) => {
   for (const provider in providers) {
     const execResult = providers[provider].exec(url)
-    if (execResult !== null)
-      return {provider, providerId: execResult[1]}
+    if (execResult !== null) return { provider, providerId: execResult[1] }
   }
   return null
 }

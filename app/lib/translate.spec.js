@@ -1,5 +1,4 @@
-import translate from "./translate"
-
+import translate from './translate'
 
 test('call chrome translate API', () => {
   const testStr = 'Please translate that!'

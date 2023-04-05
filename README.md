@@ -38,16 +38,16 @@
 </a>
 </p>
 
--------------------------
+---
 
 ## Install
 
-|     **Chrome**    |    **Firefox**     |     **Opera**                    |     **Safari**    |     **EDGE**    |
-| ----------------- | ------------------ | -------------------------------- | ----------------- | ------------- |
-| [Available][0]    | [Available][1]     | Works with [Chrome extension][0] | Not yet       | Not yet       |
+| **Chrome**     | **Firefox**    | **Opera**                        | **Safari** | **EDGE** |
+| -------------- | -------------- | -------------------------------- | ---------- | -------- |
+| [Available][0] | [Available][1] | Works with [Chrome extension][0] | Not yet    | Not yet  |
 
-[0]: https://chrome.google.com/webstore/detail/captainfact-beta/fnnhlmbnlbgomamcolcpgncflofhjckm "Install for Chrome"
-[1]: https://addons.mozilla.org/en-US/firefox/addon/captainfact/ "Add to Firefox"
+[0]: https://chrome.google.com/webstore/detail/captainfact-beta/fnnhlmbnlbgomamcolcpgncflofhjckm 'Install for Chrome'
+[1]: https://addons.mozilla.org/en-US/firefox/addon/captainfact/ 'Add to Firefox'
 
 ## Extension Features
 
@@ -60,7 +60,7 @@ true or false.
 ![Icon approve](misc/approve.gif)
 ![Icon refute](misc/refute.gif)
 
-### Facts overlay 
+### Facts overlay
 
 When clicked, the CaptainFact icon displays facts and comments about current statement and
 their respective scores.
@@ -69,58 +69,59 @@ their respective scores.
 
 ## Development
 
-* Install (if you don't have them):
-  * [Docker](https://docs.docker.com/install/) (to start the API easily)
-  * [Node.js](http://nodejs.org)
-  * App dependencies: `npm install`
-  
-* Run:
-  * `./captain-fact-overlay-injector/dev/start_graphql_api.sh` - Start the GraphQL API. You can access GraphiQL at http://localhost:4002/graphiql
-  * `npm start` - Start the overlay injector test pages on http://localhost:3342
-  * `npm run test` - Runs all unit tests
+### Start the API
+
+See https://github.com/CaptainFact/captain-fact-api
+
+### Run local extension development server
+
+- Install (if you don't have them):
+  - [Node.js](http://nodejs.org)
+  - App dependencies: `npm install`
+  - `npm start` - Start the overlay injector test pages on http://localhost:3342
+  - `npm run test` - Runs all unit tests
 
 ## FAQ
 
-* Why do you need storage permissions?
+- Why do you need storage permissions?
 
 We store a local cache of videos IDs that exist on CaptainFact. This cache gets updated when you visit YouTube
-if it's older than 15 minutes. This is a privacy improvement that guarantees we don't track the videos you're 
+if it's older than 15 minutes. This is a privacy improvement that guarantees we don't track the videos you're
 watching and don't send unnecessary requests.
 
-* Why do you need tab permissions?
+- Why do you need tab permissions?
 
 Because the script is injected programmatically in the background (only if video is known from cache) and
 to be able to turn off CaptainFact on all tabs when you unselect it from the extension popup.
 
 You can check by yourself in `chrome/extension/background.js` (look for `chrome.tabs.`)
 
-* Why do you need Youtube permissions?
+- Why do you need Youtube permissions?
 
 To be able to inject the facts overlay on YouTube videos.
 
-* Why do you only inject on youtube.com and not in embedded players everywhere else?
+- Why do you only inject on youtube.com and not in embedded players everywhere else?
 
 We may want to implement this in a separate release in the future. We don't want to implement
-this feature in main extension cause it means asking for permissions to access all your sites. 
+this feature in main extension cause it means asking for permissions to access all your sites.
 
-* Can I add sources on videos directly from the extension?
- 
+- Can I add sources on videos directly from the extension?
+
 Not at the moment.
 
 ## Linked projects
 
-
-* [Community discussions and documentation](https://github.com/CaptainFact/captain-fact/)
-* [API](https://github.com/CaptainFact/captain-fact-api)
-* [Frontend](https://github.com/CaptainFact/captain-fact-frontend)
-* [Overlay Injector](https://github.com/CaptainFact/captain-fact-overlay-injector)
+- [Community discussions and documentation](https://github.com/CaptainFact/captain-fact/)
+- [API](https://github.com/CaptainFact/captain-fact-api)
+- [Frontend](https://github.com/CaptainFact/captain-fact-frontend)
+- [Overlay Injector](https://github.com/CaptainFact/captain-fact-overlay-injector)
 
 ## License
 
 GNU General Public License v3.0
 
-Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works 
-and modifications, which include larger works using a licensed work, under the same license. Copyright and license 
+Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works
+and modifications, which include larger works using a licensed work, under the same license. Copyright and license
 notices must be preserved. Contributors provide an express grant of patent rights.
 
 See [LICENSE](LICENSE) for more info.
