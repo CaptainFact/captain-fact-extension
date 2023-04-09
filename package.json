@@ -1,9 +1,10 @@
 {
   "name": "captain-fact-extension",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "http://captainfact.io Web Extension",
   "scripts": {
     "dev": "webpack --watch --config webpack/webpack.dev.js --env dev",
+    "dev:staging": "webpack --watch --config webpack/webpack.dev.js --env staging",
     "build:production": "cd captain-fact-overlay-injector && npm run build:production && cd .. && webpack --config webpack/webpack.prod.js --env=production",
     "build:staging": "cd captain-fact-overlay-injector && npm run build:staging && cd .. && webpack --config webpack/webpack.prod.js --env=staging ",
     "build:dev": "cd captain-fact-overlay-injector && npm run build:dev && cd .. && webpack --config webpack/webpack.prod.js --env=dev",
@@ -37,10 +38,8 @@
     "crx": "^3.0.3",
     "css-loader": "^6.7.3",
     "css-modules-require-hook": "^4.2.3",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "enzyme-to-json": "^3.4.3",
     "eslint": "^8.37.0",
+    "eslint-plugin-jest": "^27.2.1",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.0",
     "identity-obj-proxy": "^3.0.0",
@@ -49,6 +48,7 @@
     "jsdom": "^11.6.0",
     "minimist": "^1.2.0",
     "prettier": "^2.8.7",
+    "react-test-renderer": "^18.2.0",
     "rimraf": "^3.0.0",
     "shelljs": "^0.8.4",
     "style-loader": "^3.3.2",
@@ -69,9 +69,9 @@
     "graphql": "^16.6.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.21",
-    "react": "^16.2.0",
-    "react-dom": "^16.4.2",
-    "react-tabs": "^2.2.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-tabs": "^6.0.0",
     "voca": "^1.4.0"
   }
 }

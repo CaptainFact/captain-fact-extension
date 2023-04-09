@@ -1,3 +1,5 @@
+import { BrowserExtension } from './browser-extension'
+
 const SETTINGS_KEY = 'settings'
 const CURRENT_VERSION = 20180721
 const DEFAULT_SETTINGS = {
@@ -6,7 +8,7 @@ const DEFAULT_SETTINGS = {
   newVideosBadge: true,
 }
 
-const STORAGE = chrome.storage.local
+const STORAGE = BrowserExtension.storage.local
 
 /**
  * Run migrations on settings object
@@ -81,7 +83,7 @@ export default class LocalSettings {
    * @param callback function(oldParams, newParams)
    */
   static addChangeListener(callback) {
-    chrome.storage.onChanged.addListener((changes) => {
+    BrowserExtension.storage.onChanged.addListener((changes) => {
       if (Object.prototype.hasOwnProperty.call(changes, SETTINGS_KEY)) {
         const { oldValue, newValue } = changes[SETTINGS_KEY]
         callback(oldValue || {}, newValue || {})

@@ -1,14 +1,12 @@
 {
-  "version": "1.0.0",
-  "name": "CaptainFact",
-  "manifest_version": 2,
+  "version": "1.0.1",
+  "name": "<%= APP_NAME %>",
+  "manifest_version": 3,
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvj2HRDAsx3qXl66tfidXZRcQbw7RHG1YwNSgrbFDyvmKL0jP5dpxqD7Y6WpRgUeMYT93sg7hgIt6JHpY3ZOv/HRZII9SYxy6DT4iTkQknQ+5JaJZvnKosvAnU/gRZkwTBDSOnGvc9THirpKtLlEKLsvG8apJWtBzBuCEAuTDpwrapDVu+JM6VPCh+MCWHYfjDd8agbhK6SOPnC81NcqQXOWG3n0/AHTY4g/9PbNwm96f+ymUuFbBYsN4eIzq/wZktf417SnzxMqSIlfdeyTST1xZ74bSCLOi4+XgYI+UaDAQZUNFiZINXojnJrkPo2g3maHqJb+0ZQdggQyS3C9lswIDAQAB",
-  "description": "__MSG_appDesc__",
+  "description": "Collaborative, real-time fact checking. Free and open source.",
   "default_locale": "en",
-  "applications": {
-    "gecko": { "id": "extension@captainfact.io" }
-  },
-  "browser_action": {
+  "author": "contact@captainfact.io",
+  "action": {
     "default_icon": {
       "16": "img/icon-16.png",
       "48": "img/icon-48.png",
@@ -22,23 +20,33 @@
     "48": "img/icon-48.png",
     "128": "img/icon-128.png"
   },
-  "web_accessible_resources": ["inject.html", "img/*.png", "img/*.svg"],
-  "background": {
-    "page": "background.html",
-    "persistent": false
-  },
   "content_scripts": [
     {
-      "matches": ["https://captainfact.io/*"],
+      "matches": ["https://*.youtube.com/*"],
+      "js": ["/js/inject.bundle.js"]
+    },
+    {
+      "matches": ["<%= FRONTEND_URL %>/*"],
       "js": ["/js/installation_notifier.bundle.js"]
     }
   ],
-  "permissions": [
-    "tabs",
-    "storage",
+  "permissions": ["tabs", "storage"],
+  "host_permissions": [
     "*://m.youtube.com/*",
     "*://www.youtube.com/*",
-    "*://*.captainfact.io/*"
+    "<%= FRONTEND_URL %>/*"
   ],
-  "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' https://img.youtube.com data:; connect-src 'self' https://*.captainfact.io:*;"
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' https://img.youtube.com data:; connect-src 'self' <%= FRONTEND_URL %> <%= API_URL %>;"
+  },
+  "web_accessible_resources": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "resources": ["img/*"]
+    },
+    {
+      "matches": ["https://m.youtube.com/*"],
+      "resources": ["img/*"]
+    }
+  ]
 }

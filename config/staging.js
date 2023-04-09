@@ -1,3 +1,6 @@
-export const FRONT_URL = "https://staging.captainfact.io"
-export const API_URL = "https://graphql.staging.captainfact.io"
-export const ENV = "prod"
+module.exports = {
+  APP_NAME: 'CaptainFact (Staging)',
+  FRONTEND_URL: 'https://staging.captainfact.io',
+  API_URL: 'https://graphql.staging.captainfact.io',
+  ENV: 'production',
+}
