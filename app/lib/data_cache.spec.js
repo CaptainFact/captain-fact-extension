@@ -1,20 +1,21 @@
+import { BrowserExtension } from './browser-extension'
 import DataCache, { DEFAULT, CACHE_KEY } from './data_cache'
 
 describe('load', () => {
   it('returns default cache if no cache exist', () => {
-    DataCache.load().then((cache) => {
+    return DataCache.load().then((cache) => {
       expect(cache).toBe(DEFAULT)
     })
   })
 
-  it('returns cache from chrome.storage.local if any', () => {
+  it('returns cache from browser.storage.local if any', () => {
     const cache = mockStorageGetCache({
       ...DEFAULT,
       lastId: 42,
       lastUpdate: Date.now(),
       data: { youtube: ['xxxxxxx', 'yyyyyyy'] },
     })
-    DataCache.load().then((loadedCache) => {
+    return DataCache.load().then((loadedCache) => {
       expect(loadedCache).toBe(cache)
     })
   })
@@ -68,7 +69,7 @@ test('checkVersion', () => {
 })
 
 function mockStorageGetCache(value) {
-  chrome.storage.local.get.mockImplementation((key, callback) => {
+  BrowserExtension.storage.local.get.mockImplementation((key, callback) => {
     if (key === CACHE_KEY) return callback({ [CACHE_KEY]: value })
     return null
   })

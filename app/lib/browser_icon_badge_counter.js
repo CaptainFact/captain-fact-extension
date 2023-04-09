@@ -1,3 +1,4 @@
+import { BrowserExtension } from './browser-extension'
 import LocalSettings from './local_settings'
 
 export const MAX_VALUE = 99
@@ -23,11 +24,14 @@ export default class BrowserIconBadgeCounter {
     return LocalSettings.getValue('newVideosBadge').then((isActivated) => {
       if (!isActivated) return null
 
-      return chrome.browserAction.getBadgeText({}, (currentValueStr) => {
-        const intValue = decodeValue(currentValueStr)
-        const newValueStr = encodeValue(intValue + value)
-        return setBadgeText(newValueStr)
-      })
+      return BrowserExtension.browserAction.getBadgeText(
+        {},
+        (currentValueStr) => {
+          const intValue = decodeValue(currentValueStr)
+          const newValueStr = encodeValue(intValue + value)
+          return setBadgeText(newValueStr)
+        }
+      )
     })
   }
 }
@@ -41,7 +45,7 @@ export default class BrowserIconBadgeCounter {
  * @param {string} text : a 0-4 characters string of the text to display
  */
 function setBadgeText(text) {
-  return chrome.browserAction.setBadgeText({ text })
+  return BrowserExtension.browserAction.setBadgeText({ text })
 }
 
 /**

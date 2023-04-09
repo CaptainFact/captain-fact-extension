@@ -3,26 +3,22 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const argv = require('yargs').argv
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const lodash = require('lodash')
 
 if (!argv.env) {
   throw new Error('Please specify the environment with --env')
 }
 
-const nodeEnv = ['staging', 'prod'].includes(argv.env)
-  ? 'production'
-  : 'development'
-
-const htmlTemplatesParameters = { env: argv.env }
+const config = require(`../config/${argv.env}.js`)
 
 module.exports = {
-  mode: nodeEnv,
+  mode: config.ENV,
   entry: {
-    popup: path.join(__dirname, '../chrome/extension/popup'),
-    background: path.join(__dirname, '../chrome/extension/background'),
-    inject: path.join(__dirname, '../chrome/extension/inject'),
+    popup: path.join(__dirname, '../app/entrypoints/popup'),
+    inject: path.join(__dirname, '../app/entrypoints/inject'),
     installation_notifier: path.join(
       __dirname,
-      '../chrome/extension/installation_notifier'
+      '../app/entrypoints/installation_notifier'
     ),
   },
   resolve: {
@@ -58,34 +54,22 @@ module.exports = {
     new webpack.IgnorePlugin({
       resourceRegExp: /[^/]+\/[\S]+.dev$/,
     }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(nodeEnv),
-      },
-    }),
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, '../chrome/views/popup.ejs'),
+      template: path.join(__dirname, '../app/views/popup.ejs'),
       filename: 'popup.html',
-      templateParameters: htmlTemplatesParameters,
-      inject: false,
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, '../chrome/views/background.ejs'),
-      filename: 'background.html',
-      templateParameters: htmlTemplatesParameters,
-      inject: false,
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, '../chrome/views/inject.ejs'),
-      filename: 'inject.html',
-      templateParameters: htmlTemplatesParameters,
-      inject: false,
+      chunks: ['popup'],
     }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: `chrome/manifest.${argv.env}.json`, to: `manifest.json` },
-        { from: 'chrome/assets/_locales', to: '_locales' },
-        { from: 'chrome/assets/img', to: 'img' },
+        { from: 'app/assets/_locales', to: '_locales' },
+        { from: 'app/assets/img', to: 'img' },
+        {
+          from: `app/manifest.json`,
+          to: `manifest.json`,
+          transform: (content) => {
+            return lodash.template(content)(config)
+          },
+        },
       ],
     }),
   ],

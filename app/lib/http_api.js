@@ -1,5 +1,3 @@
-import fetch from 'isomorphic-fetch'
-
 import { CF_API_URL } from './constants'
 
 class CaptainFactHttpApi {

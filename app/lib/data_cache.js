@@ -1,6 +1,7 @@
 import { has } from 'lodash'
 import HttpApi from './http_api'
 import BrowserIconBadgeCounter from './browser_icon_badge_counter'
+import { BrowserExtension } from './browser-extension'
 
 export const CACHE_KEY = 'cache'
 export const CACHE_VALIDITY = 15 * 60 * 1000 // 15 minutes
@@ -19,7 +20,7 @@ export default class DataCache {
    */
   static load() {
     return new Promise((fulfill) => {
-      return chrome.storage.local.get(CACHE_KEY, (obj) => {
+      return BrowserExtension.storage.local.get(CACHE_KEY, (obj) => {
         if (has(obj, CACHE_KEY) && DataCache.checkVersion(obj[CACHE_KEY])) {
           return fulfill(obj[CACHE_KEY])
         }
@@ -70,7 +71,7 @@ export default class DataCache {
           addVideosToCache(cache, videos)
 
           // Save new cache
-          chrome.storage.local.set({ [CACHE_KEY]: cache }, () => {
+          BrowserExtension.storage.local.set({ [CACHE_KEY]: cache }, () => {
             console.info('[CaptainFact] Cache updated')
             // Notify BrowserIconBadgeCounter that there are new videos.
             // This is bypassed on first run to avoid having the counter
