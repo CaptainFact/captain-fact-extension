@@ -89,13 +89,6 @@ We store a local cache of videos IDs that exist on CaptainFact. This cache gets 
 if it's older than 15 minutes. This is a privacy improvement that guarantees we don't track the videos you're
 watching and don't send unnecessary requests.
 
-- Why do you need tab permissions?
-
-Because the script is injected programmatically in the background (only if video is known from cache) and
-to be able to turn off CaptainFact on all tabs when you unselect it from the extension popup.
-
-You can check by yourself in `chrome/extension/background.js` (look for `chrome.tabs.`)
-
 - Why do you need Youtube permissions?
 
 To be able to inject the facts overlay on YouTube videos.
