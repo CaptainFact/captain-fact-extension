@@ -8,23 +8,11 @@ import Settings from './Settings'
 import styles from './Popup.css'
 import tabsStyles from './Tabs.css'
 import translate from '../lib/translate'
-import { linkToAddVideo } from '../lib/cf_urls'
 import VideosList from './VideosList'
 import ExternalLink from './ExternalLink'
 import { BrowserExtension } from '../lib/browser-extension'
 
 export default class Popup extends React.Component {
-  state = { url: null }
-
-  componentDidMount() {
-    BrowserExtension.tabs.query(
-      { active: true, currentWindow: true },
-      (arrayOfTabs) => {
-        this.setState({ url: arrayOfTabs[0].url })
-      }
-    )
-  }
-
   render() {
     return (
       <div className={styles.popup}>
@@ -38,7 +26,6 @@ export default class Popup extends React.Component {
             alt="CaptainFact"
           />
         </ExternalLink>
-        {this.renderActions()}
         <Tabs
           defaultIndex={0}
           selectedTabClassName={tabsStyles.isActive}
@@ -67,30 +54,6 @@ export default class Popup extends React.Component {
             </div>
           </TabPanel>
         </Tabs>
-      </div>
-    )
-  }
-
-  renderActions() {
-    const { url } = this.state
-    if (
-      !url ||
-      !url.match(/^(http:\/\/|https:\/\/)?(www\.)?youtube\.com\/watch\?*/)
-    )
-      return null
-
-    return (
-      <div className={styles.actionsBlockContainer}>
-        <ExternalLink
-          className={styles.actionsBlock}
-          href={linkToAddVideo(url)}
-        >
-          <img
-            src={BrowserExtension.runtime.getURL('img/new_tab.png')}
-            alt=""
-          />
-          {translate('openOnCF')}
-        </ExternalLink>
       </div>
     )
   }

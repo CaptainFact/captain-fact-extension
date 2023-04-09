@@ -30,7 +30,7 @@
       "js": ["/js/installation_notifier.bundle.js"]
     }
   ],
-  "permissions": ["tabs", "storage"],
+  "permissions": ["storage"],
   "host_permissions": [
     "*://m.youtube.com/*",
     "*://www.youtube.com/*",
