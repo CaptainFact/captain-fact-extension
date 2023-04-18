@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const argv = require('yargs').argv
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const lodash = require('lodash')
+const packageJson = require('../package.json')
 
 if (!argv.env) {
   throw new Error('Please specify the environment with --env')
@@ -73,6 +74,7 @@ module.exports = {
           transform: (content) => {
             return lodash.template(content)({
               ...config,
+              APP_VERSION: packageJson.version,
               FRONTEND_DOMAIN_WILD_CARD: domainToHostWildCard(
                 config.FRONTEND_URL
               ),
