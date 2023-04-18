@@ -1,0 +1,74 @@
+name: CI
+
+on: [push]
+
+jobs:
+  test:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'true'
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+      - name: Build Overlay Injector
+        run: cd captain-fact-overlay-injector && npm ci --prefer-offline --no-audit && npm run build:dev && cd ..
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+      - name: Run tests
+        run: npm run coverage
+      - name: Post tests coverage
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ./coverage/lcov.info
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'true'
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+      - name: Run linter
+        run: npm run lint
+  prettier:
+    name: Prettier
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'true'
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+      - name: Run prettier
+        run: npm run prettier
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'true'
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+      - name: Build injector
+        run: cd captain-fact-overlay-injector && npm ci && npm run build:staging && cd ..
+      - name: Build
+        run: npm run build:staging

@@ -1,6 +1,6 @@
 import React from 'react'
-import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
+import { Query } from '@apollo/client/react/components'
+import { gql } from '@apollo/client'
 
 import { linkToVerificationsPage } from '../lib/cf_urls'
 import BrowserIconBadgeCounter from '../lib/browser_icon_badge_counter'
@@ -10,15 +10,17 @@ import Message from './Message'
 
 import styles from './VideosList.css'
 
-
-const GET_FOUR_VIDEOS = gql`{
-  allVideos(limit: 8) {
-    hashId
-    title
-    provider
-    providerId
+const GET_FOUR_VIDEOS = gql`
+  {
+    videos(filters: { isFeatured: true }, limit: 8) {
+      entries {
+        hashId
+        title
+        thumbnail
+      }
+    }
   }
-}`
+`
 
 const AUTO_REFRESH_INTERVAL = 1000 * 60 * 30 // 30 minutes
 
@@ -31,7 +33,7 @@ export default class VideosList extends React.Component {
   render() {
     return (
       <Query query={GET_FOUR_VIDEOS} pollInterval={AUTO_REFRESH_INTERVAL}>
-        {({ loading, error, data}) => {
+        {({ loading, error, data }) => {
           if (loading) {
             return <div className={styles.videosList}>...</div>
           } else if (error) {
@@ -39,16 +41,17 @@ export default class VideosList extends React.Component {
             return this.renderNoVideo()
           }
 
-          if (data.allVideos.length === 0) {
+          const videos = data?.videos?.entries
+          if (!videos || videos.length === 0) {
             return this.renderNoVideo()
           }
 
           return (
             <div className={styles.videosList}>
-              {data.allVideos.map(({title, hashId, provider, providerId}) => (
+              {videos.map(({ title, hashId, thumbnail }) => (
                 <div key={hashId} className={styles.videoCard}>
                   <ExternalLink href={linkToVerificationsPage(hashId)}>
-                    <img src={this.videoThumb(provider, providerId)} alt=""/>
+                    <img src={thumbnail} alt="" />
                     <div className={styles.title}>{title}</div>
                   </ExternalLink>
                 </div>
@@ -71,12 +74,5 @@ export default class VideosList extends React.Component {
         </Message>
       </div>
     )
-  }
-
-  videoThumb(provider, provider_id) {
-    if (provider === 'youtube') {
-      return `https://img.youtube.com/vi/${provider_id}/mqdefault.jpg`
-    }
-    return ''
   }
 }

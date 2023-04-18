@@ -1,16 +1,17 @@
+import { has } from 'lodash'
 import HttpApi from './http_api'
 import BrowserIconBadgeCounter from './browser_icon_badge_counter'
+import { BrowserExtension } from './browser-extension'
 
 export const CACHE_KEY = 'cache'
 export const CACHE_VALIDITY = 15 * 60 * 1000 // 15 minutes
 export const DEFAULT = {
-  version: '0.8.0',   // Changing this version will force the cache to do a full update
-  lastId: 0,          // Last fetched id
-  lastUpdate: null,   // Timestamp of the last update
+  version: '0.8.0', // Changing this version will force the cache to do a full update
+  lastId: 0, // Last fetched id
+  lastUpdate: null, // Timestamp of the last update
   lastUpdateNbAdded: 0, // Number of videos added during the last update
-  data: {youtube: []} // The goods
+  data: { youtube: [] }, // The goods
 }
-
 
 export default class DataCache {
   /**
@@ -18,9 +19,9 @@ export default class DataCache {
    * If cache is too old, this also updates it.
    */
   static load() {
-    return new Promise((fulfill, reject) => {
-      return chrome.storage.local.get(CACHE_KEY, obj => {
-        if (obj && obj.hasOwnProperty(CACHE_KEY) && DataCache.checkVersion(obj[CACHE_KEY])) {
+    return new Promise((fulfill) => {
+      return BrowserExtension.storage.local.get(CACHE_KEY, (obj) => {
+        if (has(obj, CACHE_KEY) && DataCache.checkVersion(obj[CACHE_KEY])) {
           return fulfill(obj[CACHE_KEY])
         }
         return fulfill(DEFAULT)
@@ -39,7 +40,7 @@ export default class DataCache {
    * Check if video exists in cache. Returns a promise with a boolean as first param
    */
   static hasVideo(provider, id) {
-    return DataCache.updatedCache().then(({data}) => {
+    return DataCache.updatedCache().then(({ data }) => {
       return data[provider] && data[provider].includes(id)
     })
   }
@@ -51,24 +52,26 @@ export default class DataCache {
    * If update fails, returns current version of the cache
    */
   static updatedCache(force = false) {
-    return DataCache.load().then(cache => {
+    return DataCache.load().then((cache) => {
       // Check if cache is expired
-      if (!force && !isCacheExpired(cache))
-        return cache
+      if (!force && !isCacheExpired(cache)) return cache
 
       // Fetch new videos
-      return HttpApi.post({query: `{allVideos(filters: {minId: ${cache.lastId}}) {id provider providerId}}`})
-        .then(({allVideos}) => {
+      return HttpApi.post({
+        query: `{videos(limit: 100000, filters: {minId: ${cache.lastId}}) { entries { id facebookId youtubeId } }}`,
+      })
+        .then((result) => {
+          const videos = result?.videos?.entries
+
           // Do not update if there is no new video
-          if (allVideos.length === 0)
-            return cache
+          if (!videos || videos.length === 0) return cache
 
           // Add videos to cache
           const isFirstUpdate = cache.lastId === 0
-          addVideosToCache(cache, allVideos)
+          addVideosToCache(cache, videos)
 
           // Save new cache
-          chrome.storage.local.set({[CACHE_KEY]: cache}, () => {
+          BrowserExtension.storage.local.set({ [CACHE_KEY]: cache }, () => {
             console.info('[CaptainFact] Cache updated')
             // Notify BrowserIconBadgeCounter that there are new videos.
             // This is bypassed on first run to avoid having the counter
@@ -78,8 +81,10 @@ export default class DataCache {
             }
           })
           return cache
-        }).catch(e => {
-          console.error('[CaptainFact] Cache update failed', e)
+        })
+        .catch((e) => {
+          console.error('[CaptainFact] Cache update failed')
+          console.error(JSON.stringify(e))
           return cache
         })
     })
@@ -98,14 +103,13 @@ function addVideosToCache(cache, videos) {
   let nbAdded = 0
   for (const video of videos) {
     // Only support YouTube at the moment. Ignore other providers.
-    if (video.provider === 'youtube') {
-      cache.data.youtube.push(video.providerId)
+    if (video.youtubeId) {
+      cache.data.youtube.push(video.youtubeId)
       nbAdded += 1
     }
     // Store last id
     const videoId = parseInt(video.id)
-    if (videoId > maxId)
-      maxId = videoId
+    if (videoId > maxId) maxId = videoId
   }
   cache.lastId = maxId
   cache.lastUpdate = Date.now()
@@ -115,9 +119,9 @@ function addVideosToCache(cache, videos) {
 
 /**
  * Check if cache need to be updated
- * 
- * @param {Object} cache 
+ *
+ * @param {Object} cache
  */
 function isCacheExpired(cache) {
-  return !cache.lastUpdate || (Date.now() - cache.lastUpdate) > CACHE_VALIDITY
+  return !cache.lastUpdate || Date.now() - cache.lastUpdate > CACHE_VALIDITY
 }

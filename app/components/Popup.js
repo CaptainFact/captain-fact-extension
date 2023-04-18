@@ -8,31 +8,51 @@ import Settings from './Settings'
 import styles from './Popup.css'
 import tabsStyles from './Tabs.css'
 import translate from '../lib/translate'
-import { linkToAddVideo } from '../lib/cf_urls'
 import VideosList from './VideosList'
 import ExternalLink from './ExternalLink'
+import { BrowserExtension } from '../lib/browser-extension'
+import {
+  GrantPermissions,
+  checkHasAllDomainsPermissions,
+} from './GrantPermissions'
+import LocalSettings from '../lib/local_settings'
 
-
-export default class Popup extends React.Component {
-  state = {url: null}
-
-  componentDidMount() {
-    chrome.tabs.query({active: true, currentWindow: true}, arrayOfTabs => {
-      this.setState({url: arrayOfTabs[0].url})
-    })
+const checkIfPermissionsWarningShouldBeShown = async () => {
+  const hasPermissions = await checkHasAllDomainsPermissions()
+  if (!hasPermissions) {
+    if (!(await LocalSettings.getValue('dismissPermissionWarning'))) {
+      return true
+    }
   }
 
-  render() {
-    return (
-      <div className={styles.popup}>
-        <ExternalLink href="https://captainfact.io/videos" className={styles.bannerLink}>
-          <img
-            src={chrome.runtime.getURL('img/banner.jpg')}
-            className={styles.banner}
-            alt="CaptainFact"
-          />
-        </ExternalLink>
-        {this.renderActions()}
+  return false
+}
+
+const Popup = () => {
+  const [showPermissionsWarning, setShowPermissionsWarning] =
+    React.useState(false)
+
+  React.useEffect(() => {
+    checkIfPermissionsWarningShouldBeShown().then((showWarning) => {
+      setShowPermissionsWarning(showWarning)
+    })
+  }, [])
+
+  return (
+    <div className={styles.popup}>
+      <ExternalLink
+        href="https://captainfact.io/videos"
+        className={styles.bannerLink}
+      >
+        <img
+          src={BrowserExtension.runtime.getURL('img/banner.jpg')}
+          className={styles.banner}
+          alt="CaptainFact"
+        />
+      </ExternalLink>
+      {showPermissionsWarning ? (
+        <GrantPermissions onClose={() => setShowPermissionsWarning(false)} />
+      ) : (
         <Tabs
           defaultIndex={0}
           selectedTabClassName={tabsStyles.isActive}
@@ -41,45 +61,29 @@ export default class Popup extends React.Component {
           <TabList className={tabsStyles.tabsList}>
             <Tab>
               <a>
-                <FontAwesomeIcon icon={faTv}/>
+                <FontAwesomeIcon icon={faTv} />
                 <span>{translate('videos')}</span>
               </a>
             </Tab>
             <Tab>
               <a>
-                <FontAwesomeIcon icon={faCog}/>
+                <FontAwesomeIcon icon={faCog} />
                 <span>{translate('settings')}</span>
               </a>
             </Tab>
           </TabList>
           <TabPanel>
-            <VideosList/>
+            <VideosList />
           </TabPanel>
           <TabPanel>
             <div className={styles.content}>
-              <Settings/>
+              <Settings />
             </div>
           </TabPanel>
         </Tabs>
-      </div>
-    )
-  }
-
-  renderActions() {
-    const { url } = this.state
-    if (!url || !url.match(/^(http:\/\/|https:\/\/)?(www\.)?youtube\.com\/watch\?*/))
-      return null
-
-    return (
-      <div className={styles.actionsBlockContainer}>
-        <ExternalLink
-          className={styles.actionsBlock}
-          href={linkToAddVideo(url)}
-        >
-          <img src={chrome.runtime.getURL('img/new_tab.png')} alt=""/>
-          {translate('openOnCF')}
-        </ExternalLink>
-      </div>
-    )
-  }
+      )}
+    </div>
+  )
 }
+
+export default Popup

@@ -1,9 +1,0 @@
-doctype html
-
-html
-  head
-    meta(charset='UTF-8')
-    title CaptainFact
-  body
-    #root
-    script(src= ['staging', 'prod'].includes(env) ? '/js/inject.bundle.js' : 'https://localhost:3000/js/inject.bundle.js')

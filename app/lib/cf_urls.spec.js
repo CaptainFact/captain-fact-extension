@@ -1,10 +1,7 @@
-import { linkToAddVideo, linkToVerificationsPage } from './cf_urls'
-
-
-test('linkToAddVideo', () => {
-  snapshot(linkToAddVideo('https://www.youtube.com/watch?v=dQw4w9WgXcQ'))
-})
+import { linkToVerificationsPage } from './cf_urls'
 
 test('linkToVerificationsPage', () => {
-  snapshot(linkToVerificationsPage('xxxx'))
+  expect(linkToVerificationsPage('xxxx')).toMatchInlineSnapshot(
+    `"http://TEST_FRONTEND/videos/xxxx"`
+  )
 })
