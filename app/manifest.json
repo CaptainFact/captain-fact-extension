@@ -6,6 +6,9 @@
   "description": "Collaborative, real-time fact checking. Free and open source.",
   "default_locale": "en",
   "author": "contact@captainfact.io",
+  "browser_specific_settings": {
+    "gecko": { "id": "extension@captainfact.io" }
+  },
   "action": {
     "default_icon": {
       "16": "img/icon-16.png",
@@ -22,7 +25,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://*.youtube.com/*"],
+      "matches": ["https://www.youtube.com/*", "https://m.youtube.com/*"],
       "js": ["/js/inject.bundle.js"]
     },
     {
@@ -34,7 +37,7 @@
   "host_permissions": [
     "*://m.youtube.com/*",
     "*://www.youtube.com/*",
-    "<%= FRONTEND_URL %>/*"
+    "<%= FRONTEND_DOMAIN_WILD_CARD %>/*"
   ],
   "content_security_policy": {
     "extension_pages": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' https://img.youtube.com data:; connect-src 'self' <%= FRONTEND_URL %> <%= API_URL %>;"

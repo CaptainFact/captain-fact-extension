@@ -11,6 +11,10 @@ if (!argv.env) {
 
 const config = require(`../config/${argv.env}.js`)
 
+const domainToHostWildCard = (domain) => {
+  return domain.replace(/^https:\/\//, '*://*.') + '/*'
+}
+
 module.exports = {
   mode: config.ENV,
   entry: {
@@ -67,7 +71,12 @@ module.exports = {
           from: `app/manifest.json`,
           to: `manifest.json`,
           transform: (content) => {
-            return lodash.template(content)(config)
+            return lodash.template(content)({
+              ...config,
+              FRONTEND_DOMAIN_WILD_CARD: domainToHostWildCard(
+                config.FRONTEND_URL
+              ),
+            })
           },
         },
       ],

@@ -15,3 +15,11 @@ export const getVideoProvider = (url) => {
   }
   return null
 }
+
+/**
+ * From a domain like `https://captainfact.io`, returns a pattern like `*://*.captainfact.io/*`
+ * that can be used in extension manifest/permissions.
+ */
+export const domainToHostWildCard = (domain) => {
+  return domain.replace(/^https:\/\//, '*://*.') + '/*'
+}

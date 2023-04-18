@@ -6,6 +6,7 @@ const DEFAULT_SETTINGS = {
   __SETTINGS_VERSION: CURRENT_VERSION,
   videosOverlay: true,
   newVideosBadge: true,
+  dismissPermissionWarning: false,
 }
 
 const STORAGE = BrowserExtension.storage.local

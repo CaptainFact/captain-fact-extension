@@ -9,7 +9,7 @@
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
     display: inline-flex;
-    font-size: 1.25em;
+    font-size: 1em;
     height: 1.5em;
     line-height: 1.5;
     position: relative;
@@ -29,11 +29,16 @@
     padding: calc(0.375em - 1px) 0.75em;
     text-align: center;
     white-space: nowrap;
+    border-color: #6ba3a7;
+    border-radius: 4px;
+    padding: 0.8em 1em;
+    color: #6ba3a7;
 }
 
 .button:hover {
-    border-color: #b5b5b5;
-    color: #363636;
+    background-color: #6ba3a7;
+    border-color: #6ba3a7;
+    color: #fff;
 }
 
 .button.active {
@@ -45,4 +50,16 @@
 
 .button.active[data-value=OFF] {
     background-color: #f73d57;
+}
+
+.primary {
+    background-color: #6ba3a7;
+    border-color: #0000;
+    color: #fff;
+}
+
+.primary:hover {
+    background-color: #639ea2;
+    border-color: #0000;
+    color: #fff;
 }

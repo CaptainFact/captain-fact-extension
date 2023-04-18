@@ -8,10 +8,8 @@ export default class BrowserIconBadgeCounter {
    * Reset / remove badge text
    * @param {function() {...}} callback
    */
-  static reset() {
-    return new Promise((fulfill) => {
-      fulfill(setBadgeText(''))
-    })
+  static async reset() {
+    return BrowserExtension.action.setBadgeText({ text: '' })
   }
 
   /**
@@ -24,29 +22,16 @@ export default class BrowserIconBadgeCounter {
     return LocalSettings.getValue('newVideosBadge').then((isActivated) => {
       if (!isActivated) return null
 
-      return BrowserExtension.browserAction.getBadgeText(
-        {},
-        (currentValueStr) => {
-          const intValue = decodeValue(currentValueStr)
-          const newValueStr = encodeValue(intValue + value)
-          return setBadgeText(newValueStr)
-        }
-      )
+      return BrowserExtension.action.getBadgeText({}, (currentValueStr) => {
+        const intValue = decodeValue(currentValueStr) || 0
+        const newValueStr = encodeValue(intValue + value)
+        return BrowserExtension.action.setBadgeText({ text: newValueStr })
+      })
     })
   }
 }
 
 // Private functions
-
-/**
- * Set the given `text` as extension's icon badge. To remove the badge, send an
- * empty string here.
- *
- * @param {string} text : a 0-4 characters string of the text to display
- */
-function setBadgeText(text) {
-  return BrowserExtension.browserAction.setBadgeText({ text })
-}
 
 /**
  * @param {string} value : Encoded value

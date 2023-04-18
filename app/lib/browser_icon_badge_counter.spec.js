@@ -4,13 +4,21 @@ import BrowserIconBadgeCounter, {
 } from './browser_icon_badge_counter'
 
 beforeEach(() => {
-  BrowserExtension.browserAction.getBadgeText.mockClear()
-  BrowserExtension.browserAction.setBadgeText.mockClear()
+  // BrowserExtension.action not yet supported by jest-webextension-mock
+  if (!BrowserExtension.action) {
+    BrowserExtension.action = {
+      getBadgeText: jest.fn((_, callback) => callback?.()),
+      setBadgeText: jest.fn(),
+    }
+  }
+
+  BrowserExtension.action.getBadgeText.mockClear()
+  BrowserExtension.action.setBadgeText.mockClear()
 })
 
 test('reset counter', () => {
   return BrowserIconBadgeCounter.reset().then(() => {
-    expect(BrowserExtension.browserAction.setBadgeText).toHaveBeenCalledWith({
+    expect(BrowserExtension.action.setBadgeText).toHaveBeenCalledWith({
       text: '',
     })
   })
@@ -19,7 +27,7 @@ test('reset counter', () => {
 describe('increment', () => {
   it('should set value if empty', () => {
     return BrowserIconBadgeCounter.increment(40).then(() => {
-      expect(BrowserExtension.browserAction.setBadgeText).toHaveBeenCalledWith({
+      expect(BrowserExtension.action.setBadgeText).toHaveBeenCalledWith({
         text: '40',
       })
     })
@@ -31,15 +39,13 @@ describe('increment', () => {
     const expectedResult = '42'
 
     // Mock getBadgeText
-    BrowserExtension.browserAction.getBadgeText.mockImplementation(
-      (_, func) => {
-        return func(initialValue)
-      }
-    )
+    BrowserExtension.action.getBadgeText.mockImplementation((_, func) => {
+      return func(initialValue)
+    })
 
     // Increment and verify result
     return BrowserIconBadgeCounter.increment(incrementValue).then(() => {
-      expect(BrowserExtension.browserAction.setBadgeText).toHaveBeenCalledWith({
+      expect(BrowserExtension.action.setBadgeText).toHaveBeenCalledWith({
         text: expectedResult,
       })
     })
@@ -49,7 +55,7 @@ describe('increment', () => {
     const expected = { text: `${MAX_VALUE}+` }
 
     return BrowserIconBadgeCounter.increment(MAX_VALUE + 50).then(() => {
-      expect(BrowserExtension.browserAction.setBadgeText).toHaveBeenCalledWith(
+      expect(BrowserExtension.action.setBadgeText).toHaveBeenCalledWith(
         expected
       )
     })
