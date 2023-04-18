@@ -1,18 +1,18 @@
 {
   "appDesc": {
-    "message": "Collaborative, real-time fact-checking.", 
+    "message": "Collaborative, real-time fact-checking.",
     "description": "The description of the application, displayed in the web store."
   },
   "settingYoutubeOverlay": {
-    "message": "YouTube Overlay", 
+    "message": "YouTube Overlay",
     "description": "Setting to activate the video overlay on YouTube."
   },
   "openOnCF": {
-    "message": "Open this video on CaptainFact.io", 
+    "message": "Open this video on CaptainFact.io",
     "description": "Status label when button is disactivated."
   },
   "settings": {
-    "message": "Settings", 
+    "message": "Settings",
     "description": "Title of the settings header."
   },
   "videos": {
@@ -22,5 +22,17 @@
   "noVideoAvailable": {
     "message": "No video available, but you can still check on the website:",
     "description": "Message displayed when there is no video available"
+  },
+  "requestPermissions": {
+    "message": "We need some additional permissions to use CaptainFact on YouTube.",
+    "description": "Message to request permissions"
+  },
+  "btnGrantPermissions": {
+    "message": "Grant permissions",
+    "description": "Ok button"
+  },
+  "btnNoPermissions": {
+    "message": "Dismiss",
+    "description": "No button"
   }
 }

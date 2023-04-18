@@ -5,11 +5,10 @@
   "scripts": {
     "dev": "webpack --watch --config webpack/webpack.dev.js --env dev",
     "dev:staging": "webpack --watch --config webpack/webpack.dev.js --env staging",
-    "build:production": "cd captain-fact-overlay-injector && npm run build:production && cd .. && webpack --config webpack/webpack.prod.js --env=production",
+    "build:production": "cd captain-fact-overlay-injector && npm run build:production && cd .. && webpack --config webpack/webpack.prod.js --env=production && npm run compress",
     "build:staging": "cd captain-fact-overlay-injector && npm run build:staging && cd .. && webpack --config webpack/webpack.prod.js --env=staging ",
     "build:dev": "cd captain-fact-overlay-injector && npm run build:dev && cd .. && webpack --config webpack/webpack.prod.js --env=dev",
-    "compress": "node scripts/compress",
-    "compress-keygen": "crx keygen",
+    "compress": "crx pack build -o CaptainFact_Extension.crx -p key.pem --zip-output CaptainFact_Extension.zip",
     "clean": "rimraf build/ dev/ CaptainFact_Extension*.zip CaptainFact_Extension*.crx",
     "test": "jest",
     "wtest": "jest --watch",

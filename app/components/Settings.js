@@ -5,6 +5,10 @@ import styles from './Settings.css'
 import LocalSettings from '../lib/local_settings.js'
 import translate from '../lib/translate.js'
 import BrowserIconBadgeCounter from '../lib/browser_icon_badge_counter.js'
+import {
+  GrantPermissions,
+  checkHasAllDomainsPermissions,
+} from './GrantPermissions.js'
 
 const SELECT_OPTIONS_ON_OFF = {
   ON: true,
@@ -14,11 +18,14 @@ const SELECT_OPTIONS_ON_OFF = {
 export default class Settings extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { settings: null }
+    this.state = { settings: null, hasDomainsPermission: true }
   }
 
   componentDidMount() {
     LocalSettings.load().then((settings) => this.setState({ settings }))
+    checkHasAllDomainsPermissions().then((hasDomainsPermission) =>
+      this.setState({ hasDomainsPermission })
+    )
   }
 
   handleChange(key, value) {
@@ -59,6 +66,14 @@ export default class Settings extends React.Component {
             options={SELECT_OPTIONS_ON_OFF}
           />
         </div>
+        {!this.state.hasDomainsPermission && (
+          <div className={styles.control}>
+            <GrantPermissions
+              canDismiss={false}
+              onClose={() => this.setState({ hasDomainsPermission: true })}
+            />
+          </div>
+        )}
       </div>
     )
   }

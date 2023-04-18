@@ -1,18 +1,18 @@
 {
   "appDesc": {
-    "message": "Vérification d'information collaborative en temps réel.", 
+    "message": "Vérification d'information collaborative en temps réel.",
     "description": "The description of the application, displayed in the web store."
   },
   "settingYoutubeOverlay": {
-    "message": "Intégration dans YouTube", 
+    "message": "Intégration dans YouTube",
     "description": "Setting to activate the video overlay on YouTube."
   },
   "openOnCF": {
-    "message": "Ouvrir cette vidéo sur CaptainFact.io", 
+    "message": "Ouvrir cette vidéo sur CaptainFact.io",
     "description": "Status label when button is disactivated."
   },
   "settings": {
-    "message": "Préférences", 
+    "message": "Préférences",
     "description": "Title of the settings header."
   },
   "videos": {
@@ -22,5 +22,17 @@
   "noVideoAvailable": {
     "message": "Il n'y a aucune vidéo par ici. Essayez de jeter un coup d'oeuil sur le site :",
     "description": "Message displayed when there is no video available"
+  },
+  "requestPermissions": {
+    "message": "Pour utiliser les fonctionnalités de CaptainFact sur YouTube, nous avons besoin de votre autorisation.",
+    "description": "Message to request permissions"
+  },
+  "btnGrantPermissions": {
+    "message": "Ok",
+    "description": "Bouton Ok"
+  },
+  "btnNoPermissions": {
+    "message": "Ignorer",
+    "description": "Bouton Non"
   }
 }

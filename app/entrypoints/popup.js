@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 
 import { CF_API_URL } from '../lib/constants'
@@ -16,4 +16,5 @@ const App = () => (
 )
 
 // Render popup
-ReactDOM.render(<App />, document.querySelector('#root'))
+const root = createRoot(document.getElementById('root'))
+root.render(<App />)

@@ -11,21 +11,48 @@ import translate from '../lib/translate'
 import VideosList from './VideosList'
 import ExternalLink from './ExternalLink'
 import { BrowserExtension } from '../lib/browser-extension'
+import {
+  GrantPermissions,
+  checkHasAllDomainsPermissions,
+} from './GrantPermissions'
+import LocalSettings from '../lib/local_settings'
 
-export default class Popup extends React.Component {
-  render() {
-    return (
-      <div className={styles.popup}>
-        <ExternalLink
-          href="https://captainfact.io/videos"
-          className={styles.bannerLink}
-        >
-          <img
-            src={BrowserExtension.runtime.getURL('img/banner.jpg')}
-            className={styles.banner}
-            alt="CaptainFact"
-          />
-        </ExternalLink>
+const checkIfPermissionsWarningShouldBeShown = async () => {
+  const hasPermissions = await checkHasAllDomainsPermissions()
+  if (!hasPermissions) {
+    if (!(await LocalSettings.getValue('dismissPermissionWarning'))) {
+      return true
+    }
+  }
+
+  return false
+}
+
+const Popup = () => {
+  const [showPermissionsWarning, setShowPermissionsWarning] =
+    React.useState(false)
+
+  React.useEffect(() => {
+    checkIfPermissionsWarningShouldBeShown().then((showWarning) => {
+      setShowPermissionsWarning(showWarning)
+    })
+  }, [])
+
+  return (
+    <div className={styles.popup}>
+      <ExternalLink
+        href="https://captainfact.io/videos"
+        className={styles.bannerLink}
+      >
+        <img
+          src={BrowserExtension.runtime.getURL('img/banner.jpg')}
+          className={styles.banner}
+          alt="CaptainFact"
+        />
+      </ExternalLink>
+      {showPermissionsWarning ? (
+        <GrantPermissions onClose={() => setShowPermissionsWarning(false)} />
+      ) : (
         <Tabs
           defaultIndex={0}
           selectedTabClassName={tabsStyles.isActive}
@@ -54,7 +81,9 @@ export default class Popup extends React.Component {
             </div>
           </TabPanel>
         </Tabs>
-      </div>
-    )
-  }
+      )}
+    </div>
+  )
 }
+
+export default Popup
