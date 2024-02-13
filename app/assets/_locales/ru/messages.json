@@ -1,1 +1,38 @@
-
+{
+  "appDesc": {
+    "message": "Проверка совместной информации в реальном времени",
+    "description": "Описание приложения, отображаемое в веб-магазине"
+  },
+  "settingYoutubeOverlay": {
+    "message": "YouTube-интеграция",
+    "description": "Настройка для активации наложения поверх видео на YouTube"
+  },
+  "openOnCF": {  
+    "message": "Открыть это видео на CaptainFact.io",
+    "description": "Метка состояния при деактивации кнопки"
+  },
+  "settings": {
+    "message": "Preferences",
+    "description": "Название заголовка настроек"
+  },
+  "videos": {
+    "message": "Последние видео",
+    "description": "Заголовок вкладки "Видео""
+  },
+  "noVideoAvailable": { 
+    "message": "Здесь нет видео. Попробуйте заглянуть на сайт :",
+    "description": "Сообщение, отображаемое при отсутствии видео"
+  },
+  "requestPermissions": {
+    "message": "Чтобы использовать возможности CaptainFact на YouTube, нам нужно ваше разрешение",
+    "description": "Сообщение для запроса разрешений"
+  },
+  "btnGrantPermissions": {
+    "message": "Ok",
+    "description": "Кнопка Ok"
+  },
+  "btnNoPermissions": { 
+    "message": "Ignore",
+    "description": "Кнопка "Нет""
+  }
+}
