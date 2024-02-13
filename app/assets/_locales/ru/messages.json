@@ -1,0 +1,38 @@
+{
+  "appDesc": {
+    "message": "Проверка информации совместно в реальном времени",
+    "description": "The description of the application, displayed in the web store."
+  },
+  "settingYoutubeOverlay": {
+    "message": "YouTube-интеграция",
+    "description": "Setting to activate the video overlay on YouTube."
+  },
+  "openOnCF": {  
+    "message": "Открыть это видео на CaptainFact.io",
+    "description": "Status label when button is disactivated."
+  },
+  "settings": {
+    "message": "Настройки",
+    "description": "Title of the settings header."
+  },
+  "videos": {
+    "message": "Последние видео",
+    "description": "The Videos tab title"
+  },
+  "noVideoAvailable": { 
+    "message": "Здесь нет видео. Попробуйте заглянуть на сайт :",
+    "description": "Message displayed when there is no video available"
+  },
+  "requestPermissions": {
+    "message": "Для использования функций CaptainFact на YouTube нам необходимо ваше разрешение.",
+    "description": "Message to request permissions"
+  },
+  "btnGrantPermissions": {
+    "message": "Предоставить разрешения",
+    "description": "Ok button"
+  },
+  "btnNoPermissions": { 
+    "message": "Не предоставлять",
+    "description": "No button"
+  }
+}
